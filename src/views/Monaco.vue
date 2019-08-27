@@ -1,0 +1,77 @@
+<!--
+ * @description: Description
+ * @author: lizlong<94648929@qq.com>
+ * @since: 2019-08-27 17:36:45
+ * @LastAuthor: lizlong
+ * @lastTime: 2019-08-27 17:38:28
+ -->
+<template>
+	<div>
+		<el-tabs type="border-card">
+			<el-tab-pane :lazy="true">
+				<span slot="label">
+					<i class="el-icon-document"></i> HTML
+				</span>
+				<MyEditor
+					:language="'html'"
+					:codes="htmlCodes"
+					@onMounted="htmlOnMounted"
+					@onCodeChange="htmlOnCodeChange"
+				/>
+			</el-tab-pane>
+			<el-tab-pane label="Javascript" :lazy="true">
+				<MyEditor
+					:language="'javascript'"
+					:codes="javascriptCodes"
+					@onMounted="javascriptOnMounted"
+					@onCodeChange="javascriptOnCodeChange"
+				/>
+			</el-tab-pane>
+			<el-tab-pane label="CSS" :lazy="true">
+				<MyEditor
+					:language="'css'"
+					:codes="cssCodes"
+					@onMounted="cssOnMounted"
+					@onCodeChange="cssOnCodeChange"
+				/>
+			</el-tab-pane>
+		</el-tabs>
+	</div>
+</template>
+ 
+<script>
+import MyEditor from "@/components/Monaco.vue";
+export default {
+	components: {
+		MyEditor
+	},
+	data() {
+		return {
+			htmlCodes: "<div>This is html</div>",
+			javascriptCodes: 'console.log("This is javascript")',
+			cssCodes: "body{}",
+			htmlEditor: null,
+			jsEditor: null,
+			cssEditor: null
+		};
+	},
+	methods: {
+		htmlOnMounted(edit) {
+			this.htmlEditor = edit;
+		},
+		javascriptOnMounted(edit) {
+			this.jsEditor = edit;
+		},
+		cssOnMounted(edit) {
+			this.cssEditor = edit;
+		},
+		htmlOnCodeChange(value, event) {},
+		javascriptOnCodeChange(value, event) {},
+		cssOnCodeChange(value, event) {}
+	}
+};
+</script>
+ 
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+</style>

@@ -1,18 +1,28 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <el-form label-position="left" label-width="80px" :model="formLabelAlign">
+    <el-form-item label="名称">
+      <el-input v-model="formLabelAlign.name"></el-input>
+    </el-form-item>
+    <el-form-item label="活动区域">
+      <el-input v-model="formLabelAlign.region"></el-input>
+    </el-form-item>
+    <el-form-item label="活动形式">
+      <el-input v-model="formLabelAlign.type"></el-input>
+    </el-form-item>
+  </el-form>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
-export default {
-  name: 'home',
-  components: {
-    HelloWorld
+  export default {
+    data() {
+      return {
+        labelPosition: 'right',
+        formLabelAlign: {
+          name: '',
+          region: '',
+          type: ''
+        }
+      };
+    }
   }
-}
 </script>
