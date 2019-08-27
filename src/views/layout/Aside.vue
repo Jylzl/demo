@@ -3,12 +3,12 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-08-27 18:01:13
  * @LastAuthor: lizlong
- * @lastTime: 2019-08-27 18:27:28
+ * @lastTime: 2019-08-27 18:33:41
  -->
 <template>
     <el-menu :default-active="activeIndex2" class="el-menu-demo" mode="horizontal" @select="handleSelect"
         background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" :router="true">
-        <el-menu-item index="1">我的工作台</el-menu-item>
+        <el-menu-item index="/">我的工作台</el-menu-item>
         <el-submenu index="2">
             <template slot="title">Demo</template>
             <el-menu-item index="/demo/neditor">富文本</el-menu-item>
@@ -28,7 +28,6 @@
         },
         methods: {
             handleSelect(key, keyPath) {
-                console.log(key, keyPath);
             }
         }
     };

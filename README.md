@@ -1,5 +1,7 @@
 # demo
 
+## Neditor  vue-cropper   monaco-editor
+
 ## Project setup
 ```
 npm install
