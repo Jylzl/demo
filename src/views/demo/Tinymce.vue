@@ -7,12 +7,8 @@
  -->
 <template>
 	<div>
-		<Editor
-			id="tinymce"
-			v-model="html"
-			api-key="udm8u7u1w88b8yqqt0czgf3glqzet1mnbt95at9wv8u6bib3"
-			:init="init"
-		></Editor>
+		<Editor id="tinymce" v-model="html" api-key="udm8u7u1w88b8yqqt0czgf3glqzet1mnbt95at9wv8u6bib3" :init="init">
+		</Editor>
 	</div>
 </template>
 
@@ -66,6 +62,7 @@ import "tinymce/plugins/toc"; // 插入目录
 import "tinymce/plugins/visualblocks"; // 隐藏块级区域开关
 import "tinymce/plugins/visualchars"; // 隐藏字符串开关
 import "tinymce/plugins/wordcount"; // 字数统计插件
+// import "tinymce/plugins/powerpaste"; // 字数统计插件
 
 export default {
 	components: {
@@ -78,13 +75,54 @@ export default {
 				language_url: "/tinymce/langs/zh_CN.min.js", // 语言包的路径
 				language: "zh_CN", //语言
 				skin_url: "/tinymce/skins/ui/oxide", // skin路径
-				height: 600, //编辑器高度
+				emoticons_database_url: "/tinymce/emoticons/emojis.min.js",
+				height: 600, //编辑器高度(autoresize开启后无效)
+				max_height: 800,
 				branding: false, //是否禁用“Powered by TinyMCE”
-				menubar: "file edit insert view format table help", //顶部菜单栏显示
+				font_formats:
+					"Andale Mono=andale mono,times; Arial=arial,helvetica,sans-serif; Arial Black=arial black,avant garde; Book Antiqua=book antiqua,palatino; Comic Sans MS=comic sans ms,sans-serif; Courier New=courier new,courier; Georgia=georgia,palatino; Helvetica=helvetica; Impact=impact,chicago; Symbol=symbol; Tahoma=tahoma,arial,helvetica,sans-serif; Terminal=terminal,monaco; Times New Roman=times new roman,times; Trebuchet MS=trebuchet ms,geneva; Verdana=verdana,geneva; Webdings=webdings; Wingdings=wingdings,zapf dingbats",
+				// fontsize_formats: "12px 14px 16px 18px 24px 36px 48px",
+				menubar: "file edit insert view format table tools help", //顶部菜单栏显示
+				menu: {
+					file: {
+						title: "File",
+						items: "newdocument restoredraft | preview | print "
+					},
+					edit: {
+						title: "Edit",
+						items:
+							"undo redo | cut copy paste | selectall | searchreplace"
+					},
+					view: {
+						title: "View",
+						items:
+							"code | visualaid visualchars visualblocks | spellchecker | preview fullscreen"
+					},
+					insert: {
+						title: "Insert",
+						items:
+							"image link media template codesample inserttable | charmap emoticons hr | pagebreak nonbreaking anchor toc | insertdatetime"
+					},
+					format: {
+						title: "Format",
+						items:
+							"bold italic underline strikethrough superscript subscript codeformat | formats blockformats fontformats fontsizes align | forecolor backcolor | removeformat"
+					},
+					tools: {
+						title: "Tools",
+						items: "spellcheckerlanguage | code wordcount"
+					},
+					table: {
+						title: "Table",
+						items:
+							"inserttable tableprops deletetable row column cell"
+					},
+					help: { title: "Help", items: "help" }
+				},
 				plugins:
-					"advlist anchor autolink autoresize autosave bbcode charmap code codesample directionality emoticons fullpage fullscreen help hr image imagetools importcss insertdatetime legacyoutput link lists media nonbreaking noneditable pagebreak paste preview print quickbars save searchreplace spellchecker tabfocus table template textpattern toc visualblocks visualchars wordcount",
+					"advlist anchor autolink autoresize autosave charmap code codesample directionality emoticons fullpage fullscreen help hr image imagetools importcss insertdatetime legacyoutput link lists media nonbreaking noneditable pagebreak paste preview print quickbars save searchreplace spellchecker tabfocus table template textpattern toc visualblocks visualchars wordcount",
 				toolbar1:
-					"undo redo | formatselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | lists image quickimage media emoticons link charmap table | removeformat subscript superscript | insertfile toc template preview fullscreen",
+					"undo redo | formatselect | fontselect fontsizeselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | lists image quickimage media emoticons link charmap table | removeformat subscript superscript | insertfile toc template preview fullscreen",
 				toolbar2: "insertdatetime"
 			}
 		};
