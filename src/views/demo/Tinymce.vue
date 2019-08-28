@@ -1,0 +1,94 @@
+<!--
+ * @description: Description
+ * @author: lizlong<94648929@qq.com>
+ * @since: 2019-07-30 17:49:09
+ * @LastAuthor: lizlong
+ * @lastTime: 2019-08-28 13:03:11
+ -->
+<template>
+	<div>
+		<Editor
+			id="tinymce"
+			v-model="html"
+			api-key="udm8u7u1w88b8yqqt0czgf3glqzet1mnbt95at9wv8u6bib3"
+			:init="init"
+		></Editor>
+	</div>
+</template>
+
+<script>
+import tinymce from "tinymce/tinymce";
+import Editor from "@tinymce/tinymce-vue";
+//主题
+import "tinymce/themes/silver";
+//插件
+import "tinymce/plugins/advlist";
+import "tinymce/plugins/anchor"; // 作者
+import "tinymce/plugins/autolink";
+import "tinymce/plugins/autoresize"; // 自动更改大小
+import "tinymce/plugins/autosave"; // 自动保存
+import "tinymce/plugins/bbcode";
+import "tinymce/plugins/charmap"; // 特殊符号
+import "tinymce/plugins/code"; // 代码
+import "tinymce/plugins/codesample";
+import "tinymce/plugins/colorpicker";
+import "tinymce/plugins/contextmenu";
+import "tinymce/plugins/directionality"; // 设置编写方向
+import "tinymce/plugins/emoticons"; // 表情
+import "tinymce/plugins/fullpage"; // 完整页面的文档属性
+import "tinymce/plugins/fullscreen"; // 全屏
+import "tinymce/plugins/help"; // 帮助
+import "tinymce/plugins/hr"; // 水平线
+import "tinymce/plugins/image"; // 插入上传图片插件
+import "tinymce/plugins/imagetools"; // 图片工具
+import "tinymce/plugins/importcss";
+import "tinymce/plugins/insertdatetime"; // 插入时间
+import "tinymce/plugins/legacyoutput";
+import "tinymce/plugins/link"; // 添加和修改链接
+import "tinymce/plugins/lists"; // 列表插件
+import "tinymce/plugins/media"; // 插入视频插件
+import "tinymce/plugins/nonbreaking"; // 不间断空格
+import "tinymce/plugins/noneditable";
+import "tinymce/plugins/pagebreak"; // 分页符
+import "tinymce/plugins/paste"; // 粘贴
+import "tinymce/plugins/preview"; // 预览
+import "tinymce/plugins/print"; // 打印
+import "tinymce/plugins/quickbars";
+import "tinymce/plugins/save"; // 保存(ajax)
+import "tinymce/plugins/searchreplace"; // 搜索
+import "tinymce/plugins/spellchecker"; // 拼写检查
+import "tinymce/plugins/tabfocus";
+import "tinymce/plugins/table"; // 插入表格插件
+import "tinymce/plugins/template"; // 插入模板
+import "tinymce/plugins/textcolor"; //文本颜色|背景颜色
+import "tinymce/plugins/textpattern";
+import "tinymce/plugins/toc"; // 插入目录
+import "tinymce/plugins/visualblocks"; // 隐藏块级区域开关
+import "tinymce/plugins/visualchars"; // 隐藏字符串开关
+import "tinymce/plugins/wordcount"; // 字数统计插件
+
+export default {
+	components: {
+		Editor
+	},
+	data() {
+		return {
+			html: "<h1>qqqq</h1>",
+			init: {
+				language_url: "/tinymce/langs/zh_CN.min.js", // 语言包的路径
+				language: "zh_CN", //语言
+				skin_url: "/tinymce/skins/ui/oxide", // skin路径
+				height: 600, //编辑器高度
+				branding: false, //是否禁用“Powered by TinyMCE”
+				menubar: "file edit insert view format table help", //顶部菜单栏显示
+				plugins:
+					"advlist anchor autolink autoresize autosave bbcode charmap code codesample directionality emoticons fullpage fullscreen help hr image imagetools importcss insertdatetime legacyoutput link lists media nonbreaking noneditable pagebreak paste preview print quickbars save searchreplace spellchecker tabfocus table template textpattern toc visualblocks visualchars wordcount",
+				toolbar1:
+					"undo redo | formatselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | lists image quickimage media emoticons link charmap table | removeformat subscript superscript | insertfile toc template preview fullscreen",
+				toolbar2: "insertdatetime"
+			}
+		};
+	},
+	methods: {}
+};
+</script>

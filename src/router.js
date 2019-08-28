@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-07-05 00:56:32
  * @LastAuthor: lizlong
- * @lastTime: 2019-08-27 18:27:07
+ * @lastTime: 2019-08-28 10:08:14
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -21,17 +21,22 @@ export default new Router({
     children: [{
         path: '/demo/neditor',
         name: 'Neditor',
-        component: () => import('@/views/Neditor.vue')
+        component: () => import('@/views/demo/Neditor.vue')
       },
       {
         path: '/demo/imgcropper',
         name: 'ImgCropper',
-        component: () => import('@/views/ImgCropper.vue')
+        component: () => import('@/views/demo/ImgCropper.vue')
       },
       {
         path: '/demo/monaco',
         name: 'Monaco',
-        component: () => import('@/views/Monaco.vue')
+        component: () => import('@/views/demo/Monaco.vue')
+      },
+      {
+        path: '/demo/tinymce',
+        name: 'Tinymce',
+        component: () => import('@/views/demo/Tinymce.vue')
       }
     ]
   }]
