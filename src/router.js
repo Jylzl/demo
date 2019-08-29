@@ -37,6 +37,11 @@ export default new Router({
         path: '/demo/tinymce',
         name: 'Tinymce',
         component: () => import('@/views/demo/Tinymce.vue')
+      },
+      {
+        path: '/demo/videoplayer',
+        name: 'VideoPlayer',
+        component: () => import('@/views/demo/VideoPlayer.vue')
       }
     ]
   }]

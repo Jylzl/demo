@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-07-30 17:49:09
  * @LastAuthor: lizlong
- * @lastTime: 2019-08-28 13:03:11
+ * @lastTime: 2019-08-29 22:32:12
  -->
 <template>
 	<div>
@@ -79,6 +79,14 @@ export default {
 				height: 600, //编辑器高度(autoresize开启后无效)
 				max_height: 800,
 				branding: false, //是否禁用“Powered by TinyMCE”
+				images_upload_url: "postAcceptor.php", //图片上次地址
+				images_upload_handler: this.imagesUploadHandlerfunction(),
+				imagetools_cors_hosts: ["mydomain.com", "otherdomain.com"],
+				imagetools_proxy: "proxy.php",
+				//想要哪一个图标提供本地文件选择功能，参数可为media(媒体)、image(图片)、file(文件)
+				file_picker_types: "media",
+				//be used to add custom file picker to those dialogs that have it.
+				file_picker_callback: this.filePickerCallback(),
 				font_formats:
 					"Andale Mono=andale mono,times; Arial=arial,helvetica,sans-serif; Arial Black=arial black,avant garde; Book Antiqua=book antiqua,palatino; Comic Sans MS=comic sans ms,sans-serif; Courier New=courier new,courier; Georgia=georgia,palatino; Helvetica=helvetica; Impact=impact,chicago; Symbol=symbol; Tahoma=tahoma,arial,helvetica,sans-serif; Terminal=terminal,monaco; Times New Roman=times new roman,times; Trebuchet MS=trebuchet ms,geneva; Verdana=verdana,geneva; Webdings=webdings; Wingdings=wingdings,zapf dingbats",
 				// fontsize_formats: "12px 14px 16px 18px 24px 36px 48px",
@@ -122,11 +130,72 @@ export default {
 				plugins:
 					"advlist anchor autolink autoresize autosave charmap code codesample directionality emoticons fullpage fullscreen help hr image imagetools importcss insertdatetime legacyoutput link lists media nonbreaking noneditable pagebreak paste preview print quickbars save searchreplace spellchecker tabfocus table template textpattern toc visualblocks visualchars wordcount",
 				toolbar1:
-					"undo redo | formatselect | fontselect fontsizeselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | lists image quickimage media emoticons link charmap table | removeformat subscript superscript | insertfile toc template preview fullscreen",
+					"undo redo | formatselect | fontselect fontsizeselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | lists image media emoticons link charmap table | removeformat subscript superscript | insertfile toc template preview fullscreen",
 				toolbar2: "insertdatetime"
 			}
 		};
 	},
-	methods: {}
+	methods: {
+		imagesUploadHandlerfunction() {
+			return function(blobInfo, success, failure) {
+				setTimeout(function() {
+					/* no matter what you upload, we will turn it into TinyMCE logo :)*/
+					success(
+						"http://moxiecode.cachefly.net/tinymce/v9/images/logo.png"
+					);
+				}, 2000);
+			};
+		},
+		filePickerCallback() {
+			return function(cb, value, meta) {
+				//当点击meidia图标上传时,判断meta.filetype == 'media'有必要，因为file_picker_callback是media(媒体)、image(图片)、file(文件)的共同入口
+				if (meta.filetype == "media") {
+					//创建一个隐藏的type=file的文件选择input
+					let input = document.createElement("input");
+					input.setAttribute("type", "file");
+					input.onchange = function() {
+						let file = this.files[0]; //只选取第一个文件。如果要选取全部，后面注意做修改
+						let xhr, formData;
+						xhr = new XMLHttpRequest();
+						xhr.open("POST", self.apiUrl);
+						xhr.withCredentials = self.credentials;
+						xhr.upload.onprogress = function(e) {
+							// 进度(e.loaded / e.total * 100)
+						};
+						xhr.onerror = function() {
+							//根据自己的需要添加代码
+							console.log(xhr.status);
+							return;
+						};
+						xhr.onload = function() {
+							let json;
+							if (xhr.status < 200 || xhr.status >= 300) {
+								console.log("HTTP 错误: " + xhr.status);
+								return;
+							}
+							json = JSON.parse(xhr.responseText);
+							//假设接口返回JSON数据为{status: 0, msg: "上传成功", data: {location: "/localImgs/1546434503854.mp4"}}
+							if (json.status == 0) {
+								//接口返回的文件保存地址
+								let mediaLocation = json.data.location;
+								//cb()回调函数，将mediaLocation显示在弹框输入框中
+								cb(mediaLocation, { title: file.name });
+							} else {
+								console.log(json.msg);
+								return;
+							}
+						};
+						formData = new FormData();
+						//假设接口接收参数为file,值为选中的文件
+						formData.append("file", file);
+						//正式使用将下面被注释的内容恢复
+						xhr.send(formData);
+					};
+					//触发点击
+					input.click();
+				}
+			};
+		}
+	}
 };
 </script>
