@@ -3,12 +3,16 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-07-30 17:49:09
  * @LastAuthor: lizlong
- * @lastTime: 2019-08-29 22:32:12
+ * @lastTime: 2019-08-30 13:07:11
  -->
 <template>
 	<div>
-		<Editor id="tinymce" v-model="html" api-key="udm8u7u1w88b8yqqt0czgf3glqzet1mnbt95at9wv8u6bib3" :init="init">
-		</Editor>
+		<Editor
+			id="tinymce"
+			v-model="html"
+			api-key="udm8u7u1w88b8yqqt0czgf3glqzet1mnbt95at9wv8u6bib3"
+			:init="init"
+		></Editor>
 	</div>
 </template>
 
@@ -88,7 +92,7 @@ export default {
 				//be used to add custom file picker to those dialogs that have it.
 				file_picker_callback: this.filePickerCallback(),
 				font_formats:
-					"Andale Mono=andale mono,times; Arial=arial,helvetica,sans-serif; Arial Black=arial black,avant garde; Book Antiqua=book antiqua,palatino; Comic Sans MS=comic sans ms,sans-serif; Courier New=courier new,courier; Georgia=georgia,palatino; Helvetica=helvetica; Impact=impact,chicago; Symbol=symbol; Tahoma=tahoma,arial,helvetica,sans-serif; Terminal=terminal,monaco; Times New Roman=times new roman,times; Trebuchet MS=trebuchet ms,geneva; Verdana=verdana,geneva; Webdings=webdings; Wingdings=wingdings,zapf dingbats",
+					"微软雅黑=Microsoft YaHei;微软正黑体=Microsoft JhengHei; 楷体_GB2312=KaiTi_GB2312; 仿宋_GB2312=FangSong_GB2312; 楷体=KaiTi; 仿宋=FangSong; 新宋体=NSimSun; 宋体=SimSun; 黑体=SimHei; 标楷体=DFKai-SB; 细明体=MingLiU; 新细明体=PMingLiU; 隶书=LiSu; 幼圆=YouYuan; 华文细黑=STXihei; 华文楷体=STKaiti; 华文宋体=STSong; 华文中宋=STZhongsong; 华文仿宋=STFangsong; 方正舒体=FZShuTi; 方正姚体=FZYaoti; 华文彩云=STCaiyun; 华文琥珀=STHupo; 华文隶书=STLiti; 华文行楷=STXingkai; 华文新魏=STXinwei; Andale Mono=andale mono,times; Arial=arial,helvetica,sans-serif; Arial Black=arial black,avant garde; Book Antiqua=book antiqua,palatino; Comic Sans MS=comic sans ms,sans-serif; Courier New=courier new,courier; Georgia=georgia,palatino; Helvetica=helvetica; Impact=impact,chicago; Symbol=symbol; Tahoma=tahoma,arial,helvetica,sans-serif; Terminal=terminal,monaco; Times New Roman=times new roman,times; Trebuchet MS=trebuchet ms,geneva; Verdana=verdana,geneva; Webdings=webdings; Wingdings=wingdings,zapf dingbats",
 				// fontsize_formats: "12px 14px 16px 18px 24px 36px 48px",
 				menubar: "file edit insert view format table tools help", //顶部菜单栏显示
 				menu: {

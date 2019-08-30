@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-07-05 09:33:12
  * @LastAuthor: lizlong
- * @lastTime: 2019-08-27 17:58:25
+ * @lastTime: 2019-08-30 16:40:35
  */
 'use strict'
 
@@ -17,7 +17,7 @@ module.exports = {
     devServer: {
         open: true,
         host: '0.0.0.0',
-        port: 8088,
+        port: 8082,
         https: false,
         hotOnly: false,
         proxy: { //配置跨域
