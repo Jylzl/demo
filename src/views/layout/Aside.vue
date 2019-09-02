@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-08-27 18:01:13
  * @LastAuthor: lizlong
- * @lastTime: 2019-08-28 10:12:25
+ * @lastTime: 2019-09-02 08:53:49
  -->
 <template>
 	<el-menu :default-active="$route.path" class="el-menu-demo" mode="horizontal" background-color="#545c64"
@@ -16,6 +16,7 @@
 			<el-menu-item index="/demo/monaco">代码编辑器</el-menu-item>
 			<el-menu-item index="/demo/videoplayer">视频播放器</el-menu-item>
 			<el-menu-item index="/demo/imgcropper">图片裁剪</el-menu-item>
+			<el-menu-item index="/demo/wxaudio">微信音频</el-menu-item>
 		</el-submenu>
 	</el-menu>
 </template>

@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-07-05 00:56:32
  * @LastAuthor: lizlong
- * @lastTime: 2019-08-28 10:08:14
+ * @lastTime: 2019-09-02 13:00:57
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -42,6 +42,11 @@ export default new Router({
         path: '/demo/videoplayer',
         name: 'VideoPlayer',
         component: () => import('@/views/demo/VideoPlayer.vue')
+      },
+      {
+        path: '/demo/wxaudio',
+        name: 'wxAudio',
+        component: () => import('@/views/demo/wxAudio.vue')
       }
     ]
   }]
