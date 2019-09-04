@@ -3,16 +3,12 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-07-30 17:49:09
  * @LastAuthor: lizlong
- * @lastTime: 2019-09-04 20:05:10
+ * @lastTime: 2019-09-04 21:40:38
  -->
 <template>
 	<div>
-		<Editor
-			id="tinymce"
-			v-model="html"
-			api-key="udm8u7u1w88b8yqqt0czgf3glqzet1mnbt95at9wv8u6bib3"
-			:init="init"
-		></Editor>
+		<Editor id="tinymce" v-model="html" api-key="udm8u7u1w88b8yqqt0czgf3glqzet1mnbt95at9wv8u6bib3" :init="init">
+		</Editor>
 	</div>
 </template>
 
@@ -82,8 +78,9 @@ export default {
 				skin_url: "/tinymce/skins/ui/oxide", // skin路径
 				emoticons_database_url: "/tinymce/emoticons/emojis.min.js",
 				external_plugins: {
-					powerpaste:
-						"http://192.168.0.171:8082/tinymce/plugins/powerpaste/plugin.js"
+					powerpaste: "/tinymce/plugins/powerpaste/plugin.js",
+					formatpainter: "/tinymce/plugins/formatpainter/plugin.js",
+					a11ychecker: "/tinymce/plugins/a11ychecker/plugin.js",
 				},
 				height: 600, //编辑器高度(autoresize开启后无效)
 				max_height: 800, // 编辑器初始化最大高度
@@ -139,9 +136,9 @@ export default {
 					help: { title: "Help", items: "help" }
 				},
 				plugins:
-					"powerpaste advlist anchor autolink autoresize autosave charmap code codesample directionality emoticons fullpage fullscreen help hr image imagetools importcss insertdatetime legacyoutput link lists media nonbreaking noneditable pagebreak preview print quickbars save searchreplace spellchecker tabfocus table template textpattern toc visualblocks visualchars wordcount",
+					"a11ychecker formatpainter powerpaste advlist anchor autolink autoresize autosave charmap code codesample directionality emoticons fullpage fullscreen help hr image imagetools importcss insertdatetime legacyoutput link lists media nonbreaking noneditable pagebreak preview print quickbars save searchreplace spellchecker tabfocus table template textpattern toc visualblocks visualchars wordcount",
 				toolbar:
-					"undo redo | formatselect | fontselect fontsizeselect | bold italic underline strikethrough subscript superscript removeformat | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | lists image media emoticons link charmap codesample table | fullscreen"
+					"undo redo | formatselect formatpainter a11ycheck | fontselect fontsizeselect | bold italic underline strikethrough subscript superscript removeformat | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | lists image media emoticons link charmap codesample table | fullscreen"
 			}
 		};
 	},

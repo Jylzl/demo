@@ -20,6 +20,7 @@ module.exports = {
         port: 8082,
         https: false,
         hotOnly: false,
+        disableHostCheck: true,
         proxy: { //配置跨域
             '/api': {
                 target: process.env.VUE_APP_SERVER_API,
