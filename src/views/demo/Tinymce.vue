@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-07-30 17:49:09
  * @LastAuthor: lizlong
- * @lastTime: 2019-08-30 13:07:11
+ * @lastTime: 2019-09-04 20:05:10
  -->
 <template>
 	<div>
@@ -76,12 +76,18 @@ export default {
 		return {
 			html: "<h1>qqqq</h1>",
 			init: {
+				//base_url: "/my/tinymce/dir", //从另一个位置加载主题和插件
 				language_url: "/tinymce/langs/zh_CN.min.js", // 语言包的路径
 				language: "zh_CN", //语言
 				skin_url: "/tinymce/skins/ui/oxide", // skin路径
 				emoticons_database_url: "/tinymce/emoticons/emojis.min.js",
+				external_plugins: {
+					powerpaste:
+						"http://192.168.0.171:8082/tinymce/plugins/powerpaste/plugin.js"
+				},
 				height: 600, //编辑器高度(autoresize开启后无效)
-				max_height: 800,
+				max_height: 800, // 编辑器初始化最大高度
+				min_height: 600, // 编辑器初始化最小高度
 				branding: false, //是否禁用“Powered by TinyMCE”
 				images_upload_url: "postAcceptor.php", //图片上次地址
 				images_upload_handler: this.imagesUploadHandlerfunction(),
@@ -91,8 +97,9 @@ export default {
 				file_picker_types: "media",
 				//be used to add custom file picker to those dialogs that have it.
 				file_picker_callback: this.filePickerCallback(),
+				nonbreaking_force_tab: true, // 不间断空格
 				font_formats:
-					"微软雅黑=Microsoft YaHei;微软正黑体=Microsoft JhengHei; 楷体_GB2312=KaiTi_GB2312; 仿宋_GB2312=FangSong_GB2312; 楷体=KaiTi; 仿宋=FangSong; 新宋体=NSimSun; 宋体=SimSun; 黑体=SimHei; 标楷体=DFKai-SB; 细明体=MingLiU; 新细明体=PMingLiU; 隶书=LiSu; 幼圆=YouYuan; 华文细黑=STXihei; 华文楷体=STKaiti; 华文宋体=STSong; 华文中宋=STZhongsong; 华文仿宋=STFangsong; 方正舒体=FZShuTi; 方正姚体=FZYaoti; 华文彩云=STCaiyun; 华文琥珀=STHupo; 华文隶书=STLiti; 华文行楷=STXingkai; 华文新魏=STXinwei; Andale Mono=andale mono,times; Arial=arial,helvetica,sans-serif; Arial Black=arial black,avant garde; Book Antiqua=book antiqua,palatino; Comic Sans MS=comic sans ms,sans-serif; Courier New=courier new,courier; Georgia=georgia,palatino; Helvetica=helvetica; Impact=impact,chicago; Symbol=symbol; Tahoma=tahoma,arial,helvetica,sans-serif; Terminal=terminal,monaco; Times New Roman=times new roman,times; Trebuchet MS=trebuchet ms,geneva; Verdana=verdana,geneva; Webdings=webdings; Wingdings=wingdings,zapf dingbats",
+					"微软雅黑=Microsoft YaHei; 宋体=SimSun; 新宋体=NSimSun; 仿宋=FangSong; 楷体=KaiTi;  黑体=SimHei; Arial=arial,helvetica,sans-serif; Arial Black=arial black,avant garde; Book Antiqua=book antiqua,palatino; Comic Sans MS=comic sans ms,sans-serif; Courier New=courier new,courier; Georgia=georgia,palatino; Helvetica=helvetica; Impact=impact,chicago; Symbol=symbol; Tahoma=tahoma,arial,helvetica,sans-serif; Times New Roman=times new roman,times; Verdana=verdana,geneva;",
 				// fontsize_formats: "12px 14px 16px 18px 24px 36px 48px",
 				menubar: "file edit insert view format table tools help", //顶部菜单栏显示
 				menu: {
@@ -132,10 +139,9 @@ export default {
 					help: { title: "Help", items: "help" }
 				},
 				plugins:
-					"advlist anchor autolink autoresize autosave charmap code codesample directionality emoticons fullpage fullscreen help hr image imagetools importcss insertdatetime legacyoutput link lists media nonbreaking noneditable pagebreak paste preview print quickbars save searchreplace spellchecker tabfocus table template textpattern toc visualblocks visualchars wordcount",
-				toolbar1:
-					"undo redo | formatselect | fontselect fontsizeselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | lists image media emoticons link charmap table | removeformat subscript superscript | insertfile toc template preview fullscreen",
-				toolbar2: "insertdatetime"
+					"powerpaste advlist anchor autolink autoresize autosave charmap code codesample directionality emoticons fullpage fullscreen help hr image imagetools importcss insertdatetime legacyoutput link lists media nonbreaking noneditable pagebreak preview print quickbars save searchreplace spellchecker tabfocus table template textpattern toc visualblocks visualchars wordcount",
+				toolbar:
+					"undo redo | formatselect | fontselect fontsizeselect | bold italic underline strikethrough subscript superscript removeformat | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | lists image media emoticons link charmap codesample table | fullscreen"
 			}
 		};
 	},

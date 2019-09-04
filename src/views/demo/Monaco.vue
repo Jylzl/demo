@@ -3,39 +3,26 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-08-27 17:36:45
  * @LastAuthor: lizlong
- * @lastTime: 2019-08-27 17:38:28
+ * @lastTime: 2019-09-04 18:52:58
  -->
 <template>
 	<div>
-		<el-tabs type="border-card">
-			<el-tab-pane :lazy="true">
-				<span slot="label">
-					<i class="el-icon-document"></i> HTML
-				</span>
+		<el-card class="box-card">
+			<div slot="header" class="clearfix">
+				<el-select v-model="language" placeholder="请选择">
+					<el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
+				</el-select>
+				<el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
+			</div>
+			<div>
 				<MyEditor
-					:language="'html'"
+					:language="language"
 					:codes="htmlCodes"
 					@onMounted="htmlOnMounted"
 					@onCodeChange="htmlOnCodeChange"
 				/>
-			</el-tab-pane>
-			<el-tab-pane label="Javascript" :lazy="true">
-				<MyEditor
-					:language="'javascript'"
-					:codes="javascriptCodes"
-					@onMounted="javascriptOnMounted"
-					@onCodeChange="javascriptOnCodeChange"
-				/>
-			</el-tab-pane>
-			<el-tab-pane label="CSS" :lazy="true">
-				<MyEditor
-					:language="'css'"
-					:codes="cssCodes"
-					@onMounted="cssOnMounted"
-					@onCodeChange="cssOnCodeChange"
-				/>
-			</el-tab-pane>
-		</el-tabs>
+			</div>
+		</el-card>
 	</div>
 </template>
  
@@ -47,27 +34,30 @@ export default {
 	},
 	data() {
 		return {
+			language: "html",
+			options: [
+				{
+					label: "html",
+					value: "html"
+				},
+				{
+					label: "js",
+					value: "javascript"
+				},
+				{
+					label: "css",
+					value: "css"
+				}
+			],
 			htmlCodes: "<div>This is html</div>",
-			javascriptCodes: 'console.log("This is javascript")',
-			cssCodes: "body{}",
-			htmlEditor: null,
-			jsEditor: null,
-			cssEditor: null
+			htmlEditor: null
 		};
 	},
 	methods: {
 		htmlOnMounted(edit) {
 			this.htmlEditor = edit;
 		},
-		javascriptOnMounted(edit) {
-			this.jsEditor = edit;
-		},
-		cssOnMounted(edit) {
-			this.cssEditor = edit;
-		},
-		htmlOnCodeChange(value, event) {},
-		javascriptOnCodeChange(value, event) {},
-		cssOnCodeChange(value, event) {}
+		htmlOnCodeChange(value, event) {}
 	}
 };
 </script>
