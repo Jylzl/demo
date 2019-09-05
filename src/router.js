@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-07-05 00:56:32
  * @LastAuthor: lizlong
- * @lastTime: 2019-09-02 13:00:57
+ * @lastTime: 2019-09-05 13:16:50
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -47,6 +47,11 @@ export default new Router({
         path: '/demo/wxaudio',
         name: 'wxAudio',
         component: () => import('@/views/demo/wxAudio.vue')
+      },
+      {
+        path: '/demo/email',
+        name: 'cmsEmail',
+        component: () => import('@/views/demo/emailInput.vue')
       }
     ]
   }]

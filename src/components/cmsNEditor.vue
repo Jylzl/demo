@@ -1,9 +1,9 @@
 <!--
- * @description: Description
+ * @description: 还读符文本编辑器
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-07-01 19:01:16
  * @LastAuthor: lizlong
- * @lastTime: 2019-08-27 10:22:13
+ * @lastTime: 2019-09-05 15:50:32
  -->
 <template>
 	<script :id="id" :name="name" type="text/plain"></script>
@@ -28,6 +28,26 @@ class LoadEvent {
 }
 export default {
 	name: "cms-neditor",
+	props: {
+		value: {
+			type: String,
+			default: "欢迎使用Neditor编辑器"
+		},
+		config: {
+			type: Object,
+			default: function() {
+				return {};
+			}
+		},
+		init: {
+			type: Function,
+			default: function() {
+				return () => {};
+			}
+		},
+		destroy: Boolean,
+		name: String
+	},
 	data() {
 		return {
 			id:
@@ -57,26 +77,7 @@ export default {
 			}
 		};
 	},
-	props: {
-		value: {
-			type: String,
-			default: "欢迎使用Nueditor编辑器"
-		},
-		config: {
-			type: Object,
-			default: function() {
-				return {};
-			}
-		},
-		init: {
-			type: Function,
-			default: function() {
-				return () => {};
-			}
-		},
-		destroy: Boolean,
-		name: String
-	},
+
 	computed: {
 		mixedConfig() {
 			return Object.assign({}, this.defaultConfig, this.config);

@@ -1,3 +1,10 @@
+/**
+ * @description: Description
+ * @author: lizlong<94648929@qq.com>
+ * @since: 2019-09-05 08:31:04
+ * @LastAuthor: lizlong
+ * @lastTime: 2019-09-05 12:50:41
+ */
 tinymce.addI18n('zh_CN', {
   'Accessibility Checker': '\u8FDB\u5165\u68C0\u67E5\u5668',
   'Checking...': '\u6B63\u5728\u68C0\u67E5......',
@@ -30,7 +37,7 @@ tinymce.addI18n('zh_CN', {
   'Table headers must be applied to a row or a column': '\u56FE\u8868\u6807\u9898\u5FC5\u987B\u5E94\u7528\u5230\u884C\u6216\u5217',
   'Select header scope:': '\u9009\u62E9\u6807\u9898\u8303\u56F4\uFE30',
   'Row': '\u884C',
-  'Column': '\u680F\u76EE',
+  'Column': '\u5217',
   'Row Group': '\u884C\u7FA4\u7EC4',
   'Column group': '\u680F\u7FA4\u7EC4',
   'Headings must be applied in sequential order. For example: Heading 1 should be followed by Heading 2, not Heading 3.': '\u6807\u9898\u5FC5\u987B\u6309\u987A\u5E8F\u5E94\u7528\u3002\u4F8B\u5982\uFE30\u6807\u98981\u5E94\u4F9D\u5E8F\u8DDF\u968F\u6807\u98982\u3001\u6807\u98983\u3002',

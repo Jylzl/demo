@@ -1,14 +1,18 @@
 <!--
- * @description: Description
+ * @description: Tinymce编辑器组件
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-07-30 17:49:09
  * @LastAuthor: lizlong
- * @lastTime: 2019-09-04 21:40:38
+ * @lastTime: 2019-09-05 12:57:37
  -->
 <template>
 	<div>
-		<Editor id="tinymce" v-model="html" api-key="udm8u7u1w88b8yqqt0czgf3glqzet1mnbt95at9wv8u6bib3" :init="init">
-		</Editor>
+		<Editor
+			id="tinymce"
+			v-model="html"
+			api-key="udm8u7u1w88b8yqqt0czgf3glqzet1mnbt95at9wv8u6bib3"
+			:init="init"
+		></Editor>
 	</div>
 </template>
 
@@ -72,21 +76,22 @@ export default {
 		return {
 			html: "<h1>qqqq</h1>",
 			init: {
-				//base_url: "/my/tinymce/dir", //从另一个位置加载主题和插件
 				language_url: "/tinymce/langs/zh_CN.min.js", // 语言包的路径
 				language: "zh_CN", //语言
 				skin_url: "/tinymce/skins/ui/oxide", // skin路径
-				emoticons_database_url: "/tinymce/emoticons/emojis.min.js",
-				external_plugins: {
-					powerpaste: "/tinymce/plugins/powerpaste/plugin.js",
-					formatpainter: "/tinymce/plugins/formatpainter/plugin.js",
-					a11ychecker: "/tinymce/plugins/a11ychecker/plugin.js",
-				},
+				emoticons_database_url:
+					"/tinymce/plugins/emoticons/emojis.min.js",
+				base_url: "/tinymce", //从另一个位置加载主题和插件
+				// external_plugins: {
+				// 	powerpaste: "/tinymce/plugins/powerpaste/plugin.js",
+				// 	formatpainter: "/tinymce/plugins/formatpainter/plugin.js",
+				// 	a11ychecker: "/tinymce/plugins/a11ychecker/plugin.js"
+				// },
 				height: 600, //编辑器高度(autoresize开启后无效)
 				max_height: 800, // 编辑器初始化最大高度
 				min_height: 600, // 编辑器初始化最小高度
 				branding: false, //是否禁用“Powered by TinyMCE”
-				images_upload_url: "postAcceptor.php", //图片上次地址
+				images_upload_url: "postAcceptor.php", //图片上传地址
 				images_upload_handler: this.imagesUploadHandlerfunction(),
 				imagetools_cors_hosts: ["mydomain.com", "otherdomain.com"],
 				imagetools_proxy: "proxy.php",
