@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-07-30 17:49:09
  * @LastAuthor: lizlong
- * @lastTime: 2019-09-05 12:57:37
+ * @lastTime: 2019-09-11 18:23:47
  -->
 <template>
 	<div>
@@ -100,6 +100,8 @@ export default {
 				//be used to add custom file picker to those dialogs that have it.
 				file_picker_callback: this.filePickerCallback(),
 				nonbreaking_force_tab: true, // 不间断空格
+				paste_as_text: false, //粘贴为文本
+				powerpaste_html_import: prompt, //clean - 保留内容的结构,merge保留原始文档的内联格式和结构,prompt清除和合并选项之间进行选择。
 				font_formats:
 					"微软雅黑=Microsoft YaHei; 宋体=SimSun; 新宋体=NSimSun; 仿宋=FangSong; 楷体=KaiTi;  黑体=SimHei; Arial=arial,helvetica,sans-serif; Arial Black=arial black,avant garde; Book Antiqua=book antiqua,palatino; Comic Sans MS=comic sans ms,sans-serif; Courier New=courier new,courier; Georgia=georgia,palatino; Helvetica=helvetica; Impact=impact,chicago; Symbol=symbol; Tahoma=tahoma,arial,helvetica,sans-serif; Times New Roman=times new roman,times; Verdana=verdana,geneva;",
 				// fontsize_formats: "12px 14px 16px 18px 24px 36px 48px",
