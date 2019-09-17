@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-07-30 17:49:09
  * @LastAuthor: lizlong
- * @lastTime: 2019-09-11 18:23:47
+ * @lastTime: 2019-09-17 11:47:34
  -->
 <template>
 	<div>
@@ -101,6 +101,9 @@ export default {
 				file_picker_callback: this.filePickerCallback(),
 				nonbreaking_force_tab: true, // 不间断空格
 				paste_as_text: false, //粘贴为文本
+				quickbars_selection_toolbar:
+					"bold italic | link h2 h3 blockquote", //选中快捷工具栏
+				quickbars_insert_toolbar: "quickimage quicktable", //快捷插入工具类
 				powerpaste_html_import: prompt, //clean - 保留内容的结构,merge保留原始文档的内联格式和结构,prompt清除和合并选项之间进行选择。
 				font_formats:
 					"微软雅黑=Microsoft YaHei; 宋体=SimSun; 新宋体=NSimSun; 仿宋=FangSong; 楷体=KaiTi;  黑体=SimHei; Arial=arial,helvetica,sans-serif; Arial Black=arial black,avant garde; Book Antiqua=book antiqua,palatino; Comic Sans MS=comic sans ms,sans-serif; Courier New=courier new,courier; Georgia=georgia,palatino; Helvetica=helvetica; Impact=impact,chicago; Symbol=symbol; Tahoma=tahoma,arial,helvetica,sans-serif; Times New Roman=times new roman,times; Verdana=verdana,geneva;",
@@ -109,7 +112,8 @@ export default {
 				menu: {
 					file: {
 						title: "File",
-						items: "newdocument restoredraft | preview | print "
+						items:
+							"newdocument restoredraft | preview | fullpage  | print "
 					},
 					edit: {
 						title: "Edit",
@@ -143,9 +147,9 @@ export default {
 					help: { title: "Help", items: "help" }
 				},
 				plugins:
-					"a11ychecker formatpainter powerpaste advlist anchor autolink autoresize autosave charmap code codesample directionality emoticons fullpage fullscreen help hr image imagetools importcss insertdatetime legacyoutput link lists media nonbreaking noneditable pagebreak preview print quickbars save searchreplace spellchecker tabfocus table template textpattern toc visualblocks visualchars wordcount",
+					"a11ychecker bdmap indent2em lineheight formatpainter powerpaste advlist anchor autolink autoresize autosave charmap code codesample directionality emoticons fullpage fullscreen help hr image imagetools importcss insertdatetime legacyoutput link lists media nonbreaking noneditable pagebreak preview print quickbars save searchreplace spellchecker tabfocus table template textpattern toc visualblocks visualchars wordcount",
 				toolbar:
-					"undo redo | formatselect formatpainter a11ycheck | fontselect fontsizeselect | bold italic underline strikethrough subscript superscript removeformat | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | lists image media emoticons link charmap codesample table | fullscreen"
+					"undo redo | formatselect formatpainter a11ycheck | fontselect fontsizeselect | bold italic underline strikethrough subscript superscript removeformat | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | lists image media emoticons link charmap codesample table | bdmap indent2em lineheight | fullscreen"
 			}
 		};
 	},

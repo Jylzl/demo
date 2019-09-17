@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-08-27 17:37:20
  * @LastAuthor: lizlong
- * @lastTime: 2019-08-27 17:54:29
+ * @lastTime: 2019-09-17 17:31:43
  -->
 <template>
 	<div :id="id" :ref="id" style="height:600px;"></div>
@@ -59,11 +59,16 @@ export default {
 		};
 	},
 	mounted() {
+		let _this = this;
 		this.initEditor();
+		//编辑器随窗口自适应
+		window.addEventListener("resize", function() {
+			_this.initEditor(_this);
+		});
 	},
 	methods: {
-		initEditor() {
-			let self = this;
+		initEditor(that) {
+			let self = that || this;
 			self.$refs[self.id].innerHTML = "";
 			self.monacoEditor = monaco.editor.create(self.$refs[self.id], {
 				value: self.codesCopy || self.codes,
@@ -76,10 +81,6 @@ export default {
 				//编辑器内容changge事件
 				self.codesCopy = self.monacoEditor.getValue();
 				self.$emit("onCodeChange", self.monacoEditor.getValue(), event);
-			});
-			//编辑器随窗口自适应
-			window.addEventListener("resize", function() {
-				self.initEditor();
 			});
 		}
 	}
