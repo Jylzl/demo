@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-07-30 17:49:09
  * @LastAuthor: lizlong
- * @lastTime: 2019-09-17 11:47:34
+ * @lastTime: 2019-09-18 18:54:31
  -->
 <template>
 	<div>
@@ -112,13 +112,11 @@ export default {
 				menu: {
 					file: {
 						title: "File",
-						items:
-							"newdocument restoredraft | preview | fullpage  | print "
+						items: "newdocument restoredraft | preview  | print "
 					},
 					edit: {
 						title: "Edit",
-						items:
-							"undo redo | cut copy paste | selectall | searchreplace"
+						items: "undo redo | cut copy paste | selectall"
 					},
 					view: {
 						title: "View",
@@ -137,7 +135,8 @@ export default {
 					},
 					tools: {
 						title: "Tools",
-						items: "spellcheckerlanguage | code wordcount"
+						items:
+							"spellcheckerlanguage | wordcount | fullpage | searchreplace"
 					},
 					table: {
 						title: "Table",
@@ -147,9 +146,9 @@ export default {
 					help: { title: "Help", items: "help" }
 				},
 				plugins:
-					"a11ychecker bdmap indent2em lineheight formatpainter powerpaste advlist anchor autolink autoresize autosave charmap code codesample directionality emoticons fullpage fullscreen help hr image imagetools importcss insertdatetime legacyoutput link lists media nonbreaking noneditable pagebreak preview print quickbars save searchreplace spellchecker tabfocus table template textpattern toc visualblocks visualchars wordcount",
+					"enclosure a11ychecker bdmap indent2em lineheight formatpainter powerpaste advlist anchor autolink autoresize autosave charmap code codesample directionality emoticons fullpage fullscreen help hr image imagetools importcss insertdatetime legacyoutput link lists media nonbreaking noneditable pagebreak preview print quickbars save searchreplace spellchecker tabfocus table template textpattern toc visualblocks visualchars wordcount",
 				toolbar:
-					"undo redo | formatselect formatpainter a11ycheck | fontselect fontsizeselect | bold italic underline strikethrough subscript superscript removeformat | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | lists image media emoticons link charmap codesample table | bdmap indent2em lineheight | fullscreen"
+					"undo redo | formatselect formatpainter a11ycheck | fontselect fontsizeselect | bold italic underline strikethrough subscript superscript removeformat | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent indent2em | lists image media emoticons link charmap codesample table | bdmap lineheight enclosure | fullscreen"
 			}
 		};
 	},

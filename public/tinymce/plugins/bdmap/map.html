@@ -92,11 +92,9 @@
 			gc.getLocation(point, function (rs) {
 				var addComp = rs.addressComponents;
 				var address = [addComp.city].join('');
-				//console.log(address);
 			});
 
 			map.addEventListener('click', function (e) {
-				//alert(e.point.lng + "," + e.point.lat);
 				lng = e.point.lng;
 				lat = e.point.lat;
 				var marker = new BMap.Marker(new BMap.Point(e.point.lng, e.point.lat));
@@ -121,7 +119,6 @@
 			map.clearOverlays(); //清空原来的标注
 			var keyword = document.getElementById("kw").value;
 			localSearch.setSearchCompleteCallback(function (searchResult) {
-				console.log(searchResult);
 				if (searchResult.Qq.length == 0) {
 					alert('搜索不到该地区');
 					return false;
