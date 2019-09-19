@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-07-30 17:49:09
  * @LastAuthor: lizlong
- * @lastTime: 2019-09-18 18:54:31
+ * @lastTime: 2019-09-19 13:07:56
  -->
 <template>
 	<div>
@@ -74,7 +74,7 @@ export default {
 	},
 	data() {
 		return {
-			html: "<h1>qqqq</h1>",
+			html: "",
 			init: {
 				language_url: "/tinymce/langs/zh_CN.min.js", // 语言包的路径
 				language: "zh_CN", //语言
@@ -96,7 +96,7 @@ export default {
 				imagetools_cors_hosts: ["mydomain.com", "otherdomain.com"],
 				imagetools_proxy: "proxy.php",
 				//想要哪一个图标提供本地文件选择功能，参数可为media(媒体)、image(图片)、file(文件)
-				file_picker_types: "media",
+				file_picker_types: "media,image,file",
 				//be used to add custom file picker to those dialogs that have it.
 				file_picker_callback: this.filePickerCallback(),
 				nonbreaking_force_tab: true, // 不间断空格

@@ -77,7 +77,7 @@
 		//地图事件设置函数：
 		function setMapEvent() {
 			map.enableDragging(); //启用地图拖拽事件，默认启用(可不写)
-			//map.enableScrollWheelZoom();//启用地图滚轮放大缩小
+			map.enableScrollWheelZoom(); //启用地图滚轮放大缩小
 			map.enableDoubleClickZoom(); //启用鼠标双击放大，默认启用(可不写)
 			map.enableKeyboard(); //启用键盘上下左右键移动地图
 		}
@@ -91,8 +91,11 @@
 			});
 			map.addControl(ctrl_nav);
 			//向地图中添加缩略图控件
-			//var ctrl_ove = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:1});
-			//map.addControl(ctrl_ove);
+			// var ctrl_ove = new BMap.OverviewMapControl({
+			// 	anchor: BMAP_ANCHOR_BOTTOM_RIGHT,
+			// 	isOpen: 1
+			// });
+			// map.addControl(ctrl_ove);
 			//向地图中添加比例尺控件
 			var ctrl_sca = new BMap.ScaleControl({
 				anchor: BMAP_ANCHOR_BOTTOM_LEFT
