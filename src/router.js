@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-07-05 00:56:32
  * @LastAuthor: lizlong
- * @lastTime: 2019-09-05 13:16:50
+ * @lastTime: 2019-09-21 15:36:28
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -52,6 +52,11 @@ export default new Router({
         path: '/demo/email',
         name: 'cmsEmail',
         component: () => import('@/views/demo/emailInput.vue')
+      },
+      {
+        path: '/demo/file',
+        name: 'cmsFile',
+        component: () => import('@/views/demo/File.vue')
       }
     ]
   }]
