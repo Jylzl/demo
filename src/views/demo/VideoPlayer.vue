@@ -3,13 +3,14 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-08-29 22:49:44
  * @LastAuthor: lizlong
- * @lastTime: 2019-08-30 09:09:19
+ * @lastTime: 2019-09-29 16:35:58
  -->
 <template>
 	<div ref="video" style="width:800px;margin:0 auto;"></div>
 </template>
 
 <script>
+import flvjs from "flv.js";
 import "dplayer/dist/DPlayer.min.css";
 import DPlayer from "dplayer";
 export default {
@@ -23,8 +24,7 @@ export default {
 		_this.dp = new DPlayer({
 			container: _this.$refs.video,
 			video: {
-				url:
-					"http://www.xiaogan.gov.cn/u/cms/www/201902/271026196oyj.mp4",
+				url: "http://219.138.199.185/yyj/20160311yms.flv",
 				pic:
 					"http://www.xiaogan.gov.cn/u/cms/www/201902/28091318ce87.png"
 			},
