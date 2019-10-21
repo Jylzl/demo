@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-07-05 00:56:32
  * @LastAuthor: lizlong
- * @lastTime: 2019-09-21 15:36:28
+ * @lastTime: 2019-10-21 08:58:41
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -57,6 +57,11 @@ export default new Router({
         path: '/demo/file',
         name: 'cmsFile',
         component: () => import('@/views/demo/File.vue')
+      },
+      {
+        path: '/demo/deviceInf',
+        name: 'deviceInf',
+        component: () => import('@/views/demo/deviceInf.vue')
       }
     ]
   }]

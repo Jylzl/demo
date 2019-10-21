@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-08-27 18:01:13
  * @LastAuthor: lizlong
- * @lastTime: 2019-09-21 15:35:56
+ * @lastTime: 2019-10-21 08:58:14
  -->
 <template>
 	<el-menu :default-active="$route.path" class="el-menu-demo" mode="horizontal" background-color="#545c64"
@@ -22,6 +22,7 @@
 		<el-submenu index="2">
 			<template slot="title">Demo2</template>
 			<el-menu-item index="/demo/file">文件系统</el-menu-item>
+			<el-menu-item index="/demo/deviceInf">设备信息</el-menu-item>
 		</el-submenu>
 	</el-menu>
 </template>
