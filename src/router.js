@@ -62,6 +62,16 @@ export default new Router({
         path: '/demo/deviceInf',
         name: 'deviceInf',
         component: () => import('@/views/demo/deviceInf.vue')
+      },
+      {
+        path: '/demo/form',
+        name: 'form',
+        component: () => import('@/views/demo/form.vue')
+      },
+      {
+        path: '/demo/form2',
+        name: 'form2',
+        component: () => import('@/views/demo/form2.vue')
       }
     ]
   }]

@@ -23,6 +23,8 @@
 			<template slot="title">Demo2</template>
 			<el-menu-item index="/demo/file">文件系统</el-menu-item>
 			<el-menu-item index="/demo/deviceInf">设备信息</el-menu-item>
+			<el-menu-item index="/demo/form">form</el-menu-item>
+			<el-menu-item index="/demo/form2">form2</el-menu-item>
 		</el-submenu>
 	</el-menu>
 </template>

@@ -8,10 +8,12 @@
 
 import service from "@/utils/request";
 import api from "@/api/api";
+import { deepClone } from '@/utils/util'
 
 export default {
     install(Vue) {
         Vue.prototype.$axios = service; //axios全局方法
         Vue.prototype.$api = api; //api地址全局方法
+        Vue.prototype.deepClone = deepClone; //api地址全局方法
     }
 }
