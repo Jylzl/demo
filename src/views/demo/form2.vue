@@ -1,3 +1,10 @@
+<!--
+ * @description: Description
+ * @author: lizlong<94648929@qq.com>
+ * @since: 2019-10-24 22:49:22
+ * @LastAuthor: lizlong
+ * @lastTime: 2019-10-25 10:00:27
+ -->
 <template>
 	<div class="webapp">
 		<avue-form-design :option="option" @submit="handleSubmit">
@@ -36,6 +43,26 @@ export default {
 
 	.form-designer {
 		height: 100%;
+	}
+
+	.form-designer .widget-container .widget-container-header {
+		box-sizing: border-box;
+		padding: 0 20px;
+	}
+
+	.form-designer
+		.widget-container
+		.widget-container-header
+		> button:first-child {
+		display: none;
+	}
+
+	.widget-form-container .widget-form-list {
+		background-color: transparent;
+	}
+
+	.form-designer .widget-config-container {
+		margin-top: 0;
 	}
 
 	.form-designer .widget-config-container .el-tabs__header {
