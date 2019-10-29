@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-10-29 17:59:02
  * @LastAuthor: lizlong
- * @lastTime: 2019-10-29 22:42:52
+ * @lastTime: 2019-10-29 23:49:30
  -->
 <template>
   <el-container class="form">
@@ -28,7 +28,11 @@
                 <el-collapse-item title="输入字段" name="1">
                   <el-row :gutter="10">
                     <el-col :span="12">
-                      <div class="grid-content bg-purple">1</div>
+                      <div class="grid-content bg-purple">
+                        <el-button size="mini" class="w100">
+                          <el-radio v-model="radio" label="1">单选框组</el-radio>
+                        </el-button>
+                      </div>
                     </el-col>
                     <el-col :span="12">
                       <div class="grid-content bg-purple">2</div>
@@ -92,15 +96,15 @@
         <el-tab-pane label="表单属性" name="second">
           <div class="form-attribute">
             <el-form label-position="left" label-width="84px" :model="formLabelAlign" size="small" label-suffix="：">
-              <el-form-item label="标签对齐">
-                <el-select v-model="formLabelAlign.name" placeholder="请选择">
-                  <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+              <el-form-item label="表单尺寸">
+                <el-select v-model="formLabelAlign.size" placeholder="请选择">
+                  <el-option v-for="item in sizeOptions" :key="item.value" :label="item.label" :value="item.value">
                   </el-option>
                 </el-select>
               </el-form-item>
-              <el-form-item label="尺寸大小">
-                <el-select v-model="formLabelAlign.size" placeholder="请选择">
-                  <el-option v-for="item in sizeOptions" :key="item.value" :label="item.label" :value="item.value">
+              <el-form-item label="标签位置">
+                <el-select v-model="formLabelAlign.name" placeholder="请选择">
+                  <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
                   </el-option>
                 </el-select>
               </el-form-item>
