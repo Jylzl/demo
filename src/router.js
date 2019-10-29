@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-07-05 00:56:32
  * @LastAuthor: lizlong
- * @lastTime: 2019-10-21 08:58:41
+ * @lastTime: 2019-10-29 17:59:31
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -72,6 +72,16 @@ export default new Router({
         path: '/demo/form2',
         name: 'form2',
         component: () => import('@/views/demo/form2.vue')
+      },
+      {
+        path: '/demo/form3',
+        name: 'form3',
+        component: () => import('@/views/demo/form3.vue')
+      },
+      {
+        path: '/demo/split',
+        name: 'split',
+        component: () => import('@/views/demo/split.vue')
       }
     ]
   }]
