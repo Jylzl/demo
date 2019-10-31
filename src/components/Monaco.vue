@@ -3,10 +3,10 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-08-27 17:37:20
  * @LastAuthor: lizlong
- * @lastTime: 2019-09-17 17:31:43
+ * @lastTime: 2019-10-31 09:33:43
  -->
 <template>
-	<div :id="id" :ref="id" style="height:600px;"></div>
+	<div :id="id" :ref="id" style="height:100%;width:100%;"></div>
 </template>
 <script>
 import * as monaco from "monaco-editor";

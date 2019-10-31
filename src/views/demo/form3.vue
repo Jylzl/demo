@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-10-29 17:59:02
  * @LastAuthor: lizlong
- * @lastTime: 2019-10-30 23:24:16
+ * @lastTime: 2019-10-31 14:05:27
  -->
 <template>
   <el-container class="form">
@@ -35,7 +35,7 @@
                   <el-collapse-item title="输入字段" name="1">
                     <el-row :gutter="10">
                       <el-col :span="12">
-                        <div class="grid-content bg-purple">1</div>
+                        <div class="grid-content bg-purple" @dragstart="cc">1</div>
                       </el-col>
                       <el-col :span="12">
                         <div class="grid-content bg-purple">2</div>
@@ -75,11 +75,11 @@
           </el-tab-pane>
           <el-tab-pane name="second" class="h100">
             <span slot="label">
-              <i class="el-icon-receiving"></i> 系统字段
+              <i class="el-icon-office-building"></i> 布局字段
             </span>
             <div class="h100">
               <el-scrollbar class="h100">
-                <div>系统字段</div>
+                <div>布局字段</div>
               </el-scrollbar>
             </div>
           </el-tab-pane>
@@ -91,10 +91,10 @@
         <el-header class="form-box-header" height="40px">
           <el-button type="text" icon="el-icon-upload"></el-button>
         </el-header>
-        <el-main class="form-box-body">
+        <el-main class="form-box-body" :class="{ 'form-box-body30': codeViewKey,'form-box-body100': !codeViewKey }">
           <!-- 滚动条 -->
-          <el-scrollbar class="h100">
-            <div class="form-boxwrap form-bg-one">
+          <div class="form-boxwrap form-bg-one">
+            <el-scrollbar class="h100">
               <el-form :label-position="formAttribute.labelPosition" :label-width="formAttribute.labelWidth+'px'"
                 :model="formLabelAlign" :label-suffix="formAttribute.labelSuffix" :size="formAttribute.formSize">
                 <el-form-item label="名称">
@@ -107,13 +107,20 @@
                   <el-input v-model="formLabelAlign.type"></el-input>
                 </el-form-item>
               </el-form>
-            </div>
-          </el-scrollbar>
+            </el-scrollbar>
+          </div>
           <!-- /滚动条 -->
         </el-main>
-        <el-footer class="form-box-footer" height="32px">
-          <el-button size="mini" type="text" class="p0"><i class="img-code"></i> <span class="text-code">CodeView</span>
-          </el-button>
+        <el-footer class="form-box-footer" :height="codeViewHeight">
+          <div class="form-box-footer-top">
+            <el-button size="mini" type="text" class="p0" @click="codeView"><i class="img-code"></i> <span
+                class="text-code">CodeView</span>
+            </el-button>
+          </div>
+          <div class="form-box-footer-body" v-if="codeViewKey">
+            <MyEditor :language="language" :codes="htmlCodes" @onMounted="htmlOnMounted"
+              @onCodeChange="htmlOnCodeChange" />
+          </div>
         </el-footer>
       </el-container>
     </el-main>
@@ -191,12 +198,20 @@
 </template>
 
 <script>
+  import MyEditor from "@/components/Monaco.vue";
   export default {
+    components: {
+      MyEditor
+    },
     data() {
       return {
         activeName: "first",
         activeName1: "first",
         activeNames: ["1"],
+        codeViewKey: false,
+        language: "html",
+        htmlCodes: "<div>This is html</div>",
+        htmlEditor: null,
         formAttribute: {
           formSize: "medium", //表单尺寸
           formCheck: true, //表单校验
@@ -333,13 +348,28 @@
         }
       };
     },
+    computed: {
+      codeViewHeight() {
+        return this.codeViewKey ? '70%' : '32px'
+      }
+    },
     methods: {
+      cc(){
+        console.log("aaa")
+      },
       handleClick(tab, event) {
         console.log(tab, event);
       },
       handleChange(val) {
         console.log(val);
-      }
+      },
+      codeView() {
+        this.codeViewKey = !this.codeViewKey;
+      },
+      htmlOnMounted(edit) {
+        this.htmlEditor = edit;
+      },
+      htmlOnCodeChange(value, event) {}
     }
   };
 </script>
@@ -380,18 +410,37 @@
   }
 
   .form .form-box .form-box-footer {
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .form .form-box .form-box-footer .form-box-footer-top {
     box-sizing: border-box;
     display: flex;
     align-items: center;
     padding: 0 10px;
+    height: 32px;
     line-height: 32px;
     border-top: 1px solid #dcdfe6;
   }
 
+  .form .form-box .form-box-footer .form-box-footer-body {
+    box-sizing: border-box;
+    height: calc(100% - 32px);
+    border-top: 1px solid #dcdfe6;
+  }
+
   .form .form-box .form-box-body {
-    height: calc(100% - 72px);
-    padding: 8px 6px 0px 6px;
+    padding: 8px 6px 8px 6px;
     background-color: #fafafa;
+  }
+
+  .form .form-box .form-box-body100 {
+    height: calc(100% - 40px);
+  }
+
+  .form .form-box .form-box-body30 {
+    height: calc(30% - 40px);
   }
 
   .form .form-box .form-box-body .form-boxwrap {
