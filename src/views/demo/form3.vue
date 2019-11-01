@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-10-29 17:59:02
  * @LastAuthor: lizlong
- * @lastTime: 2019-10-31 14:05:27
+ * @lastTime: 2019-11-01 14:10:15
  -->
 <template>
   <el-container class="form">
@@ -117,7 +117,7 @@
                 class="text-code">CodeView</span>
             </el-button>
           </div>
-          <div class="form-box-footer-body" v-if="codeViewKey">
+          <div class="form-box-footer-body" v-show="codeViewKey">
             <MyEditor :language="language" :codes="htmlCodes" @onMounted="htmlOnMounted"
               @onCodeChange="htmlOnCodeChange" />
           </div>
