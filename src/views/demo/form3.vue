@@ -3,16 +3,16 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-10-29 17:59:02
  * @LastAuthor: lizlong
- * @lastTime: 2019-11-01 14:10:15
+ * @lastTime: 2019-11-02 14:03:22
  -->
 <template>
-  <el-container class="form">
+  <el-container class="form" oncontextmenu="self.event.returnValue=false">
     <el-aside width="300px">
       <div class="form-left-card">
         <el-card class="form-card" shadow="never" :body-style="{ padding: '0px' }">
           <div slot="header" class="clearfix form-card-header">
             <span>表单</span>
-            <el-button style="float: right; padding: 3px 0" type="text" icon="el-icon-document"></el-button>
+            <el-button style="float: right; padding: 3px 0" type="text" icon="el-icon-edit-outline"></el-button>
           </div>
           <div class="h100">
             <!-- 滚动条 -->
@@ -31,43 +31,222 @@
             </span>
             <div class="h100">
               <el-scrollbar class="h100">
-                <el-collapse v-model="activeNames" @change="handleChange">
+                <el-collapse v-model="activeNames" @change="handleChange" accordion>
                   <el-collapse-item title="输入字段" name="1">
-                    <el-row :gutter="10">
-                      <el-col :span="12">
-                        <div class="grid-content bg-purple" @dragstart="cc">1</div>
-                      </el-col>
-                      <el-col :span="12">
-                        <div class="grid-content bg-purple">2</div>
-                      </el-col>
-                      <el-col :span="12">
-                        <div class="grid-content bg-purple">3</div>
-                      </el-col>
-                      <el-col :span="12">
-                        <div class="grid-content bg-purple">4</div>
-                      </el-col>
-                    </el-row>
+                    <div class="p-lf-10">
+                      <el-row :gutter="10" class="field-box">
+                        <el-col :span="12">
+                          <div class="field-label">
+                            <i class="el-icon-edit"></i>
+                            <span class="field-label-title">单行文本框</span>
+                          </div>
+                        </el-col>
+                        <el-col :span="12">
+                          <div class="field-label">
+                            <i class="el-icon-edit"></i>
+                            <span class="field-label-title">密码输入框</span>
+                          </div>
+                        </el-col>
+                        <el-col :span="12">
+                          <div class="field-label">
+                            <i class="el-icon-edit"></i>
+                            <span class="field-label-title">邮箱输入框</span>
+                          </div>
+                        </el-col>
+                        <el-col :span="12">
+                          <div class="field-label">
+                            <i class="el-icon-edit"></i>
+                            <span class="field-label-title">多行文本框</span>
+                          </div>
+                        </el-col>
+                        <el-col :span="12">
+                          <div class="field-label">
+                            <i class="el-icon-edit"></i>
+                            <span class="field-label-title">计数器输入</span>
+                          </div>
+                        </el-col>
+                      </el-row>
+                    </div>
                   </el-collapse-item>
                   <el-collapse-item title="选择字段" name="2">
-                    <div>控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；</div>
-                    <div>页面反馈：操作后，通过页面元素的变化清晰地展现当前状态。</div>
+                    <div class="p-lf-10">
+                      <el-row :gutter="10" class="field-box">
+                        <el-col :span="12">
+                          <div class="field-label">
+                            <i class="el-icon-edit"></i>
+                            <span class="field-label-title">单选按钮组</span>
+                          </div>
+                        </el-col>
+                        <el-col :span="12">
+                          <div class="field-label">
+                            <i class="el-icon-edit"></i>
+                            <span class="field-label-title">多选按钮组</span>
+                          </div>
+                        </el-col>
+                        <el-col :span="12">
+                          <div class="field-label">
+                            <i class="el-icon-edit"></i>
+                            <span class="field-label-title">下拉选择器</span>
+                          </div>
+                        </el-col>
+                        <el-col :span="12">
+                          <div class="field-label">
+                            <i class="el-icon-edit"></i>
+                            <span class="field-label-title">级联选择器</span>
+                          </div>
+                        </el-col>
+                        <el-col :span="12">
+                          <div class="field-label">
+                            <i class="el-icon-edit"></i>
+                            <span class="field-label-title">开关选择器</span>
+                          </div>
+                        </el-col>
+                        <el-col :span="12">
+                          <div class="field-label">
+                            <i class="el-icon-edit"></i>
+                            <span class="field-label-title">颜色选择器</span>
+                          </div>
+                        </el-col>
+                      </el-row>
+                    </div>
                   </el-collapse-item>
                   <el-collapse-item title="上传字段" name="3">
-                    <div>简化流程：设计简洁直观的操作流程；</div>
-                    <div>清晰明确：语言表达清晰且表意明确，让用户快速理解进而作出决策；</div>
-                    <div>帮助用户识别：界面简单直白，让用户快速识别而非回忆，减少用户记忆负担。</div>
+                    <div class="p-lf-10">
+                      <el-row :gutter="10" class="field-box">
+                        <el-col :span="12">
+                          <div class="field-label">
+                            <i class="el-icon-edit"></i>
+                            <span class="field-label-title">图片上传</span>
+                          </div>
+                        </el-col>
+                        <el-col :span="12">
+                          <div class="field-label">
+                            <i class="el-icon-edit"></i>
+                            <span class="field-label-title">附件上传</span>
+                          </div>
+                        </el-col>
+                      </el-row>
+                    </div>
                   </el-collapse-item>
                   <el-collapse-item title="时间日期字段" name="4">
-                    <div>用户决策：根据场景可给予用户操作建议或安全提示，但不能代替用户进行决策；</div>
-                    <div>结果可控：用户可以自由的进行操作，包括撤销、回退和终止当前操作等。</div>
+                    <div class="p-lf-10">
+                      <el-row :gutter="10" class="field-box">
+                        <el-col :span="12">
+                          <div class="field-label">
+                            <i class="el-icon-edit"></i>
+                            <span class="field-label-title">年</span>
+                          </div>
+                        </el-col>
+                        <el-col :span="12">
+                          <div class="field-label">
+                            <i class="el-icon-edit"></i>
+                            <span class="field-label-title">月</span>
+                          </div>
+                        </el-col>
+                        <el-col :span="12">
+                          <div class="field-label">
+                            <i class="el-icon-edit"></i>
+                            <span class="field-label-title">日</span>
+                          </div>
+                        </el-col>
+                        <el-col :span="12">
+                          <div class="field-label">
+                            <i class="el-icon-edit"></i>
+                            <span class="field-label-title">周</span>
+                          </div>
+                        </el-col>
+                        <el-col :span="12">
+                          <div class="field-label">
+                            <i class="el-icon-edit"></i>
+                            <span class="field-label-title">时间选择器</span>
+                          </div>
+                        </el-col>
+                        <el-col :span="12">
+                          <div class="field-label">
+                            <i class="el-icon-edit"></i>
+                            <span class="field-label-title">时间范围选择器</span>
+                          </div>
+                        </el-col>
+                        <el-col :span="12">
+                          <div class="field-label">
+                            <i class="el-icon-edit"></i>
+                            <span class="field-label-title">日期选择器</span>
+                          </div>
+                        </el-col>
+                        <el-col :span="12">
+                          <div class="field-label">
+                            <i class="el-icon-edit"></i>
+                            <span class="field-label-title">日期范围选择器</span>
+                          </div>
+                        </el-col>
+                        <el-col :span="12">
+                          <div class="field-label">
+                            <i class="el-icon-edit"></i>
+                            <span class="field-label-title">时间日期选择器</span>
+                          </div>
+                        </el-col>
+                        <el-col :span="12">
+                          <div class="field-label">
+                            <i class="el-icon-edit"></i>
+                            <span class="field-label-title">时间日期范围选择器</span>
+                          </div>
+                        </el-col>
+                      </el-row>
+                    </div>
                   </el-collapse-item>
                   <el-collapse-item title="扩展字段" name="5">
-                    <div>用户决策：根据场景可给予用户操作建议或安全提示，但不能代替用户进行决策；</div>
-                    <div>结果可控：用户可以自由的进行操作，包括撤销、回退和终止当前操作等。</div>
+                    <div class="p-lf-10">
+                      <el-row :gutter="10" class="field-box">
+                        <el-col :span="12">
+                          <div class="field-label">
+                            <i class="el-icon-edit"></i>
+                            <span class="field-label-title">富文本编辑器</span>
+                          </div>
+                        </el-col>
+                        <el-col :span="12">
+                          <div class="field-label">
+                            <i class="el-icon-edit"></i>
+                            <span class="field-label-title">坐标选择器</span>
+                          </div>
+                        </el-col>
+                      </el-row>
+                    </div>
                   </el-collapse-item>
                   <el-collapse-item title="其他字段" name="6">
-                    <div>用户决策：根据场景可给予用户操作建议或安全提示，但不能代替用户进行决策；</div>
-                    <div>结果可控：用户可以自由的进行操作，包括撤销、回退和终止当前操作等。</div>
+                    <div class="p-lf-10">
+                      <el-row :gutter="10" class="field-box">
+                        <el-col :span="12">
+                          <div class="field-label">
+                            <i class="el-icon-edit"></i>
+                            <span class="field-label-title">评价</span>
+                          </div>
+                        </el-col>
+                        <el-col :span="12">
+                          <div class="field-label">
+                            <i class="el-icon-edit"></i>
+                            <span class="field-label-title">滑块</span>
+                          </div>
+                        </el-col>
+                      </el-row>
+                    </div>
+                  </el-collapse-item>
+                  <el-collapse-item title="自定义字段" name="7">
+                    <div class="p-lf-10">
+                      <el-row :gutter="10" class="field-box">
+                        <el-col :span="12">
+                          <div class="field-label">
+                            <i class="el-icon-edit"></i>
+                            <span class="field-label-title">用户自定义1</span>
+                          </div>
+                        </el-col>
+                        <el-col :span="12">
+                          <div class="field-label">
+                            <i class="el-icon-edit"></i>
+                            <span class="field-label-title">用户自定义1</span>
+                          </div>
+                        </el-col>
+                      </el-row>
+                    </div>
                   </el-collapse-item>
                 </el-collapse>
               </el-scrollbar>
@@ -89,23 +268,66 @@
     <el-main class="form-box">
       <el-container>
         <el-header class="form-box-header" height="40px">
-          <el-button type="text" icon="el-icon-upload"></el-button>
+          <div>
+            <el-button type="text" icon="el-icon-refresh-left" size="mini" circle></el-button>
+            <el-button type="text" icon="el-icon-refresh-right" size="mini" circle></el-button>
+            <el-button type="text" icon="el-icon-refresh" size="mini" circle></el-button>
+          </div>
+          <div>
+            <el-button type="primary" icon="el-icon-upload" size="mini" circle></el-button>
+            <el-button type="primary" icon="el-icon-coin" size="mini" circle></el-button>
+            <el-button type="primary" icon="el-icon-view" size="mini" circle></el-button>
+          </div>
         </el-header>
-        <el-main class="form-box-body" :class="{ 'form-box-body30': codeViewKey,'form-box-body100': !codeViewKey }">
+        <el-main class="form-box-body" :class="{'form-box-body30': codeViewKey,'form-box-body100': !codeViewKey }">
           <!-- 滚动条 -->
-          <div class="form-boxwrap form-bg-one">
+          <div class="form-boxwrap" :class="{'form-bg-one':false}">
             <el-scrollbar class="h100">
               <el-form :label-position="formAttribute.labelPosition" :label-width="formAttribute.labelWidth+'px'"
                 :model="formLabelAlign" :label-suffix="formAttribute.labelSuffix" :size="formAttribute.formSize">
-                <el-form-item label="名称">
-                  <el-input v-model="formLabelAlign.name"></el-input>
-                </el-form-item>
-                <el-form-item label="活动区域">
-                  <el-input v-model="formLabelAlign.region"></el-input>
-                </el-form-item>
-                <el-form-item label="活动形式">
-                  <el-input v-model="formLabelAlign.type"></el-input>
-                </el-form-item>
+                <div class="widget-form">
+                  <el-row :gutter="0">
+                    <div class="widget-form-list">
+                      <el-col :span="8">
+                        <el-form-item class="widget-form-item active" label="名称">
+                          <el-input v-model="formLabelAlign.name"></el-input>
+                          <div class="widget-view-action">
+                            <i class="el-icon-top" title="上移"></i>
+                            <i class="el-icon-bottom" title="下移"></i>
+                            <i class="el-icon-document-copy" title="复制"></i>
+                            <i class="el-icon-delete" title="删除"></i>
+                          </div>
+                          <div class="widget-view-drag"><i class="el-icon-rank" title="拖拽"></i></div>
+                        </el-form-item>
+                      </el-col>
+                      <el-col :span="8">
+                        <el-form-item class="widget-form-item" label="活动区域">
+                          <el-input v-model="formLabelAlign.region"></el-input>
+                        </el-form-item>
+                      </el-col>
+                      <el-col :span="8">
+                        <el-form-item class="widget-form-item" label="活动形式">
+                          <el-input v-model="formLabelAlign.type"></el-input>
+                        </el-form-item>
+                      </el-col>
+                      <el-col :span="12">
+                        <el-form-item class="widget-form-item" label="活动形式">
+                          <el-input v-model="formLabelAlign.type"></el-input>
+                        </el-form-item>
+                      </el-col>
+                      <el-col :span="12">
+                        <el-form-item class="widget-form-item" label="活动形式">
+                          <el-input v-model="formLabelAlign.type"></el-input>
+                        </el-form-item>
+                      </el-col>
+                      <el-col :span="24">
+                        <el-form-item class="widget-form-item" label="活动形式">
+                          <el-input v-model="formLabelAlign.type"></el-input>
+                        </el-form-item>
+                      </el-col>
+                    </div>
+                  </el-row>
+                </div>
               </el-form>
             </el-scrollbar>
           </div>
@@ -127,9 +349,75 @@
     <el-aside width="300px">
       <el-tabs type="border-card" v-model="activeName1" @tab-click="handleClick" class="h100 form-tabs form-right-tabs">
         <el-tab-pane label="字段属性" name="first" class="h100">
-          <div class="form-bg-two h100">
+          <div :class="{'form-bg-two':false}" class="h100">
             <el-scrollbar class="h100">
-              <div class="form-attribute">1</div>
+              <div class="field-attribute">
+                <el-form label-position="left" label-width="84px" :model="fieldAttribute" size="small" label-suffix="：">
+                  <el-form-item label="字段类型">
+                    <el-select v-model="fieldAttribute.fieldType" placeholder="请选择字段类型">
+                      <el-option v-for="item in sizeOptions" :key="item.value" :label="item.label" :value="item.value">
+                      </el-option>
+                    </el-select>
+                  </el-form-item>
+                  <el-form-item label="字段栅格">
+                    <el-input-number v-model="fieldAttribute.span" controls-position="right" :min="8" :step="1"
+                      :max="24" class="w100"></el-input-number>
+                  </el-form-item>
+                  <el-form-item label="字段名称">
+                    <el-input v-model="fieldAttribute.prop" placeholder="请输入字段名称"></el-input>
+                  </el-form-item>
+                  <el-form-item label="字段标题">
+                    <el-input v-model="fieldAttribute.label" placeholder="请输入字段标题"></el-input>
+                  </el-form-item>
+                  <el-form-item label="占位内容">
+                    <el-input v-model="fieldAttribute.placeholder" placeholder="请输入占位内容"></el-input>
+                  </el-form-item>
+                  <el-form-item label="默认内容">
+                    <el-input v-model="fieldAttribute.valueDefault" placeholder="请输入默认内容"></el-input>
+                  </el-form-item>
+                  <el-form-item label="字段长度">
+                    <el-input-number v-model="fieldAttribute.maxlength" controls-position="right" :min="0" :step="128"
+                      :max="3000" class="w100"></el-input-number>
+                  </el-form-item>
+                  <el-row>
+                    <el-col :span="12">
+                      <el-form-item label="是否可见">
+                        <el-switch v-model="fieldAttribute.display">
+                        </el-switch>
+                      </el-form-item>
+                    </el-col>
+                    <el-col :span="12">
+                      <el-form-item label="是否只读">
+                        <el-switch v-model="fieldAttribute.readonly">
+                        </el-switch>
+                      </el-form-item>
+                    </el-col>
+                  </el-row>
+                  <el-row>
+                    <el-col :span="12">
+                      <el-form-item label="显示计数">
+                        <el-switch v-model="fieldAttribute.showWordLimit">
+                        </el-switch>
+                      </el-form-item>
+                    </el-col>
+                    <el-col :span="12">
+                      <el-form-item label="字段校验">
+                        <el-switch v-model="fieldAttribute.required">
+                        </el-switch>
+                      </el-form-item>
+                    </el-col>
+                  </el-row>
+                  <el-form-item label="校验类型" v-if="fieldAttribute.required">
+                    <el-select v-model="fieldAttribute.requiredType" placeholder="请选择校验类型">
+                      <el-option v-for="item in regexOptions" :key="item.value" :label="item.label" :value="item.value">
+                      </el-option>
+                    </el-select>
+                  </el-form-item>
+                  <el-form-item label="校验正则" v-if="fieldAttribute.required && fieldAttribute.requiredType == '0'">
+                    <el-input v-model="fieldAttribute.pattern" placeholder="请输入校验正则表达式"></el-input>
+                  </el-form-item>
+                </el-form>
+              </div>
             </el-scrollbar>
           </div>
         </el-tab-pane>
@@ -226,6 +514,21 @@
           submitText: "", //提交文字
           resetText: "" //重置文字
         },
+        fieldAttribute: {
+          span: 24,
+          fieldType: "",
+          prop: "",
+          label: "",
+          placeholder: "",
+          valueDefault: "",
+          maxlength: 128,
+          required: false,
+          requiredType: "",
+          pattern: "",
+          display: false,
+          readonly: false,
+          showWordLimit: false,
+        },
         tableData: [{
             createTime: "2016-05-02",
             title: "领导信息",
@@ -257,49 +560,7 @@
           region: "",
           type: ""
         },
-        alignmentOptions: [{
-            value: "left",
-            label: "左对齐"
-          },
-          {
-            value: "right",
-            label: "右对齐"
-          },
-          {
-            value: "top",
-            label: "顶部对齐"
-          }
-        ],
-        positionOptions: [{
-            value: "left",
-            label: "居左"
-          },
-          {
-            value: "center",
-            label: "居中"
-          },
-          {
-            value: "right",
-            label: "居右"
-          }
-        ],
-        sizeOptions: [{
-            value: "large",
-            label: "大"
-          },
-          {
-            value: "medium",
-            label: "中"
-          },
-          {
-            value: "small",
-            label: "小"
-          },
-          {
-            value: "mini",
-            label: "超小"
-          }
-        ],
+
         data: [{
             label: "一级 1",
             children: [{
@@ -345,7 +606,84 @@
         defaultProps: {
           children: "children",
           label: "label"
-        }
+        },
+        alignmentOptions: [{
+            value: "left",
+            label: "左对齐"
+          },
+          {
+            value: "right",
+            label: "右对齐"
+          },
+          {
+            value: "top",
+            label: "顶部对齐"
+          }
+        ],
+        positionOptions: [{
+            value: "left",
+            label: "居左"
+          },
+          {
+            value: "center",
+            label: "居中"
+          },
+          {
+            value: "right",
+            label: "居右"
+          }
+        ],
+        sizeOptions: [{
+            value: "large",
+            label: "大"
+          },
+          {
+            value: "medium",
+            label: "中"
+          },
+          {
+            value: "small",
+            label: "小"
+          },
+          {
+            value: "mini",
+            label: "超小"
+          }
+        ],
+        regexOptions: [{
+          value: "1",
+          label: "普通文本"
+        }, {
+          value: "2",
+          label: "中文字符串"
+        }, {
+          value: "3",
+          label: "英文字符串"
+        }, {
+          value: "4",
+          label: "数字或英文"
+        }, {
+          value: "5",
+          label: "整数"
+        }, {
+          value: "6",
+          label: "浮点数"
+        }, {
+          value: "7",
+          label: "邮箱"
+        }, {
+          value: "8",
+          label: "手机号码"
+        }, {
+          value: "9",
+          label: "url地址"
+        }, {
+          value: "10",
+          label: "8位英文数字密码"
+        }, {
+          value: "0",
+          label: "其他"
+        }]
       };
     },
     computed: {
@@ -354,7 +692,7 @@
       }
     },
     methods: {
-      cc(){
+      cc() {
         console.log("aaa")
       },
       handleClick(tab, event) {
@@ -388,6 +726,10 @@
     padding: 0;
   }
 
+  .p-lf-10 {
+    padding: 0 10px;
+  }
+
   .form {
     box-sizing: border-box;
     border: 1px solid #dcdfe6;
@@ -400,7 +742,11 @@
     border-right: 1px solid #ccc;
   }
 
+  .form .form-card-header,
   .form .form-box .form-box-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     box-sizing: border-box;
     padding: 0 10px;
     border-bottom: 1px solid #dcdfe6;
@@ -446,6 +792,7 @@
   .form .form-box .form-box-body .form-boxwrap {
     box-sizing: border-box;
     height: 100%;
+    background-color: #fff;
     border: 1px dashed #999;
   }
 
@@ -465,9 +812,87 @@
     height: 30%;
   }
 
+  .form .field-attribute,
   .form .form-attribute {
     box-sizing: border-box;
     padding: 20px 10px;
+  }
+
+  .widget-form,
+  .widget-form .widget-form-list {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .widget-form .widget-form-list .widget-form-item {
+    padding-bottom: 18px;
+    padding-left: 40px;
+    position: relative;
+    border: 1px dashed hsla(0, 0%, 66.7%, .7);
+    background-color: rgba(236, 245, 255, .3);
+    margin: 2px;
+  }
+
+  .widget-form .widget-form-list .widget-form-item.active {
+    outline: 2px solid #409eff;
+    border: 1px solid #409eff;
+  }
+
+  .widget-view-action {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 22px;
+    line-height: 24px;
+    background: #409eff;
+    z-index: 9;
+  }
+
+  .widget-form-item .widget-view-action i {
+    font-size: 14px;
+    color: #fff;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+
+  .widget-form-item .widget-view-drag {
+    position: absolute;
+    left: -2px;
+    top: -2px;
+    bottom: -18px;
+    height: 22px;
+    line-height: 22px;
+    background: #409eff;
+    z-index: 9;
+  }
+
+  .widget-form-item .widget-view-drag i {
+    font-size: 14px;
+    color: #fff;
+    margin: 0 5px;
+    cursor: move;
+  }
+
+  .form .field-label {
+    box-sizing: border-box;
+    width: 100%;
+    height: 38px;
+    line-height: 36px;
+    padding: 0 10px;
+    text-align: center;
+    background-color: #fafafa;
+    border: 1px dashed hsla(0, 0%, 66.7%, .7);
+    cursor: move;
+  }
+
+  .form .field-label .field-label-title {
+    margin-left: 15px;
+  }
+
+  .form .field-label:hover {
+    color: #409eff;
+    border: 1px dashed #409eff;
   }
 </style>
 
@@ -495,7 +920,7 @@
   }
 
   .form .el-scrollbar__view {
-    height: 100%;
+    min-height: 100%;
   }
 
   .form .el-tabs__content {
@@ -538,5 +963,22 @@
     margin-left: 8px;
     color: #666;
     vertical-align: middle;
+  }
+
+  .form .widget-form-list .el-form-item__content {
+    position: unset;
+  }
+
+  .form .el-collapse-item__content {
+    padding-bottom: 10px;
+  }
+
+  .form .field-box .el-col {
+    margin-top: 8px;
+  }
+
+  .form .field-box .el-col:nth-child(1),
+  .form .field-box .el-col:nth-child(2) {
+    margin-top: 0;
   }
 </style>
