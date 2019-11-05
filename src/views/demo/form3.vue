@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-10-29 17:59:02
  * @LastAuthor: lizlong
- * @lastTime: 2019-11-05 14:07:58
+ * @lastTime: 2019-11-05 23:19:23
  -->
 <template>
   <el-container class="form" oncontextmenu="self.event.returnValue=false">
@@ -274,9 +274,10 @@
             <el-button type="text" icon="el-icon-refresh" size="mini" circle></el-button>
           </div>
           <div>
-            <el-button type="primary" icon="el-icon-upload" size="mini" circle></el-button>
-            <el-button type="primary" icon="el-icon-coin" size="mini" circle></el-button>
-            <el-button type="primary" icon="el-icon-view" size="mini" circle></el-button>
+            <el-button type="text" icon="el-icon-upload" size="mini" circle></el-button>
+            <el-button type="text" icon="el-icon-coin" size="mini" circle></el-button>
+            <el-button type="text" icon="el-icon-view" size="mini" circle></el-button>
+            <el-button type="text" icon="el-icon-full-screen" size="mini" @click="screenfull" circle></el-button>
           </div>
         </el-header>
         <el-main class="form-box-body" :class="{'form-box-body30': codeViewKey,'form-box-body100': !codeViewKey }">
@@ -507,6 +508,7 @@
 </template>
 
 <script>
+  import screenfull from 'screenfull'
   import MyEditor from "@/components/Monaco.vue";
   export default {
     components: {
@@ -514,6 +516,7 @@
     },
     data() {
       return {
+        isFullscreen: false,
         activeName: "first",
         activeName1: "first",
         activeNames: ["1"],
@@ -714,6 +717,15 @@
         return this.codeViewKey ? '70%' : '32px'
       }
     },
+    mounted() {
+      window.onresize = () => {
+        // 全屏下监控是否按键了ESC
+        if (!this.checkFull()) {
+          // 全屏下按键esc后要执行的动作
+          this.isFullscreen = false;
+        }
+      }
+    },
     methods: {
       cc() {
         console.log("aaa")
@@ -730,7 +742,33 @@
       htmlOnMounted(edit) {
         this.htmlEditor = edit;
       },
-      htmlOnCodeChange(value, event) {}
+      htmlOnCodeChange(value, event) {},
+      /**
+       * 全屏事件
+       */
+      screenfull() {
+        if (!screenfull.enabled) {
+          this.$message({
+            message: 'Your browser does not support!',
+            type: 'warning'
+          })
+          return false
+        }
+        screenfull.toggle();
+        this.isFullscreen = true;
+      },
+      /**
+       * 是否全屏并按键ESC键的方法
+       */
+      checkFull() {
+        var isFull = document.fullscreenEnabled || window.fullScreen || document.webkitIsFullScreen || document
+          .msFullscreenEnabled;
+        // to fix : false || undefined == undefined
+        if (isFull === undefined) {
+          isFull = false;
+        }
+        return isFull;
+      }
     }
   };
 </script>
@@ -860,6 +898,15 @@
   .widget-form .widget-form-list .widget-form-item.active {
     outline: 2px solid #409eff;
     border: 1px solid #409eff;
+  }
+
+  .widget-form .widget-form-list .widget-form-item:after {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: block;
   }
 
   .widget-view-action {
@@ -1003,5 +1050,13 @@
   .form .field-box .el-col:nth-child(1),
   .form .field-box .el-col:nth-child(2) {
     margin-top: 0;
+  }
+
+  .form .form-box-header .el-button {
+    font-size: 18px;
+  }
+
+  .form .form-box-header .el-button+.el-button {
+    margin-left: 0;
   }
 </style>
