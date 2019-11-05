@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-10-29 17:59:02
  * @LastAuthor: lizlong
- * @lastTime: 2019-11-02 14:03:22
+ * @lastTime: 2019-11-05 14:07:58
  -->
 <template>
   <el-container class="form" oncontextmenu="self.event.returnValue=false">
@@ -288,7 +288,7 @@
                 <div class="widget-form">
                   <el-row :gutter="0">
                     <div class="widget-form-list">
-                      <el-col :span="8">
+                      <el-col :span="12">
                         <el-form-item class="widget-form-item active" label="名称">
                           <el-input v-model="formLabelAlign.name"></el-input>
                           <div class="widget-view-action">
@@ -300,12 +300,17 @@
                           <div class="widget-view-drag"><i class="el-icon-rank" title="拖拽"></i></div>
                         </el-form-item>
                       </el-col>
-                      <el-col :span="8">
+                      <el-col :span="12">
                         <el-form-item class="widget-form-item" label="活动区域">
                           <el-input v-model="formLabelAlign.region"></el-input>
                         </el-form-item>
                       </el-col>
-                      <el-col :span="8">
+                      <el-col :span="12">
+                        <el-form-item class="widget-form-item" label="活动形式">
+                          <el-input v-model="formLabelAlign.type"></el-input>
+                        </el-form-item>
+                      </el-col>
+                      <el-col :span="12">
                         <el-form-item class="widget-form-item" label="活动形式">
                           <el-input v-model="formLabelAlign.type"></el-input>
                         </el-form-item>
@@ -316,13 +321,29 @@
                         </el-form-item>
                       </el-col>
                       <el-col :span="12">
+                        <el-form-item class="widget-form-item" label="活动形式">
+                          <el-date-picker v-model="formLabelAlign.dataTime" type="datetime" placeholder="选择日期时间"
+                            class="w100">
+                          </el-date-picker>
+                        </el-form-item>
+                      </el-col>
+                      <el-col :span="12">
+                        <el-form-item class="widget-form-item" label="活动形式">
+                          <el-input placeholder="请输入内容" v-model="formLabelAlign.color">
+                            <el-color-picker slot="append" v-model="formLabelAlign.color" size="mini" show-alpha>
+                            </el-color-picker>
+                          </el-input>
+                        </el-form-item>
+                      </el-col>
+                      <el-col :span="24">
                         <el-form-item class="widget-form-item" label="活动形式">
                           <el-input v-model="formLabelAlign.type"></el-input>
                         </el-form-item>
                       </el-col>
                       <el-col :span="24">
                         <el-form-item class="widget-form-item" label="活动形式">
-                          <el-input v-model="formLabelAlign.type"></el-input>
+                          <el-input type="textarea" placeholder="请输入内容" :autosize="{ minRows: 3, maxRows: 6}"
+                            v-model="formLabelAlign.type"></el-input>
                         </el-form-item>
                       </el-col>
                     </div>
@@ -558,7 +579,9 @@
         formLabelAlign: {
           name: "",
           region: "",
-          type: ""
+          type: "",
+          dataTime: "",
+          color: ""
         },
 
         data: [{
