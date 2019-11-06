@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-10-29 17:59:02
  * @LastAuthor: lizlong
- * @lastTime: 2019-11-05 23:19:23
+ * @lastTime: 2019-11-07 00:17:46
  -->
 <template>
   <el-container class="form" oncontextmenu="self.event.returnValue=false">
@@ -289,8 +289,9 @@
                 <div class="widget-form">
                   <el-row :gutter="0">
                     <div class="widget-form-list">
-                      <el-col :span="12">
-                        <el-form-item class="widget-form-item active" label="名称">
+                      <draggable v-model="myArray" group="people" @start="drag=true" @end="drag=false" draggable=".widget-view-drag">
+                        <div v-for="element in myArray" :key="element.id">
+                          <el-form-item class="widget-form-item active" :label="'名称'+element.id">
                           <el-input v-model="formLabelAlign.name"></el-input>
                           <div class="widget-view-action">
                             <i class="el-icon-top" title="上移"></i>
@@ -300,53 +301,8 @@
                           </div>
                           <div class="widget-view-drag"><i class="el-icon-rank" title="拖拽"></i></div>
                         </el-form-item>
-                      </el-col>
-                      <el-col :span="12">
-                        <el-form-item class="widget-form-item" label="活动区域">
-                          <el-input v-model="formLabelAlign.region"></el-input>
-                        </el-form-item>
-                      </el-col>
-                      <el-col :span="12">
-                        <el-form-item class="widget-form-item" label="活动形式">
-                          <el-input v-model="formLabelAlign.type"></el-input>
-                        </el-form-item>
-                      </el-col>
-                      <el-col :span="12">
-                        <el-form-item class="widget-form-item" label="活动形式">
-                          <el-input v-model="formLabelAlign.type"></el-input>
-                        </el-form-item>
-                      </el-col>
-                      <el-col :span="12">
-                        <el-form-item class="widget-form-item" label="活动形式">
-                          <el-input v-model="formLabelAlign.type"></el-input>
-                        </el-form-item>
-                      </el-col>
-                      <el-col :span="12">
-                        <el-form-item class="widget-form-item" label="活动形式">
-                          <el-date-picker v-model="formLabelAlign.dataTime" type="datetime" placeholder="选择日期时间"
-                            class="w100">
-                          </el-date-picker>
-                        </el-form-item>
-                      </el-col>
-                      <el-col :span="12">
-                        <el-form-item class="widget-form-item" label="活动形式">
-                          <el-input placeholder="请输入内容" v-model="formLabelAlign.color">
-                            <el-color-picker slot="append" v-model="formLabelAlign.color" size="mini" show-alpha>
-                            </el-color-picker>
-                          </el-input>
-                        </el-form-item>
-                      </el-col>
-                      <el-col :span="24">
-                        <el-form-item class="widget-form-item" label="活动形式">
-                          <el-input v-model="formLabelAlign.type"></el-input>
-                        </el-form-item>
-                      </el-col>
-                      <el-col :span="24">
-                        <el-form-item class="widget-form-item" label="活动形式">
-                          <el-input type="textarea" placeholder="请输入内容" :autosize="{ minRows: 3, maxRows: 6}"
-                            v-model="formLabelAlign.type"></el-input>
-                        </el-form-item>
-                      </el-col>
+                        </div>
+                      </draggable>
                     </div>
                   </el-row>
                 </div>
@@ -510,12 +466,30 @@
 <script>
   import screenfull from 'screenfull'
   import MyEditor from "@/components/Monaco.vue";
+  import draggable from 'vuedraggable'
   export default {
     components: {
+      draggable,
       MyEditor
     },
     data() {
       return {
+        myArray: [{
+          id: 0,
+          name: 0,
+        }, {
+          id: 1,
+          name: 1,
+        }, {
+          id: 2,
+          name: 2,
+        }, {
+          id: 3,
+          name: 3,
+        }, {
+          id: 4,
+          name: 4,
+        }],
         isFullscreen: false,
         activeName: "first",
         activeName1: "first",
