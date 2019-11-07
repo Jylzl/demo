@@ -3,10 +3,10 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-10-29 17:59:02
  * @LastAuthor: lizlong
- * @lastTime: 2019-11-07 00:17:46
+ * @lastTime: 2019-11-07 18:25:57
  -->
 <template>
-  <el-container class="form" oncontextmenu="self.event.returnValue=false">
+  <el-container class="form un-select" oncontextmenu="self.event.returnValue=false">
     <el-aside width="300px">
       <div class="form-left-card">
         <el-card class="form-card" shadow="never" :body-style="{ padding: '0px' }">
@@ -285,27 +285,30 @@
           <div class="form-boxwrap" :class="{'form-bg-one':false}">
             <el-scrollbar class="h100">
               <el-form :label-position="formAttribute.labelPosition" :label-width="formAttribute.labelWidth+'px'"
-                :model="formLabelAlign" :label-suffix="formAttribute.labelSuffix" :size="formAttribute.formSize">
-                <div class="widget-form">
-                  <el-row :gutter="0">
-                    <div class="widget-form-list">
-                      <draggable v-model="myArray" group="people" @start="drag=true" @end="drag=false" draggable=".widget-view-drag">
-                        <div v-for="element in myArray" :key="element.id">
-                          <el-form-item class="widget-form-item active" :label="'名称'+element.id">
+                :model="formLabelAlign" :label-suffix="formAttribute.labelSuffix" :size="formAttribute.formSize"
+                class="widget-form">
+                <el-row :gutter="0">
+                  <draggable handle=".drag-btn" :group="{ name: 'people', pull: 'clone', put: true }"
+                    ghost-class="ghost" :sort="false" :list="myArray" @change="change" @start="start" @end="end"
+                    :move="move" class="widget-form-list" :component-data="getComponentData()">
+                    <transition-group>
+                      <el-col :span="24" v-for="(item, index) in myArray" :key="index" :data-id="item.id"
+                        @click="itemClick">
+                        <el-form-item class="widget-form-item" :class="{'active':item.active}" :label="'名称'+item.name">
                           <el-input v-model="formLabelAlign.name"></el-input>
-                          <div class="widget-view-action">
+                          <div class="widget-view-drag drag-btn" v-if="item.active"><i class="el-icon-rank"
+                              title="拖拽"></i></div>
+                          <div class="widget-view-action" v-if="item.active">
                             <i class="el-icon-top" title="上移"></i>
                             <i class="el-icon-bottom" title="下移"></i>
                             <i class="el-icon-document-copy" title="复制"></i>
                             <i class="el-icon-delete" title="删除"></i>
                           </div>
-                          <div class="widget-view-drag"><i class="el-icon-rank" title="拖拽"></i></div>
                         </el-form-item>
-                        </div>
-                      </draggable>
-                    </div>
-                  </el-row>
-                </div>
+                      </el-col>
+                    </transition-group>
+                  </draggable>
+                </el-row>
               </el-form>
             </el-scrollbar>
           </div>
@@ -474,22 +477,64 @@
     },
     data() {
       return {
+        activeNames: "",
         myArray: [{
-          id: 0,
-          name: 0,
-        }, {
-          id: 1,
-          name: 1,
-        }, {
-          id: 2,
-          name: 2,
-        }, {
-          id: 3,
-          name: 3,
-        }, {
-          id: 4,
-          name: 4,
-        }],
+            id: 1,
+            name: "1",
+            order: 2,
+            fixed: false,
+            active: true
+          },
+          {
+            id: 2,
+            name: "2",
+            order: 3,
+            fixed: false,
+            active: false
+          },
+          {
+            id: 3,
+            name: "3",
+            order: 4,
+            fixed: false,
+            active: false
+          },
+          {
+            id: 4,
+            name: "4",
+            order: 5,
+            fixed: false,
+            active: false
+          },
+          {
+            id: 5,
+            name: "5",
+            order: 1,
+            fixed: false,
+            active: false
+          },
+          {
+            id: 6,
+            name: "6",
+            order: 6,
+            fixed: false,
+            active: false
+          },
+          {
+            id: 7,
+            name: "7",
+            order: 7,
+            fixed: false,
+            active: false
+          },
+          {
+            id: 8,
+            name: "8",
+            order: 8,
+            fixed: false,
+            active: false
+          }
+        ],
         isFullscreen: false,
         activeName: "first",
         activeName1: "first",
@@ -560,7 +605,6 @@
           dataTime: "",
           color: ""
         },
-
         data: [{
             label: "一级 1",
             children: [{
@@ -701,6 +745,48 @@
       }
     },
     methods: {
+      handleChange() {
+        console.log('changed');
+      },
+      inputChanged(value) {
+        this.activeNames = value;
+        console.log(this.activeNames)
+      },
+      getComponentData() {
+        return {
+          on: {
+            change: this.handleChange,
+            input: this.inputChanged
+          },
+          attrs: {
+            wrap: true
+          },
+          props: {
+            value: this.activeNames
+          }
+        };
+      },
+      change: function (evt) {
+        console.log(evt)
+      },
+      //start ,end ,add,update, sort, remove 得到的都差不多
+      start: function (evt) {
+        console.log(this.myArray)
+        console.log(evt)
+      },
+      end: function (evt) {
+        console.log(this.myArray)
+        console.log(evt)
+        // evt.item //可以知道拖动的本身
+        // evt.to // 可以知道拖动的目标列表
+        // evt.from // 可以知道之前的列表
+        // evt.oldIndex // 可以知道拖动前的位置
+        // evt.newIndex // 可以知道拖动后的位置
+      },
+      move: function (evt, originalEvent) {
+        console.log(evt)
+        console.log(originalEvent) //鼠标位置
+      },
       cc() {
         console.log("aaa")
       },
@@ -742,12 +828,16 @@
           isFull = false;
         }
         return isFull;
+      },
+      itemClick(item) {
+        console.log(item)
       }
     }
   };
 </script>
 
 <style scoped>
+  /* 工具样式 */
   .w100 {
     width: 100%;
   }
@@ -765,6 +855,21 @@
     padding: 0 10px;
   }
 
+  .un-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  /* 
+  .un-select:active {
+    cursor: not-allowed
+  } */
+
+  /* 表单样式 */
   .form {
     box-sizing: border-box;
     border: 1px solid #dcdfe6;
@@ -894,9 +999,13 @@
   }
 
   .widget-form-item .widget-view-action i {
+    width: 24px;
+    height: 22px;
     font-size: 14px;
     color: #fff;
-    margin: 0 5px;
+    vertical-align: top;
+    line-height: 24px;
+    text-align: center;
     cursor: pointer;
   }
 
@@ -912,9 +1021,13 @@
   }
 
   .widget-form-item .widget-view-drag i {
+    width: 24px;
+    height: 22px;
     font-size: 14px;
     color: #fff;
-    margin: 0 5px;
+    vertical-align: top;
+    line-height: 22px;
+    text-align: center;
     cursor: move;
   }
 

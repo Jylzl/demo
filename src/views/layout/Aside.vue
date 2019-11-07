@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-08-27 18:01:13
  * @LastAuthor: lizlong
- * @lastTime: 2019-10-29 17:59:45
+ * @lastTime: 2019-11-07 13:02:38
  -->
 <template>
 	<el-menu :default-active="$route.path" class="el-menu-demo" mode="horizontal" background-color="#545c64"
@@ -30,6 +30,7 @@
 		<el-submenu index="3">
 			<template slot="title">Demo3</template>
 			<el-menu-item index="/demo/split">split</el-menu-item>
+			<el-menu-item index="/demo/dragDemo">dragDemo</el-menu-item>
 		</el-submenu>
 	</el-menu>
 </template>

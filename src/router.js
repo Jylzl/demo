@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-07-05 00:56:32
  * @LastAuthor: lizlong
- * @lastTime: 2019-10-29 17:59:31
+ * @lastTime: 2019-11-07 13:02:27
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -82,6 +82,11 @@ export default new Router({
         path: '/demo/split',
         name: 'split',
         component: () => import('@/views/demo/split.vue')
+      },
+      {
+        path: '/demo/dragDemo',
+        name: 'dragDemo',
+        component: () => import('@/views/demo/dragDemo.vue')
       }
     ]
   }]
