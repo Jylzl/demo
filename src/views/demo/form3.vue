@@ -3,14 +3,14 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-10-29 17:59:02
  * @LastAuthor: lizlong
- * @lastTime: 2019-11-07 18:25:57
+ * @lastTime: 2019-11-08 00:24:29
  -->
 <template>
   <el-container class="form un-select" oncontextmenu="self.event.returnValue=false">
     <el-aside width="300px">
       <div class="form-left-card">
         <el-card class="form-card" shadow="never" :body-style="{ padding: '0px' }">
-          <div slot="header" class="clearfix form-card-header">
+          <div slot="header" class="form-card-header">
             <span>表单</span>
             <el-button style="float: right; padding: 3px 0" type="text" icon="el-icon-edit-outline"></el-button>
           </div>
@@ -291,18 +291,18 @@
                   <draggable handle=".drag-btn" :group="{ name: 'people', pull: 'clone', put: true }"
                     ghost-class="ghost" :sort="false" :list="myArray" @change="change" @start="start" @end="end"
                     :move="move" class="widget-form-list" :component-data="getComponentData()">
-                    <transition-group>
-                      <el-col :span="24" v-for="(item, index) in myArray" :key="index" :data-id="item.id"
-                        @click="itemClick">
-                        <el-form-item class="widget-form-item" :class="{'active':item.active}" :label="'名称'+item.name">
+                    <transition-group appear tag="div" class="clearfix">
+                      <el-col :span="12" v-for="(item,index) in myArray" :key="item.id" :data-id="item.id" @click="itemClick()">
+                        <el-form-item class="widget-form-item" :class="{'active':item.active}" :label="'名称'+item.name"
+                          @click="itemClick()">
                           <el-input v-model="formLabelAlign.name"></el-input>
                           <div class="widget-view-drag drag-btn" v-if="item.active"><i class="el-icon-rank"
                               title="拖拽"></i></div>
                           <div class="widget-view-action" v-if="item.active">
                             <i class="el-icon-top" title="上移"></i>
                             <i class="el-icon-bottom" title="下移"></i>
-                            <i class="el-icon-document-copy" title="复制"></i>
-                            <i class="el-icon-delete" title="删除"></i>
+                            <i class="el-icon-document-copy" title="复制" @click="copy(index)"></i>
+                            <i class="el-icon-delete" title="删除" @click="remove(index)"></i>
                           </div>
                         </el-form-item>
                       </el-col>
@@ -829,15 +829,38 @@
         }
         return isFull;
       },
-      itemClick(item) {
-        console.log(item)
-      }
+      itemClick() {
+        console.log("item")
+      },
+      copy(index) {
+        this.myArray.splice(index + 1, 0, {
+          id: Math.random()
+            .toString()
+            .slice(-10),
+          name: "2" + index,
+          order: 3,
+          fixed: false,
+          active: false
+        })
+      },
+      remove(index) {
+        this.myArray.splice(index, 1);
+      },
     }
   };
 </script>
 
 <style scoped>
   /* 工具样式 */
+  .clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0
+  }
+
   .w100 {
     width: 100%;
   }
@@ -1054,6 +1077,17 @@
 </style>
 
 <style>
+  .v-enter,
+  .v-leave-to {
+    opacity: 0;
+    transform: translateY(80px);
+  }
+
+  .v-enter-active,
+  .v-leave-active {
+    transition: all 0.6s ease;
+  }
+
   .form .form-card {
     height: 100%;
     border-radius: 0;
