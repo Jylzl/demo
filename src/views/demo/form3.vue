@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-10-29 17:59:02
  * @LastAuthor: lizlong
- * @lastTime: 2019-11-08 00:24:29
+ * @lastTime: 2019-11-08 00:55:26
  -->
 <template>
   <el-container class="form un-select" oncontextmenu="self.event.returnValue=false">
@@ -292,9 +292,9 @@
                     ghost-class="ghost" :sort="false" :list="myArray" @change="change" @start="start" @end="end"
                     :move="move" class="widget-form-list" :component-data="getComponentData()">
                     <transition-group appear tag="div" class="clearfix">
-                      <el-col :span="12" v-for="(item,index) in myArray" :key="item.id" :data-id="item.id" @click="itemClick()">
+                      <el-col :span="12" v-for="(item,index) in myArray" :key="item.id" :data-id="item.id">
                         <el-form-item class="widget-form-item" :class="{'active':item.active}" :label="'名称'+item.name"
-                          @click="itemClick()">
+                          v-on:click.native="itemClick()">
                           <el-input v-model="formLabelAlign.name"></el-input>
                           <div class="widget-view-drag drag-btn" v-if="item.active"><i class="el-icon-rank"
                               title="拖拽"></i></div>
@@ -1009,6 +1009,12 @@
     top: 0;
     bottom: 0;
     display: block;
+  }
+
+  .widget-form .widget-form-list .widget-form-item:hover {
+    background: #ecf5ff;
+    outline: 1px solid #409eff;
+    outline-offset: 0;
   }
 
   .widget-view-action {
