@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-10-29 17:59:02
  * @LastAuthor: lizlong
- * @lastTime: 2019-11-08 00:55:26
+ * @lastTime: 2019-11-08 16:36:58
  -->
 <template>
   <el-container class="form un-select" oncontextmenu="self.event.returnValue=false">
@@ -31,223 +31,21 @@
             </span>
             <div class="h100">
               <el-scrollbar class="h100">
-                <el-collapse v-model="activeNames" @change="handleChange" accordion>
-                  <el-collapse-item title="输入字段" name="1">
+                <el-collapse v-model="activeNames" accordion>
+                  <template v-for="item in components">
+                  <el-collapse-item :key="item.id" :title="item.name" :name="item.id" v-if="item.children">
                     <div class="p-lf-10">
                       <el-row :gutter="10" class="field-box">
-                        <el-col :span="12">
+                        <el-col :span="12" v-for="component in item.children" :key="component.id">
                           <div class="field-label">
-                            <i class="el-icon-edit"></i>
-                            <span class="field-label-title">单行文本框</span>
-                          </div>
-                        </el-col>
-                        <el-col :span="12">
-                          <div class="field-label">
-                            <i class="el-icon-edit"></i>
-                            <span class="field-label-title">密码输入框</span>
-                          </div>
-                        </el-col>
-                        <el-col :span="12">
-                          <div class="field-label">
-                            <i class="el-icon-edit"></i>
-                            <span class="field-label-title">邮箱输入框</span>
-                          </div>
-                        </el-col>
-                        <el-col :span="12">
-                          <div class="field-label">
-                            <i class="el-icon-edit"></i>
-                            <span class="field-label-title">多行文本框</span>
-                          </div>
-                        </el-col>
-                        <el-col :span="12">
-                          <div class="field-label">
-                            <i class="el-icon-edit"></i>
-                            <span class="field-label-title">计数器输入</span>
+                            <i :class="component.icon"></i>
+                            <span class="field-label-title">{{component.name}}</span>
                           </div>
                         </el-col>
                       </el-row>
                     </div>
                   </el-collapse-item>
-                  <el-collapse-item title="选择字段" name="2">
-                    <div class="p-lf-10">
-                      <el-row :gutter="10" class="field-box">
-                        <el-col :span="12">
-                          <div class="field-label">
-                            <i class="el-icon-edit"></i>
-                            <span class="field-label-title">单选按钮组</span>
-                          </div>
-                        </el-col>
-                        <el-col :span="12">
-                          <div class="field-label">
-                            <i class="el-icon-edit"></i>
-                            <span class="field-label-title">多选按钮组</span>
-                          </div>
-                        </el-col>
-                        <el-col :span="12">
-                          <div class="field-label">
-                            <i class="el-icon-edit"></i>
-                            <span class="field-label-title">下拉选择器</span>
-                          </div>
-                        </el-col>
-                        <el-col :span="12">
-                          <div class="field-label">
-                            <i class="el-icon-edit"></i>
-                            <span class="field-label-title">级联选择器</span>
-                          </div>
-                        </el-col>
-                        <el-col :span="12">
-                          <div class="field-label">
-                            <i class="el-icon-edit"></i>
-                            <span class="field-label-title">开关选择器</span>
-                          </div>
-                        </el-col>
-                        <el-col :span="12">
-                          <div class="field-label">
-                            <i class="el-icon-edit"></i>
-                            <span class="field-label-title">颜色选择器</span>
-                          </div>
-                        </el-col>
-                      </el-row>
-                    </div>
-                  </el-collapse-item>
-                  <el-collapse-item title="上传字段" name="3">
-                    <div class="p-lf-10">
-                      <el-row :gutter="10" class="field-box">
-                        <el-col :span="12">
-                          <div class="field-label">
-                            <i class="el-icon-edit"></i>
-                            <span class="field-label-title">图片上传</span>
-                          </div>
-                        </el-col>
-                        <el-col :span="12">
-                          <div class="field-label">
-                            <i class="el-icon-edit"></i>
-                            <span class="field-label-title">附件上传</span>
-                          </div>
-                        </el-col>
-                      </el-row>
-                    </div>
-                  </el-collapse-item>
-                  <el-collapse-item title="时间日期字段" name="4">
-                    <div class="p-lf-10">
-                      <el-row :gutter="10" class="field-box">
-                        <el-col :span="12">
-                          <div class="field-label">
-                            <i class="el-icon-edit"></i>
-                            <span class="field-label-title">年</span>
-                          </div>
-                        </el-col>
-                        <el-col :span="12">
-                          <div class="field-label">
-                            <i class="el-icon-edit"></i>
-                            <span class="field-label-title">月</span>
-                          </div>
-                        </el-col>
-                        <el-col :span="12">
-                          <div class="field-label">
-                            <i class="el-icon-edit"></i>
-                            <span class="field-label-title">日</span>
-                          </div>
-                        </el-col>
-                        <el-col :span="12">
-                          <div class="field-label">
-                            <i class="el-icon-edit"></i>
-                            <span class="field-label-title">周</span>
-                          </div>
-                        </el-col>
-                        <el-col :span="12">
-                          <div class="field-label">
-                            <i class="el-icon-edit"></i>
-                            <span class="field-label-title">时间选择器</span>
-                          </div>
-                        </el-col>
-                        <el-col :span="12">
-                          <div class="field-label">
-                            <i class="el-icon-edit"></i>
-                            <span class="field-label-title">时间范围选择器</span>
-                          </div>
-                        </el-col>
-                        <el-col :span="12">
-                          <div class="field-label">
-                            <i class="el-icon-edit"></i>
-                            <span class="field-label-title">日期选择器</span>
-                          </div>
-                        </el-col>
-                        <el-col :span="12">
-                          <div class="field-label">
-                            <i class="el-icon-edit"></i>
-                            <span class="field-label-title">日期范围选择器</span>
-                          </div>
-                        </el-col>
-                        <el-col :span="12">
-                          <div class="field-label">
-                            <i class="el-icon-edit"></i>
-                            <span class="field-label-title">时间日期选择器</span>
-                          </div>
-                        </el-col>
-                        <el-col :span="12">
-                          <div class="field-label">
-                            <i class="el-icon-edit"></i>
-                            <span class="field-label-title">时间日期范围选择器</span>
-                          </div>
-                        </el-col>
-                      </el-row>
-                    </div>
-                  </el-collapse-item>
-                  <el-collapse-item title="扩展字段" name="5">
-                    <div class="p-lf-10">
-                      <el-row :gutter="10" class="field-box">
-                        <el-col :span="12">
-                          <div class="field-label">
-                            <i class="el-icon-edit"></i>
-                            <span class="field-label-title">富文本编辑器</span>
-                          </div>
-                        </el-col>
-                        <el-col :span="12">
-                          <div class="field-label">
-                            <i class="el-icon-edit"></i>
-                            <span class="field-label-title">坐标选择器</span>
-                          </div>
-                        </el-col>
-                      </el-row>
-                    </div>
-                  </el-collapse-item>
-                  <el-collapse-item title="其他字段" name="6">
-                    <div class="p-lf-10">
-                      <el-row :gutter="10" class="field-box">
-                        <el-col :span="12">
-                          <div class="field-label">
-                            <i class="el-icon-edit"></i>
-                            <span class="field-label-title">评价</span>
-                          </div>
-                        </el-col>
-                        <el-col :span="12">
-                          <div class="field-label">
-                            <i class="el-icon-edit"></i>
-                            <span class="field-label-title">滑块</span>
-                          </div>
-                        </el-col>
-                      </el-row>
-                    </div>
-                  </el-collapse-item>
-                  <el-collapse-item title="自定义字段" name="7">
-                    <div class="p-lf-10">
-                      <el-row :gutter="10" class="field-box">
-                        <el-col :span="12">
-                          <div class="field-label">
-                            <i class="el-icon-edit"></i>
-                            <span class="field-label-title">用户自定义1</span>
-                          </div>
-                        </el-col>
-                        <el-col :span="12">
-                          <div class="field-label">
-                            <i class="el-icon-edit"></i>
-                            <span class="field-label-title">用户自定义1</span>
-                          </div>
-                        </el-col>
-                      </el-row>
-                    </div>
-                  </el-collapse-item>
+                  </template>
                 </el-collapse>
               </el-scrollbar>
             </div>
@@ -282,7 +80,7 @@
         </el-header>
         <el-main class="form-box-body" :class="{'form-box-body30': codeViewKey,'form-box-body100': !codeViewKey }">
           <!-- 滚动条 -->
-          <div class="form-boxwrap" :class="{'form-bg-one':false}">
+          <div class="form-boxwrap" :class="{'form-bg-one':!myArray.length}">
             <el-scrollbar class="h100">
               <el-form :label-position="formAttribute.labelPosition" :label-width="formAttribute.labelWidth+'px'"
                 :model="formLabelAlign" :label-suffix="formAttribute.labelSuffix" :size="formAttribute.formSize"
@@ -292,15 +90,17 @@
                     ghost-class="ghost" :sort="false" :list="myArray" @change="change" @start="start" @end="end"
                     :move="move" class="widget-form-list" :component-data="getComponentData()">
                     <transition-group appear tag="div" class="clearfix">
-                      <el-col :span="12" v-for="(item,index) in myArray" :key="item.id" :data-id="item.id">
+                      <el-col :span="fieldAttribute.span" v-for="(item,index) in myArray" :key="item.id"
+                        :data-id="item.id">
                         <el-form-item class="widget-form-item" :class="{'active':item.active}" :label="'名称'+item.name"
-                          v-on:click.native="itemClick()">
+                          v-on:click.native="itemClick(index)">
                           <el-input v-model="formLabelAlign.name"></el-input>
-                          <div class="widget-view-drag drag-btn" v-if="item.active"><i class="el-icon-rank"
-                              title="拖拽"></i></div>
+                          <div class="widget-view-drag drag-btn" v-if="item.active">
+                            <i class="el-icon-rank" title="拖拽"></i>
+                          </div>
                           <div class="widget-view-action" v-if="item.active">
-                            <i class="el-icon-top" title="上移"></i>
-                            <i class="el-icon-bottom" title="下移"></i>
+                            <i class="el-icon-top" title="上移" @click="moveUp(index)"></i>
+                            <i class="el-icon-bottom" title="下移" @click="moveDown(index)"></i>
                             <i class="el-icon-document-copy" title="复制" @click="copy(index)"></i>
                             <i class="el-icon-delete" title="删除" @click="remove(index)"></i>
                           </div>
@@ -316,8 +116,9 @@
         </el-main>
         <el-footer class="form-box-footer" :height="codeViewHeight">
           <div class="form-box-footer-top">
-            <el-button size="mini" type="text" class="p0" @click="codeView"><i class="img-code"></i> <span
-                class="text-code">CodeView</span>
+            <el-button size="mini" type="text" class="p0" @click="codeView">
+              <i class="img-code"></i>
+              <span class="text-code">CodeView</span>
             </el-button>
           </div>
           <div class="form-box-footer-body" v-show="codeViewKey">
@@ -341,7 +142,7 @@
                     </el-select>
                   </el-form-item>
                   <el-form-item label="字段栅格">
-                    <el-input-number v-model="fieldAttribute.span" controls-position="right" :min="8" :step="1"
+                    <el-input-number v-model="fieldAttribute.span" controls-position="right" :min="8" :step="2"
                       :max="24" class="w100"></el-input-number>
                   </el-form-item>
                   <el-form-item label="字段名称">
@@ -363,28 +164,24 @@
                   <el-row>
                     <el-col :span="12">
                       <el-form-item label="是否可见">
-                        <el-switch v-model="fieldAttribute.display">
-                        </el-switch>
+                        <el-switch v-model="fieldAttribute.display"></el-switch>
                       </el-form-item>
                     </el-col>
                     <el-col :span="12">
                       <el-form-item label="是否只读">
-                        <el-switch v-model="fieldAttribute.readonly">
-                        </el-switch>
+                        <el-switch v-model="fieldAttribute.readonly"></el-switch>
                       </el-form-item>
                     </el-col>
                   </el-row>
                   <el-row>
                     <el-col :span="12">
                       <el-form-item label="显示计数">
-                        <el-switch v-model="fieldAttribute.showWordLimit">
-                        </el-switch>
+                        <el-switch v-model="fieldAttribute.showWordLimit"></el-switch>
                       </el-form-item>
                     </el-col>
                     <el-col :span="12">
                       <el-form-item label="字段校验">
-                        <el-switch v-model="fieldAttribute.required">
-                        </el-switch>
+                        <el-switch v-model="fieldAttribute.required"></el-switch>
                       </el-form-item>
                     </el-col>
                   </el-row>
@@ -414,14 +211,12 @@
                     </el-select>
                   </el-form-item>
                   <el-form-item label="表单校验">
-                    <el-switch v-model="formAttribute.formCheck">
-                    </el-switch>
+                    <el-switch v-model="formAttribute.formCheck"></el-switch>
                   </el-form-item>
                   <el-form-item label="标签位置">
                     <el-select v-model="formAttribute.labelPosition" placeholder="请选择">
                       <el-option v-for="item in alignmentOptions" :key="item.value" :label="item.label"
-                        :value="item.value">
-                      </el-option>
+                        :value="item.value"></el-option>
                     </el-select>
                   </el-form-item>
                   <el-form-item label="标签宽度">
@@ -446,8 +241,7 @@
                   <el-form-item label="按钮位置" v-if="formAttribute.submitShow || formAttribute.resetShow">
                     <el-select v-model="formAttribute.btnPosition" placeholder="请选择">
                       <el-option v-for="item in positionOptions" :key="item.value" :label="item.label"
-                        :value="item.value">
-                      </el-option>
+                        :value="item.value"></el-option>
                     </el-select>
                   </el-form-item>
                   <el-form-item label="提交文字" v-if="formAttribute.submitShow">
@@ -467,9 +261,12 @@
 </template>
 
 <script>
-  import screenfull from 'screenfull'
+  import screenfull from "screenfull";
   import MyEditor from "@/components/Monaco.vue";
-  import draggable from 'vuedraggable'
+  import draggable from "vuedraggable";
+  import {
+    components
+  } from "@/components/formComponents.js";
   export default {
     components: {
       draggable,
@@ -477,7 +274,8 @@
     },
     data() {
       return {
-        activeNames: "",
+        activeNames: 1,
+        components: components,
         myArray: [{
             id: 1,
             name: "1",
@@ -570,7 +368,7 @@
           pattern: "",
           display: false,
           readonly: false,
-          showWordLimit: false,
+          showWordLimit: false
         },
         tableData: [{
             createTime: "2016-05-02",
@@ -695,44 +493,55 @@
           }
         ],
         regexOptions: [{
-          value: "1",
-          label: "普通文本"
-        }, {
-          value: "2",
-          label: "中文字符串"
-        }, {
-          value: "3",
-          label: "英文字符串"
-        }, {
-          value: "4",
-          label: "数字或英文"
-        }, {
-          value: "5",
-          label: "整数"
-        }, {
-          value: "6",
-          label: "浮点数"
-        }, {
-          value: "7",
-          label: "邮箱"
-        }, {
-          value: "8",
-          label: "手机号码"
-        }, {
-          value: "9",
-          label: "url地址"
-        }, {
-          value: "10",
-          label: "8位英文数字密码"
-        }, {
-          value: "0",
-          label: "其他"
-        }]
+            value: "1",
+            label: "普通文本"
+          },
+          {
+            value: "2",
+            label: "中文字符串"
+          },
+          {
+            value: "3",
+            label: "英文字符串"
+          },
+          {
+            value: "4",
+            label: "数字或英文"
+          },
+          {
+            value: "5",
+            label: "整数"
+          },
+          {
+            value: "6",
+            label: "浮点数"
+          },
+          {
+            value: "7",
+            label: "邮箱"
+          },
+          {
+            value: "8",
+            label: "手机号码"
+          },
+          {
+            value: "9",
+            label: "url地址"
+          },
+          {
+            value: "10",
+            label: "8位英文数字密码"
+          },
+          {
+            value: "0",
+            label: "其他"
+          }
+        ]
       };
     },
     computed: {
       codeViewHeight() {
-        return this.codeViewKey ? '70%' : '32px'
+        return this.codeViewKey ? "70%" : "32px";
       }
     },
     mounted() {
@@ -742,15 +551,15 @@
           // 全屏下按键esc后要执行的动作
           this.isFullscreen = false;
         }
-      }
+      };
     },
     methods: {
       handleChange() {
-        console.log('changed');
+        console.log("changed");
       },
       inputChanged(value) {
         this.activeNames = value;
-        console.log(this.activeNames)
+        console.log(this.activeNames);
       },
       getComponentData() {
         return {
@@ -767,16 +576,16 @@
         };
       },
       change: function (evt) {
-        console.log(evt)
+        console.log(evt);
       },
       //start ,end ,add,update, sort, remove 得到的都差不多
       start: function (evt) {
-        console.log(this.myArray)
-        console.log(evt)
+        console.log(this.myArray);
+        console.log(evt);
       },
       end: function (evt) {
-        console.log(this.myArray)
-        console.log(evt)
+        console.log(this.myArray);
+        console.log(evt);
         // evt.item //可以知道拖动的本身
         // evt.to // 可以知道拖动的目标列表
         // evt.from // 可以知道之前的列表
@@ -784,11 +593,11 @@
         // evt.newIndex // 可以知道拖动后的位置
       },
       move: function (evt, originalEvent) {
-        console.log(evt)
-        console.log(originalEvent) //鼠标位置
+        console.log(evt);
+        console.log(originalEvent); //鼠标位置
       },
       cc() {
-        console.log("aaa")
+        console.log("aaa");
       },
       handleClick(tab, event) {
         console.log(tab, event);
@@ -809,10 +618,10 @@
       screenfull() {
         if (!screenfull.enabled) {
           this.$message({
-            message: 'Your browser does not support!',
-            type: 'warning'
-          })
-          return false
+            message: "Your browser does not support!",
+            type: "warning"
+          });
+          return false;
         }
         screenfull.toggle();
         this.isFullscreen = true;
@@ -821,31 +630,55 @@
        * 是否全屏并按键ESC键的方法
        */
       checkFull() {
-        var isFull = document.fullscreenEnabled || window.fullScreen || document.webkitIsFullScreen || document
-          .msFullscreenEnabled;
+        var isFull =
+          document.fullscreenEnabled ||
+          window.fullScreen ||
+          document.webkitIsFullScreen ||
+          document.msFullscreenEnabled;
         // to fix : false || undefined == undefined
         if (isFull === undefined) {
           isFull = false;
         }
         return isFull;
       },
-      itemClick() {
-        console.log("item")
+      itemClick(index) {
+        this.myArray.map(item => {
+          return (item.active = false);
+        });
+        this.myArray[index].active = true;
       },
       copy(index) {
         this.myArray.splice(index + 1, 0, {
           id: Math.random()
             .toString()
             .slice(-10),
-          name: "2" + index,
+          name: this.myArray[index].name,
           order: 3,
           fixed: false,
           active: false
-        })
+        });
       },
+      // 移除
       remove(index) {
+        this.myArray[index - 1].active = true;
         this.myArray.splice(index, 1);
       },
+      // 上移
+      moveUp(index) {
+        let arr = [this.myArray[index]];
+        this.myArray.splice(index, 1);
+        this.myArray.splice(index - 1, 0, arr[0]);
+      },
+      // 下移
+      moveDown(index) {
+        let arr = [this.myArray[index]];
+        this.myArray.splice(index, 1);
+        this.myArray.splice(
+          index == this.myArray.length - 1 ? 0 : index + 1,
+          0,
+          arr[0]
+        );
+      }
     }
   };
 </script>
@@ -858,7 +691,7 @@
     font-size: 0;
     content: " ";
     clear: both;
-    height: 0
+    height: 0;
   }
 
   .w100 {
@@ -992,8 +825,8 @@
     padding-bottom: 18px;
     padding-left: 40px;
     position: relative;
-    border: 1px dashed hsla(0, 0%, 66.7%, .7);
-    background-color: rgba(236, 245, 255, .3);
+    border: 1px dashed hsla(0, 0%, 66.7%, 0.7);
+    background-color: rgba(236, 245, 255, 0.3);
     margin: 2px;
   }
 
@@ -1066,14 +899,17 @@
     height: 38px;
     line-height: 36px;
     padding: 0 10px;
-    text-align: center;
+    text-align: left;
+    color: #666;
     background-color: #fafafa;
-    border: 1px dashed hsla(0, 0%, 66.7%, .7);
+    border: 1px dashed hsla(0, 0%, 66.7%, 0.7);
     cursor: move;
+    overflow: hidden;
   }
 
   .form .field-label .field-label-title {
-    margin-left: 15px;
+    font-size: 12px;
+    margin-left: 12px;
   }
 
   .form .field-label:hover {
@@ -1083,8 +919,8 @@
 </style>
 
 <style>
-  .v-enter,
-  .v-leave-to {
+  .form-box-body .v-enter,
+  .form-box-body .v-leave-to {
     opacity: 0;
     transform: translateY(80px);
   }
