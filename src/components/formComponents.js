@@ -12,7 +12,10 @@ let components = [{
     id: 1,
     name: "单行文本框",
     icon: "el-icon-edit",
-    component: "lz-input"
+    component: "lz-input",
+    value: "",
+    type: "input",
+    
   }, {
     id: 2,
     name: "多行文本框",

@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-10-29 17:59:02
  * @LastAuthor: lizlong
- * @lastTime: 2019-11-08 16:36:58
+ * @lastTime: 2019-11-10 22:28:44
  -->
 <template>
   <el-container class="form un-select" oncontextmenu="self.event.returnValue=false">
@@ -33,18 +33,23 @@
               <el-scrollbar class="h100">
                 <el-collapse v-model="activeNames" accordion>
                   <template v-for="item in components">
-                  <el-collapse-item :key="item.id" :title="item.name" :name="item.id" v-if="item.children">
-                    <div class="p-lf-10">
-                      <el-row :gutter="10" class="field-box">
-                        <el-col :span="12" v-for="component in item.children" :key="component.id">
-                          <div class="field-label">
-                            <i :class="component.icon"></i>
-                            <span class="field-label-title">{{component.name}}</span>
-                          </div>
-                        </el-col>
-                      </el-row>
-                    </div>
-                  </el-collapse-item>
+                    <el-collapse-item :key="item.id" :title="item.name" :name="item.id" v-if="item.children">
+                      <div class="p-lf-10">
+                        <el-row :gutter="10" class="field-box">
+                          <draggable handle=".field-label" element="div"
+                            :group="{ name: 'people', pull: 'clone', put: false }" ghost-class="ghost1" :sort="false"
+                            :list="myArray" @change="change" @start="start" @end="end" :move="move" :clone="cloneDog"
+                            class="widget-form-list" :component-data="getComponentData()">
+                            <el-col :span="12" v-for="component in item.children" :key="component.id">
+                              <div class="field-label">
+                                <i :class="component.icon"></i>
+                                <span class="field-label-title">{{component.name}}</span>
+                              </div>
+                            </el-col>
+                          </draggable>
+                        </el-row>
+                      </div>
+                    </el-collapse-item>
                   </template>
                 </el-collapse>
               </el-scrollbar>
@@ -86,19 +91,19 @@
                 :model="formLabelAlign" :label-suffix="formAttribute.labelSuffix" :size="formAttribute.formSize"
                 class="widget-form">
                 <el-row :gutter="0">
-                  <draggable handle=".drag-btn" :group="{ name: 'people', pull: 'clone', put: true }"
-                    ghost-class="ghost" :sort="false" :list="myArray" @change="change" @start="start" @end="end"
+                  <draggable element="div" handle=".drag-btn" :group="{ name: 'people', pull: 'clone'}"
+                    ghost-class="ghost" :sort="true" :list="myArray" @change="change" @start="start" @end="end"
                     :move="move" class="widget-form-list" :component-data="getComponentData()">
-                    <transition-group appear tag="div" class="clearfix">
+                    <transition-group appear tag="div" class="h100 mh1080 clearfix">
                       <el-col :span="fieldAttribute.span" v-for="(item,index) in myArray" :key="item.id"
                         :data-id="item.id">
-                        <el-form-item class="widget-form-item" :class="{'active':item.active}" :label="'名称'+item.name"
-                          v-on:click.native="itemClick(index)">
+                        <el-form-item class="widget-form-item" :class="{'active':item.id == activeId}"
+                          :label="'名称'+item.name" v-on:click.native="itemClick(index)">
                           <el-input v-model="formLabelAlign.name"></el-input>
-                          <div class="widget-view-drag drag-btn" v-if="item.active">
+                          <div class="widget-view-drag drag-btn" v-if="item.id == activeId">
                             <i class="el-icon-rank" title="拖拽"></i>
                           </div>
-                          <div class="widget-view-action" v-if="item.active">
+                          <div class="widget-view-action" v-if="item.id == activeId">
                             <i class="el-icon-top" title="上移" @click="moveUp(index)"></i>
                             <i class="el-icon-bottom" title="下移" @click="moveDown(index)"></i>
                             <i class="el-icon-document-copy" title="复制" @click="copy(index)"></i>
@@ -118,7 +123,7 @@
           <div class="form-box-footer-top">
             <el-button size="mini" type="text" class="p0" @click="codeView">
               <i class="img-code"></i>
-              <span class="text-code">CodeView</span>
+              <span class="text-code">Code</span>
             </el-button>
           </div>
           <div class="form-box-footer-body" v-show="codeViewKey">
@@ -267,6 +272,7 @@
   import {
     components
   } from "@/components/formComponents.js";
+  let idGlobal = 81;
   export default {
     components: {
       draggable,
@@ -274,65 +280,24 @@
     },
     data() {
       return {
+        isDragging: false,
         activeNames: 1,
+        activeId: null,
         components: components,
-        myArray: [{
-            id: 1,
-            name: "1",
-            order: 2,
-            fixed: false,
-            active: true
+        myArray: [],
+        dragOptions1: {
+          animation: 0,
+          group: {
+            name: "description",
+            pull: 'clone',
+            put: false
           },
-          {
-            id: 2,
-            name: "2",
-            order: 3,
-            fixed: false,
-            active: false
-          },
-          {
-            id: 3,
-            name: "3",
-            order: 4,
-            fixed: false,
-            active: false
-          },
-          {
-            id: 4,
-            name: "4",
-            order: 5,
-            fixed: false,
-            active: false
-          },
-          {
-            id: 5,
-            name: "5",
-            order: 1,
-            fixed: false,
-            active: false
-          },
-          {
-            id: 6,
-            name: "6",
-            order: 6,
-            fixed: false,
-            active: false
-          },
-          {
-            id: 7,
-            name: "7",
-            order: 7,
-            fixed: false,
-            active: false
-          },
-          {
-            id: 8,
-            name: "8",
-            order: 8,
-            fixed: false,
-            active: false
-          }
-        ],
+          ghostClass: "ghost",
+        },
+        dragOptions2: {
+          animation: 0,
+          group: "description",
+        },
         isFullscreen: false,
         activeName: "first",
         activeName1: "first",
@@ -370,32 +335,6 @@
           readonly: false,
           showWordLimit: false
         },
-        tableData: [{
-            createTime: "2016-05-02",
-            title: "领导信息",
-            uptateTime: "2016-05-03"
-          },
-          {
-            createTime: "2016-05-04",
-            title: "动态信息",
-            uptateTime: "2016-05-03"
-          },
-          {
-            createTime: "2016-05-01",
-            title: "机构概况",
-            uptateTime: "2016-05-03"
-          },
-          {
-            createTime: "2016-05-03",
-            title: "图片新闻",
-            uptateTime: "2016-05-03"
-          },
-          {
-            createTime: "2016-05-03",
-            title: "视频新闻",
-            uptateTime: "2016-05-03"
-          }
-        ],
         formLabelAlign: {
           name: "",
           region: "",
@@ -580,10 +519,12 @@
       },
       //start ,end ,add,update, sort, remove 得到的都差不多
       start: function (evt) {
+        this.isDragging = true;
         console.log(this.myArray);
         console.log(evt);
       },
       end: function (evt) {
+        this.isDragging = false;
         console.log(this.myArray);
         console.log(evt);
         // evt.item //可以知道拖动的本身
@@ -642,10 +583,7 @@
         return isFull;
       },
       itemClick(index) {
-        this.myArray.map(item => {
-          return (item.active = false);
-        });
-        this.myArray[index].active = true;
+        this.activeId = this.myArray[index].id;
       },
       copy(index) {
         this.myArray.splice(index + 1, 0, {
@@ -678,6 +616,15 @@
           0,
           arr[0]
         );
+      },
+      cloneDog() {
+        this.activeId = idGlobal;
+        return {
+          id: idGlobal++,
+          name: "标签" + idGlobal,
+          icon: "el-icon-edit",
+          component: "lz-input"
+        }
       }
     }
   };
@@ -701,6 +648,10 @@
   .h100 {
     box-sizing: border-box;
     height: 100%;
+  }
+
+  .mh1080 {
+    min-height: 1080px;
   }
 
   .p0 {
@@ -814,10 +765,17 @@
     padding: 20px 10px;
   }
 
-  .widget-form,
+  .widget-form {
+    position: absolute;
+    width: 100%;
+    min-height: 100%;
+  }
+
+  .widget-form .el-row,
   .widget-form .widget-form-list {
     width: 100%;
     height: 100%;
+    min-height: 100%;
     overflow: hidden;
   }
 
@@ -930,6 +888,15 @@
     transition: all 0.6s ease;
   }
 
+  .form .ghost {
+    width: 100% !important;
+    padding: 0 !important;
+    height: 0 !important;
+    border: 2px solid #409eff;
+    background-color: #409eff;
+    overflow: hidden;
+  }
+
   .form .form-card {
     height: 100%;
     border-radius: 0;
@@ -953,6 +920,7 @@
   }
 
   .form .el-scrollbar__view {
+    position: relative;
     min-height: 100%;
   }
 
