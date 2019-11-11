@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-10-29 17:59:02
  * @LastAuthor: lizlong
- * @lastTime: 2019-11-10 22:28:44
+ * @lastTime: 2019-11-11 20:16:20
  -->
 <template>
   <el-container class="form un-select" oncontextmenu="self.event.returnValue=false">
@@ -207,59 +207,10 @@
         <el-tab-pane label="表单属性" name="second" class="h100">
           <div class="h100">
             <el-scrollbar class="h100">
-              <div class="form-attribute">
-                <el-form label-position="left" label-width="84px" :model="formAttribute" size="small" label-suffix="：">
-                  <el-form-item label="表单尺寸">
-                    <el-select v-model="formAttribute.formSize" placeholder="请选择">
-                      <el-option v-for="item in sizeOptions" :key="item.value" :label="item.label" :value="item.value">
-                      </el-option>
-                    </el-select>
-                  </el-form-item>
-                  <el-form-item label="表单校验">
-                    <el-switch v-model="formAttribute.formCheck"></el-switch>
-                  </el-form-item>
-                  <el-form-item label="标签位置">
-                    <el-select v-model="formAttribute.labelPosition" placeholder="请选择">
-                      <el-option v-for="item in alignmentOptions" :key="item.value" :label="item.label"
-                        :value="item.value"></el-option>
-                    </el-select>
-                  </el-form-item>
-                  <el-form-item label="标签宽度">
-                    <el-input-number v-model="formAttribute.labelWidth" controls-position="right" :min="60" :max="400"
-                      :step="20" class="w100"></el-input-number>
-                  </el-form-item>
-                  <el-form-item label="标签后缀">
-                    <el-input v-model="formAttribute.labelSuffix" placeholder="请输入后缀"></el-input>
-                  </el-form-item>
-                  <el-form-item label="行行间隔">
-                    <el-input-number v-model="formAttribute.rowSpacing" controls-position="right" :min="0" :max="40"
-                      :step="2" class="w100"></el-input-number>
-                  </el-form-item>
-                  <el-form-item label="列列间隔">
-                    <el-input-number v-model="formAttribute.colSpacing" controls-position="right" :min="0" :max="40"
-                      :step="2" class="w100"></el-input-number>
-                  </el-form-item>
-                  <el-form-item label="按钮显示">
-                    <el-checkbox v-model="formAttribute.submitShow">提交按钮</el-checkbox>
-                    <el-checkbox v-model="formAttribute.resetShow">重置按钮</el-checkbox>
-                  </el-form-item>
-                  <el-form-item label="按钮位置" v-if="formAttribute.submitShow || formAttribute.resetShow">
-                    <el-select v-model="formAttribute.btnPosition" placeholder="请选择">
-                      <el-option v-for="item in positionOptions" :key="item.value" :label="item.label"
-                        :value="item.value"></el-option>
-                    </el-select>
-                  </el-form-item>
-                  <el-form-item label="提交文字" v-if="formAttribute.submitShow">
-                    <el-input v-model="formAttribute.submitText" placeholder="请输入文字"></el-input>
-                  </el-form-item>
-                  <el-form-item label="重置文字" v-if="formAttribute.resetShow">
-                    <el-input v-model="formAttribute.resetText" placeholder="请输入文字"></el-input>
-                  </el-form-item>
-                </el-form>
-              </div>
+              <formAttribute value=""></formAttribute>
             </el-scrollbar>
           </div>
-        </el-tab-pane>
+        </el-tab-pane>  
       </el-tabs>
     </el-aside>
   </el-container>
@@ -272,10 +223,13 @@
   import {
     components
   } from "@/components/formComponents.js";
+  import
+  formAttribute from "@/components/form/formAttribute.vue";
   let idGlobal = 81;
   export default {
     components: {
       draggable,
+      formAttribute,
       MyEditor
     },
     data() {
@@ -306,10 +260,14 @@
         language: "html",
         htmlCodes: "<div>This is html</div>",
         htmlEditor: null,
+        obj:{
+
+        },
+        column:[],
         formAttribute: {
           formSize: "medium", //表单尺寸
           formCheck: true, //表单校验
-          labelPosition: "left", //标签位置
+          labelPosition: "right", //标签位置
           labelWidth: "120", //标签宽度
           labelSuffix: "", //标签后缀
           rowSpacing: "", //行行间隔
@@ -388,32 +346,7 @@
           children: "children",
           label: "label"
         },
-        alignmentOptions: [{
-            value: "left",
-            label: "左对齐"
-          },
-          {
-            value: "right",
-            label: "右对齐"
-          },
-          {
-            value: "top",
-            label: "顶部对齐"
-          }
-        ],
-        positionOptions: [{
-            value: "left",
-            label: "居左"
-          },
-          {
-            value: "center",
-            label: "居中"
-          },
-          {
-            value: "right",
-            label: "居右"
-          }
-        ],
+
         sizeOptions: [{
             value: "large",
             label: "大"
@@ -630,7 +563,7 @@
   };
 </script>
 
-<style scoped>
+<style>
   /* 工具样式 */
   .clearfix:after {
     visibility: hidden;
@@ -781,7 +714,6 @@
 
   .widget-form .widget-form-list .widget-form-item {
     padding-bottom: 18px;
-    padding-left: 40px;
     position: relative;
     border: 1px dashed hsla(0, 0%, 66.7%, 0.7);
     background-color: rgba(236, 245, 255, 0.3);
@@ -814,6 +746,7 @@
     bottom: 0;
     height: 22px;
     line-height: 24px;
+    padding: 0 3px;
     background: #409eff;
     z-index: 9;
   }
@@ -874,9 +807,7 @@
     color: #409eff;
     border: 1px dashed #409eff;
   }
-</style>
 
-<style>
   .form-box-body .v-enter,
   .form-box-body .v-leave-to {
     opacity: 0;
@@ -917,6 +848,10 @@
     padding: 0;
     line-height: 40px;
     border-bottom: 1px solid #dcdfe6;
+  }
+
+  .form .el-scrollbar__bar {
+    z-index: 100;
   }
 
   .form .el-scrollbar__view {

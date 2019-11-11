@@ -15,7 +15,11 @@ let components = [{
     component: "lz-input",
     value: "",
     type: "input",
-    
+    display: true,
+    span: 24,
+    maxlength: null,
+    readonly: false,
+    required: false
   }, {
     id: 2,
     name: "多行文本框",
@@ -116,7 +120,7 @@ let components = [{
   }]
 }, {
   id: 5,
-  name: "插入字段",
+  name: "扩展字段",
   children: [{
     id: 1,
     name: "坐标选择器",
