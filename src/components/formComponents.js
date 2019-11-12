@@ -14,10 +14,12 @@ let components = [{
     icon: "el-icon-edit",
     component: "lz-input",
     value: "",
-    type: "input",
+    fieldType: "input",
+    type: "input", // input,password,email
     display: true,
     span: 24,
-    maxlength: null,
+    maxlength: 128,
+    minlength: 0,
     readonly: false,
     required: false
   }, {
