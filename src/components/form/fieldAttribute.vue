@@ -3,15 +3,14 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-11-12 22:47:54
  * @LastAuthor: lizlong
- * @lastTime: 2019-11-12 22:55:40
+ * @lastTime: 2019-11-13 14:09:33
  -->
 <template>
 	<div class="field-attribute">
 		<el-form label-position="left" label-width="84px" :model="fieldAttribute" size="small" label-suffix="：">
 			<el-form-item label="字段类型">
 				<el-select v-model="fieldAttribute.fieldType" placeholder="请选择字段类型">
-					<el-option v-for="item in sizeOptions" :key="item.value" :label="item.label" :value="item.value">
-					</el-option>
+					<el-option v-for="item in sizeOptions" :key="item.value" :label="item.label" :value="item.value"></el-option>
 				</el-select>
 			</el-form-item>
 			<el-form-item label="字段栅格">
@@ -25,51 +24,43 @@
 				<el-input v-model="fieldAttribute.label" placeholder="请输入字段标题" maxlength="100" clearable></el-input>
 			</el-form-item>
 			<el-form-item label="占位内容">
-				<el-input v-model="fieldAttribute.placeholder" placeholder="请输入占位内容" maxlength="100" clearable>
-				</el-input>
+				<el-input v-model="fieldAttribute.placeholder" placeholder="请输入占位内容" maxlength="100" clearable></el-input>
 			</el-form-item>
 			<el-form-item label="默认内容">
-				<el-input v-model="fieldAttribute.valueDefault" placeholder="请输入默认内容" maxlength="100" clearable>
-				</el-input>
+				<el-input v-model="fieldAttribute.valueDefault" placeholder="请输入默认内容" maxlength="100" clearable></el-input>
 			</el-form-item>
 			<el-form-item label="最大长度">
-				<el-input-number v-model="fieldAttribute.maxlength" controls-position="right" :min="0" :step="10"
-					:max="3000" class="w100"></el-input-number>
+				<el-input-number v-model="fieldAttribute.maxlength" controls-position="right" :min="0" :step="10" :max="3000"
+					class="w100"></el-input-number>
 			</el-form-item>
 			<el-form-item label="最小长度">
-				<el-input-number v-model="fieldAttribute.minlength" controls-position="right" :min="0" :step="10"
-					:max="3000" class="w100"></el-input-number>
+				<el-input-number v-model="fieldAttribute.minlength" controls-position="right" :min="0" :step="10" :max="3000"
+					class="w100"></el-input-number>
 			</el-form-item>
 			<el-form-item label="数据来源">
-				<el-select v-model="fieldAttribute.fieldType" placeholder="请选择数据来源">
-					<el-option :label="'静态数据'" :value="0">
-					</el-option>
-					<el-option :label="'远端数据'" :value="1">
-					</el-option>
+				<el-select v-model="fieldAttribute.dataSources" placeholder="请选择数据来源">
+					<el-option label="静态数据" value="local"></el-option>
+					<el-option label="远端数据" value="online"></el-option>
 				</el-select>
 			</el-form-item>
 			<el-form-item label="数据类型">
-				<el-select v-model="fieldAttribute.fieldType" placeholder="请选择数据来源">
-					<el-option :label="'String'" :value="0">
-					</el-option>
-					<el-option :label="'Number'" :value="1">
-					</el-option>
+				<el-select v-model="fieldAttribute.dataType" placeholder="请选择数据类型">
+					<el-option label="String" value="string"></el-option>
+					<el-option label="Number" value="bumber"></el-option>
 				</el-select>
 			</el-form-item>
-			<el-form-item label="请求方式">
-				<el-select v-model="fieldAttribute.fieldType" placeholder="请选择数据来源">
-					<el-option :label="'Post'" :value="0">
-					</el-option>
-					<el-option :label="'Get'" :value="1">
-					</el-option>
+			<el-form-item label="请求方式" v-if="fieldAttribute.dataSources == 'online'">
+				<el-select v-model="fieldAttribute.requestType" placeholder="请选择请求方式">
+					<el-option label="Post" value="post"></el-option>
+					<el-option label="Get" value="get"></el-option>
 				</el-select>
 			</el-form-item>
-			<el-form-item label="请求地址">
-				<el-input v-model="fieldAttribute.valueDefault" placeholder="请输入请求地址" maxlength="100" clearable>
+			<el-form-item label="请求地址" v-if="fieldAttribute.dataSources == 'online'">
+				<el-input v-model="fieldAttribute.requiredUrl" placeholder="请输入请求地址" maxlength="100" clearable>
 				</el-input>
 			</el-form-item>
-			<el-form-item label="静态数据">
-				<el-input v-model="fieldAttribute.valueDefault" placeholder="请配置静态数据" maxlength="100" clearable>
+			<el-form-item label="静态数据" v-if="fieldAttribute.dataSources == 'local'">
+				<el-input v-model="fieldAttribute.localData" placeholder="请配置静态数据" maxlength="100" clearable>
 					<el-button slot="append" icon="el-icon-edit"></el-button>
 				</el-input>
 			</el-form-item>
@@ -121,7 +112,7 @@
 						</el-form-item>
 					</el-tab-pane>
 				</el-tabs>
-			</el-form-item> -->
+			</el-form-item>-->
 			<el-row>
 				<el-col :span="12">
 					<el-form-item label="是否可见">
@@ -142,110 +133,115 @@
 				</el-col>
 				<el-col :span="12">
 					<el-form-item label="字段校验">
-						<el-switch v-model="fieldAttribute.required"></el-switch>
+						<el-switch v-model="fieldAttribute.check"></el-switch>
 					</el-form-item>
 				</el-col>
 			</el-row>
-			<el-form-item label="校验类型" v-if="fieldAttribute.required">
-				<el-select v-model="fieldAttribute.requiredType" placeholder="请选择校验类型">
-					<el-option v-for="item in regexOptions" :key="item.value" :label="item.label" :value="item.value">
-					</el-option>
+			<el-form-item label="校验类型" v-if="fieldAttribute.check">
+				<el-select v-model="fieldAttribute.checkType" placeholder="请选择校验类型">
+					<el-option v-for="item in regexOptions" :key="item.value" :label="item.label" :value="item.value"></el-option>
 				</el-select>
 			</el-form-item>
-			<el-form-item label="校验正则" v-if="fieldAttribute.required && fieldAttribute.requiredType == '0'">
-				<el-input v-model="fieldAttribute.pattern" placeholder="请输入校验正则表达式" maxlength="100" clearable>
-				</el-input>
+			<el-form-item label="校验正则" v-if="fieldAttribute.check && fieldAttribute.checkType == '0'">
+				<el-input v-model="fieldAttribute.regex" placeholder="请输入校验正则表达式" maxlength="100" clearable></el-input>
 			</el-form-item>
 		</el-form>
 	</div>
 </template>
 
 <script>
-export default {
-	data() {
-		return {
-			activeName: "first",
-			fieldAttribute: {
-				span: 24,
-				fieldType: "",
-				prop: "",
-				label: "",
-				placeholder: "",
-				valueDefault: "",
-				maxlength: 128,
-				minlength: 0,
-				required: false,
-				requiredType: "",
-				pattern: "",
-				display: false,
-				readonly: false,
-				showWordLimit: false
-			},
-			sizeOptions: [
-				{
-					value: "large",
-					label: "大"
+	export default {
+		data() {
+			return {
+				activeName: "first",
+				fieldAttribute: {
+					span: 24,
+					fieldType: "",
+					prop: "attr_" +
+						Math.random()
+						.toString()
+						.slice(-10),
+					label: "",
+					placeholder: "",
+					valueDefault: "",
+					maxlength: 128,
+					minlength: 0,
+					dataSources: "local",
+					dataType: "string",
+					required: false,
+					requiredType: "get",
+					requiredUrl: "",
+					localData:"",
+					check: false,
+					checkType: "",
+					regex: "",
+					display: false,
+					readonly: false,
+					showWordLimit: false
 				},
-				{
-					value: "medium",
-					label: "中"
-				},
-				{
-					value: "small",
-					label: "小"
-				},
-				{
-					value: "mini",
-					label: "超小"
-				}
-			],
-			regexOptions: [
-				{
-					value: "1",
-					label: "普通文本"
-				},
-				{
-					value: "2",
-					label: "中文字符串"
-				},
-				{
-					value: "3",
-					label: "英文字符串"
-				},
-				{
-					value: "4",
-					label: "数字或英文"
-				},
-				{
-					value: "5",
-					label: "整数"
-				},
-				{
-					value: "6",
-					label: "浮点数"
-				},
-				{
-					value: "7",
-					label: "邮箱"
-				},
-				{
-					value: "8",
-					label: "手机号码"
-				},
-				{
-					value: "9",
-					label: "url地址"
-				},
-				{
-					value: "10",
-					label: "8位英文数字密码"
-				},
-				{
-					value: "0",
-					label: "其他"
-				}
-			]
-		};
-	}
-};
+				sizeOptions: [{
+						value: "large",
+						label: "大"
+					},
+					{
+						value: "medium",
+						label: "中"
+					},
+					{
+						value: "small",
+						label: "小"
+					},
+					{
+						value: "mini",
+						label: "超小"
+					}
+				],
+				regexOptions: [{
+						value: "1",
+						label: "普通文本"
+					},
+					{
+						value: "2",
+						label: "中文字符串"
+					},
+					{
+						value: "3",
+						label: "英文字符串"
+					},
+					{
+						value: "4",
+						label: "数字或英文"
+					},
+					{
+						value: "5",
+						label: "整数"
+					},
+					{
+						value: "6",
+						label: "浮点数"
+					},
+					{
+						value: "7",
+						label: "邮箱"
+					},
+					{
+						value: "8",
+						label: "手机号码"
+					},
+					{
+						value: "9",
+						label: "url地址"
+					},
+					{
+						value: "10",
+						label: "8位英文数字密码"
+					},
+					{
+						value: "0",
+						label: "其他"
+					}
+				]
+			};
+		}
+	};
 </script>

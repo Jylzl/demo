@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-10-29 17:59:02
  * @LastAuthor: lizlong
- * @lastTime: 2019-11-12 22:57:45
+ * @lastTime: 2019-11-13 18:55:25
  -->
 <template>
 	<el-container class="form un-select" oncontextmenu="self.event.returnValue=false">
@@ -12,8 +12,7 @@
 				<el-card class="form-card" shadow="never" :body-style="{ padding: '0px' }">
 					<div slot="header" class="form-card-header">
 						<span>表单</span>
-						<el-button style="float: right; padding: 3px 0" type="text" icon="el-icon-edit-outline">
-						</el-button>
+						<el-button style="float: right; padding: 3px 0" type="text" icon="el-icon-edit-outline"></el-button>
 					</div>
 					<div class="h100">
 						<!-- 滚动条 -->
@@ -25,7 +24,12 @@
 				</el-card>
 			</div>
 			<div class="form-left-tabs">
-				<el-tabs type="border-card" v-model="activeName" @tab-click="handleClick" class="h100 form-tabs">
+				<el-tabs
+					type="border-card"
+					v-model="activeName"
+					@tab-click="handleClick"
+					class="h100 form-tabs"
+				>
 					<el-tab-pane name="first" class="h100">
 						<span slot="label">
 							<i class="el-icon-receiving"></i> 增量字段
@@ -34,22 +38,28 @@
 							<el-scrollbar class="h100">
 								<el-collapse v-model="activeNames" accordion>
 									<template v-for="item in components">
-										<el-collapse-item :key="item.id" :title="item.name" :name="item.id"
-											v-if="item.children">
+										<el-collapse-item :key="item.id" :title="item.name" :name="item.id" v-if="item.children">
 											<div class="p-lf-10">
 												<el-row :gutter="10" class="field-box">
-													<draggable handle=".field-label" element="div"
+													<draggable
+														handle=".field-label"
+														element="div"
 														:group="{ name: 'people', pull: 'clone', put: false }"
-														ghost-class="ghost1" :sort="false" :list="myArray"
-														@change="change" @start="start" @end="end" :move="move"
-														:clone="cloneDog" class="widget-form-list"
-														:component-data="getComponentData()">
-														<el-col :span="12" v-for="component in item.children"
-															:key="component.id">
+														ghost-class="ghost1"
+														:sort="false"
+														:list="myArray"
+														@change="change"
+														@start="start"
+														@end="end"
+														:move="move"
+														:clone="cloneDog"
+														class="widget-form-list"
+														:component-data="getComponentData()"
+													>
+														<el-col :span="12" v-for="(component,index) in item.children" :key="component.id+index">
 															<div class="field-label">
 																<i :class="component.icon"></i>
-																<span
-																	class="field-label-title">{{component.name}}</span>
+																<span class="field-label-title">{{component.name}}</span>
 															</div>
 														</el-col>
 													</draggable>
@@ -86,40 +96,60 @@
 						<el-button type="text" icon="el-icon-upload" size="mini" circle></el-button>
 						<el-button type="text" icon="el-icon-coin" size="mini" circle></el-button>
 						<el-button type="text" icon="el-icon-view" size="mini" circle></el-button>
-						<el-button type="text" icon="el-icon-full-screen" size="mini" @click="screenfull" circle>
-						</el-button>
+						<el-button type="text" icon="el-icon-full-screen" size="mini" @click="screenfull" circle></el-button>
 					</div>
 				</el-header>
-				<el-main class="form-box-body"
-					:class="{'form-box-body30': codeViewKey,'form-box-body100': !codeViewKey }">
+				<el-main
+					class="form-box-body"
+					:class="{'form-box-body30': codeViewKey,'form-box-body100': !codeViewKey }"
+				>
 					<!-- 滚动条 -->
 					<div class="form-boxwrap" :class="{'form-bg-one':!myArray.length}">
 						<el-scrollbar class="h100">
-							<el-form :label-position="formAttribute.labelPosition"
-								:label-width="formAttribute.labelWidth+'px'" :model="formLabelAlign"
-								:label-suffix="formAttribute.labelSuffix" :size="formAttribute.formSize"
-								class="widget-form">
+							<el-form
+								:label-position="formAttribute.labelPosition"
+								:label-width="formAttribute.labelWidth+'px'"
+								:model="formLabelAlign"
+								:label-suffix="formAttribute.labelSuffix"
+								:size="formAttribute.formSize"
+								class="widget-form"
+							>
 								<el-row :gutter="0">
-									<draggable element="div" handle=".drag-btn"
-										:group="{ name: 'people', pull: 'clone'}" ghost-class="ghost" :sort="true"
-										:list="myArray" @change="change" @start="start" @end="end" :move="move"
-										class="widget-form-list" :component-data="getComponentData()">
+									<draggable
+										element="div"
+										handle=".drag-btn"
+										:group="{ name: 'people', pull: 'clone'}"
+										ghost-class="ghost"
+										:sort="true"
+										:list="myArray"
+										@change="change"
+										@start="start"
+										@end="end"
+										:move="move"
+										class="widget-form-list"
+										:component-data="getComponentData()"
+									>
 										<transition-group appear tag="div" class="h100 mh1080 clearfix">
-											<el-col :span="fieldAttribute.span" v-for="(item,index) in myArray"
-												:key="item.id" :data-id="item.id">
-												<el-form-item class="widget-form-item"
-													:class="{'active':item.id == activeId}" :label="'名称'+item.name"
-													v-on:click.native="itemClick(index)">
+											<el-col
+												:span="fieldAttribute.span"
+												v-for="(item,index) in myArray"
+												:key="item.id"
+												:data-id="item.id"
+											>
+												<el-form-item
+													class="widget-form-item"
+													:class="{'active':item.id == activeId}"
+													:label="'名称'+item.name"
+													v-on:click.native="itemClick(index)"
+												>
 													<el-input v-model="formLabelAlign.name"></el-input>
 													<div class="widget-view-drag drag-btn" v-if="item.id == activeId">
 														<i class="el-icon-rank" title="拖拽"></i>
 													</div>
 													<div class="widget-view-action" v-if="item.id == activeId">
 														<i class="el-icon-top" title="上移" @click="moveUp(index)"></i>
-														<i class="el-icon-bottom" title="下移"
-															@click="moveDown(index)"></i>
-														<i class="el-icon-document-copy" title="复制"
-															@click="copy(index)"></i>
+														<i class="el-icon-bottom" title="下移" @click="moveDown(index)"></i>
+														<i class="el-icon-document-copy" title="复制" @click="copy(index)"></i>
 														<i class="el-icon-delete" title="删除" @click="remove(index)"></i>
 													</div>
 												</el-form-item>
@@ -140,26 +170,34 @@
 						</el-button>
 					</div>
 					<div class="form-box-footer-body" v-show="codeViewKey">
-						<MyEditor :language="language" :codes="htmlCodes" @onMounted="htmlOnMounted"
-							@onCodeChange="htmlOnCodeChange" />
+						<MyEditor
+							:language="language"
+							:codes="htmlCodes"
+							@onMounted="htmlOnMounted"
+							@onCodeChange="htmlOnCodeChange"
+						/>
 					</div>
 				</el-footer>
 			</el-container>
 		</el-main>
 		<el-aside width="300px">
-			<el-tabs type="border-card" v-model="activeName1" @tab-click="handleClick"
-				class="h100 form-tabs form-right-tabs">
+			<el-tabs
+				type="border-card"
+				v-model="activeName1"
+				@tab-click="handleClick"
+				class="h100 form-tabs form-right-tabs"
+			>
 				<el-tab-pane label="字段属性" name="first" class="h100">
 					<div :class="{'form-bg-two':false}" class="h100">
 						<el-scrollbar class="h100">
-							<fieldAttribute value=""></fieldAttribute>
+							<fieldAttribute value></fieldAttribute>
 						</el-scrollbar>
 					</div>
 				</el-tab-pane>
 				<el-tab-pane label="表单属性" name="second" class="h100">
 					<div class="h100">
 						<el-scrollbar class="h100">
-							<formAttribute value=""></formAttribute>
+							<formAttribute value></formAttribute>
 						</el-scrollbar>
 					</div>
 				</el-tab-pane>
@@ -437,19 +475,22 @@ export default {
 		},
 		// 上移
 		moveUp(index) {
-			let arr = [this.myArray[index]];
-			this.myArray.splice(index, 1);
-			this.myArray.splice(index - 1, 0, arr[0]);
+			this.myArray = this.arrMove(this.myArray, index, index - 1);
+
+			// let arr = [this.myArray[index]];
+			// this.myArray.splice(index, 1);
+			// this.myArray.splice(index - 1, 0, arr[0]);
 		},
 		// 下移
 		moveDown(index) {
-			let arr = [this.myArray[index]];
-			this.myArray.splice(index, 1);
-			this.myArray.splice(
-				index == this.myArray.length - 1 ? 0 : index + 1,
-				0,
-				arr[0]
-			);
+			this.myArray = this.arrMove(this.myArray, index, index + 1);
+			// let arr = [this.myArray[index]];
+			// this.myArray.splice(index, 1);
+			// this.myArray.splice(
+			// 	index == this.myArray.length - 1 ? 0 : index + 1,
+			// 	0,
+			// 	arr[0]
+			// );
 		},
 		cloneDog() {
 			this.activeId = idGlobal;
@@ -459,6 +500,22 @@ export default {
 				icon: "el-icon-edit",
 				component: "lz-input"
 			};
+		},
+		arrMove(arr, index, tindex) {
+			if (index > tindex) {
+				console.log("下移")
+				// 下移
+				// let tindex = index == 0 ? arr.length : tindex;
+				arr.splice(tindex, 0, arr[index]);
+				arr.splice(index + 1, 1);
+			} else {
+				console.log("上移")
+				// 上移
+				// let tindex = index == arr.length ? 0 : tindex;
+				arr.splice(tindex + 1, 0, arr[index]);
+				arr.splice(index, 1);
+			}
+			return arr;
 		}
 	}
 };
