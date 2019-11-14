@@ -317,7 +317,7 @@
 			},
 			start(evt) {},
 			end(evt) {},
-			move: function (evt, originalEvent) {},
+			move(evt, originalEvent) {},
 			// 左侧复制到右侧
 			cloneDog() {
 				return {
