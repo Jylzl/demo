@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-10-29 17:59:02
  * @LastAuthor: lizlong
- * @lastTime: 2019-11-14 19:02:15
+ * @lastTime: 2019-11-15 00:46:14
  -->
 <template>
 	<el-container class="form un-select" oncontextmenu="self.event.returnValue=false">
@@ -12,7 +12,7 @@
 				<el-card class="form-card" shadow="never" :body-style="{ padding: '0px' }">
 					<div slot="header" class="form-card-header">
 						<span>表单</span>
-						<el-button style="float: right; padding: 3px 0" type="text" icon="el-icon-edit-outline"></el-button>
+						<el-button style="float: right; padding: 3px 0" type="text" icon="el-icon-refresh"></el-button>
 					</div>
 					<div class="h100">
 						<!-- 滚动条 -->
@@ -24,26 +24,30 @@
 				</el-card>
 			</div>
 			<div class="form-left-tabs">
-				<el-tabs type="border-card" v-model="activeName" @tab-click="handleClick" class="h100 form-tabs">
+				<el-tabs type="border-card" v-model="tabsOneActiveName" class="h100 form-tabs">
 					<el-tab-pane name="first" class="h100">
 						<span slot="label">
 							<i class="el-icon-receiving"></i> 增量字段
 						</span>
 						<div class="h100">
 							<el-scrollbar class="h100">
-								<el-collapse v-model="activeNames" accordion>
+								<el-collapse accordion>
 									<template v-for="item in components">
-										<el-collapse-item :key="item.id" :title="item.name" :name="item.id" v-if="item.children">
+										<el-collapse-item :key="item.id" :title="item.name" :name="item.id"
+											v-if="item.children">
 											<div class="p-lf-10">
 												<el-row :gutter="10" class="field-box">
 													<draggable handle=".field-label" element="div"
-														:group="{ name: 'people', pull: 'clone', put: false }" ghost-class="ghost1" :sort="false"
-														:list="myArray" @change="change" @start="start" @end="end" :move="move" :clone="cloneDog"
-														class="widget-form-list" :component-data="getComponentData()">
-														<el-col :span="12" v-for="(component,index) in item.children" :key="component.id+index">
+														:group="{ name: 'people', pull: 'clone', put: false }"
+														ghost-class="ghost1" :sort="false" :list="myArray"
+														@change="change" @start="start" @end="end" :move="move"
+														:clone="cloneDog" class="widget-form-list">
+														<el-col :span="12" v-for="(component,index) in item.children"
+															:key="component.id+index">
 															<div class="field-label">
 																<i :class="component.icon"></i>
-																<span class="field-label-title">{{component.name}}</span>
+																<span
+																	class="field-label-title">{{component.name}}</span>
 															</div>
 														</el-col>
 													</draggable>
@@ -74,40 +78,48 @@
 					<div>
 						<el-button type="text" icon="el-icon-refresh-left" size="mini" circle></el-button>
 						<el-button type="text" icon="el-icon-refresh-right" size="mini" circle></el-button>
-						<el-button type="text" icon="el-icon-refresh" size="mini" circle></el-button>
 					</div>
 					<div>
 						<el-button type="text" icon="el-icon-upload" size="mini" circle></el-button>
 						<el-button type="text" icon="el-icon-coin" size="mini" circle></el-button>
 						<el-button type="text" icon="el-icon-view" size="mini" circle></el-button>
-						<el-button type="text" icon="el-icon-full-screen" size="mini" @click="screenfull" circle></el-button>
+						<el-button type="text" icon="el-icon-full-screen" size="mini" circle>
+						</el-button>
 					</div>
 				</el-header>
-				<el-main class="form-box-body" :class="{'form-box-body30': codeViewKey,'form-box-body100': !codeViewKey }">
+				<el-main class="form-box-body"
+					:class="{'form-box-body30': codeViewKey,'form-box-body100': !codeViewKey }">
 					<!-- 滚动条 -->
 					<div class="form-boxwrap" :class="{'form-bg-one':!myArray.length}">
 						<el-scrollbar class="h100">
-							<el-form :label-position="formAttribute.labelPosition" :label-width="formAttribute.labelWidth+'px'"
-								:model="formLabelAlign" :label-suffix="formAttribute.labelSuffix" :size="formAttribute.formSize"
+							<el-form :label-position="formAttribute.labelPosition"
+								:label-width="formAttribute.labelWidth+'px'" :model="formLabelAlign"
+								:label-suffix="formAttribute.labelSuffix" :size="formAttribute.formSize"
 								class="widget-form">
 								<el-row :gutter="0">
-									<draggable element="div" handle=".drag-btn" :group="{ name: 'people', pull: 'clone'}"
-										ghost-class="ghost" :sort="true" :list="myArray" @change="change" @start="start" @end="end"
-										:move="move" class="widget-form-list" :component-data="getComponentData()">
+									<draggable element="div" handle=".drag-btn" group="people" ghost-class="ghost"
+										:sort="true" :list="myArray" @change="change" @start="start" @end="end"
+										:move="move" class="widget-form-list">
 										<transition-group appear tag="div" class="h100 mh1080 clearfix">
-											<el-col :span="fieldAttribute.span" v-for="(item,index) in myArray" :key="item.id"
-												:data-id="item.id">
-												<el-form-item class="widget-form-item" :class="{'active':item.id == activeId}"
-													:label="activeIndex+'名称'+item.name+'='+index" v-on:click.native="itemClick(index)">
+											<el-col :span="fieldAttribute.span" v-for="(item,index) in myArray"
+												:key="item.id" :data-id="item.id">
+												<el-form-item class="widget-form-item"
+													:class="{'active':item.id == activeId}"
+													:label="'index_'+index+'=id_'+item.id+'aindex_'+activeIndex+'=aid_'+activeId"
+													v-on:click.native="itemClick(index)">
 													<el-input v-model="formLabelAlign.name"></el-input>
 													<div class="widget-view-drag drag-btn" v-if="item.id == activeId">
 														<i class="el-icon-rank" title="拖拽"></i>
 													</div>
 													<div class="widget-view-action" v-if="item.id == activeId">
-														<i class="el-icon-top" title="上移" @click.capture.stop="moveUp(index)"></i>
-														<i class="el-icon-bottom" title="下移" @click.capture.stop="moveDown(index)"></i>
-														<i class="el-icon-document-copy" title="复制" @click.capture.stop="copy(index)"></i>
-														<i class="el-icon-delete" title="删除" @click.capture.stop="remove(index)"></i>
+														<i class="el-icon-top" title="上移"
+															@click.capture.stop="moveUp(index)"></i>
+														<i class="el-icon-bottom" title="下移"
+															@click.capture.stop="moveDown(index)"></i>
+														<i class="el-icon-document-copy" title="复制"
+															@click.capture.stop="copy(index)"></i>
+														<i class="el-icon-delete" title="删除"
+															@click.capture.stop="remove(index)"></i>
 													</div>
 												</el-form-item>
 											</el-col>
@@ -134,7 +146,7 @@
 			</el-container>
 		</el-main>
 		<el-aside width="300px">
-			<el-tabs type="border-card" v-model="activeName1" @tab-click="handleClick" class="h100 form-tabs form-right-tabs">
+			<el-tabs type="border-card" v-model="tabsTwoActiveName" class="h100 form-tabs form-right-tabs">
 				<el-tab-pane label="字段属性" name="first" class="h100">
 					<div :class="{'form-bg-two':false}" class="h100">
 						<el-scrollbar class="h100">
@@ -173,10 +185,11 @@
 		},
 		data() {
 			return {
-				isDragging: false,
-				activeNames: 1,
+				tabsOneActiveName: "first",
+				tabsTwoActiveName: "first",
 				activeId: null,
 				activeIndex: null,
+				activeNames: null,
 				components: components,
 				myArray: [],
 				dragOptions1: {
@@ -193,9 +206,6 @@
 					group: "description"
 				},
 				isFullscreen: false,
-				activeName: "first",
-				activeName1: "first",
-				activeNames: ["1"],
 				codeViewKey: false,
 				language: "html",
 				htmlCodes: "<div>This is html</div>",
@@ -206,7 +216,7 @@
 					formSize: "medium", //表单尺寸
 					formCheck: true, //表单校验
 					labelPosition: "right", //标签位置
-					labelWidth: "120", //标签宽度
+					labelWidth: "220", //标签宽度
 					labelSuffix: "", //标签后缀
 					rowSpacing: "", //行行间隔
 					colSpacing: "", //列列间隔
@@ -291,108 +301,38 @@
 				return this.codeViewKey ? "70%" : "32px";
 			}
 		},
-		mounted() {
-			window.onresize = () => {
-				// 全屏下监控是否按键了ESC
-				if (!this.checkFull()) {
-					// 全屏下按键esc后要执行的动作
-					this.isFullscreen = false;
-				}
-			};
-		},
+		mounted() {},
 		methods: {
-			handleChange() {
-				console.log("changed");
+			//start,end,add,update,sort,remove 得到的都差不多
+			change(evt) {
+				let index = null;
+				if (evt.added != undefined && evt.added.newIndex != undefined) {
+					index = evt.added.newIndex;
+				}
+				if (evt.moved != undefined && evt.moved.newIndex != undefined) {
+					index = evt.moved.newIndex;
+				}
+				this.activeId = index != null ? this.myArray[index].id : null;
+				this.activeIndex = index != null ? index : null;
 			},
-			inputChanged(value) {
-				this.activeNames = value;
-				console.log(this.activeNames);
-			},
-			getComponentData() {
+			start(evt) {},
+			end(evt) {},
+			move: function (evt, originalEvent) {},
+			// 左侧复制到右侧
+			cloneDog() {
 				return {
-					on: {
-						change: this.handleChange,
-						input: this.inputChanged
-					},
-					attrs: {
-						wrap: true
-					},
-					props: {
-						value: this.activeNames
-					}
+					id: idGlobal,
+					name: "标签" + idGlobal++,
+					icon: "el-icon-edit",
+					component: "lz-input"
 				};
 			},
-			change: function (evt) {
-				console.log(evt);
-			},
-			//start ,end ,add,update, sort, remove 得到的都差不多
-			start: function (evt) {
-				this.isDragging = true;
-				console.log(evt);
-			},
-			end: function (evt) {
-				this.isDragging = false;
-				console.log(evt);
-				// evt.item //可以知道拖动的本身
-				// evt.to // 可以知道拖动的目标列表
-				// evt.from // 可以知道之前的列表
-				// evt.oldIndex // 可以知道拖动前的位置
-				// evt.newIndex // 可以知道拖动后的位置
-			},
-			move: function (evt, originalEvent) {
-				console.log(evt);
-				console.log(originalEvent); //鼠标位置
-			},
-			cc() {
-				console.log("aaa");
-			},
-			handleClick(tab, event) {
-				console.log(tab, event);
-			},
-			handleChange(val) {
-				console.log(val);
-			},
-			codeView() {
-				this.codeViewKey = !this.codeViewKey;
-			},
-			htmlOnMounted(edit) {
-				this.htmlEditor = edit;
-			},
-			htmlOnCodeChange(value, event) {},
-			/**
-			 * 全屏事件
-			 */
-			screenfull() {
-				if (!screenfull.enabled) {
-					this.$message({
-						message: "Your browser does not support!",
-						type: "warning"
-					});
-					return false;
-				}
-				screenfull.toggle();
-				this.isFullscreen = true;
-			},
-			/**
-			 * 是否全屏并按键ESC键的方法
-			 */
-			checkFull() {
-				var isFull =
-					document.fullscreenEnabled ||
-					window.fullScreen ||
-					document.webkitIsFullScreen ||
-					document.msFullscreenEnabled;
-				// to fix : false || undefined == undefined
-				if (isFull === undefined) {
-					isFull = false;
-				}
-				return isFull;
-			},
+			// 元素点击选中
 			itemClick(index) {
-				console.log(index);
 				this.activeId = this.myArray[index].id;
 				this.activeIndex = index;
 			},
+			// 复制
 			copy(index) {
 				this.myArray.splice(index + 1, 0, {
 					id: idGlobal,
@@ -421,8 +361,12 @@
 						1,
 						this.myArray[index]
 					)[0];
+					this.activeIndex = index - 1;
+					this.activeId = this.myArray[index - 1].id;
 				} else {
 					this.myArray.push(this.myArray.shift());
+					this.activeIndex = this.myArray.length - 1;
+					this.activeId = this.myArray[this.myArray.length - 1].id;
 				}
 			},
 			// 下移
@@ -433,19 +377,24 @@
 						1,
 						this.myArray[index]
 					)[0];
+					this.activeIndex = index + 1;
+					this.activeId = this.myArray[index + 1].id;
 				} else {
 					this.myArray.unshift(this.myArray.splice(index, 1)[0]);
+					this.activeIndex = 0;
+					this.activeId = this.myArray[0].id;
 				}
 			},
-			cloneDog() {
-				this.activeId = idGlobal;
-				return {
-					id: idGlobal,
-					name: "标签" + idGlobal++,
-					icon: "el-icon-edit",
-					component: "lz-input"
-				};
-			}
+
+
+			// 编辑器
+			codeView() {
+				this.codeViewKey = !this.codeViewKey;
+			},
+			htmlOnMounted(edit) {
+				this.htmlEditor = edit;
+			},
+			htmlOnCodeChange(value, event) {}
 		}
 	};
 </script>
