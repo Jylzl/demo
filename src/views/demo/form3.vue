@@ -90,7 +90,7 @@
 				<el-main class="form-box-body"
 					:class="{'form-box-body30': codeViewKey,'form-box-body100': !codeViewKey }">
 					<!-- 滚动条 -->
-					<div class="form-boxwrap" :class="{'form-bg-one':!myArray.length}">
+					<div class="form-boxwrap" :class="{'form-bg-one':!myArray.length}" ref="formboxwrap">
 						<el-scrollbar class="h100">
 							<el-form :label-position="formAttribute.labelPosition"
 								:label-width="formAttribute.labelWidth+'px'" :model="formLabelAlign"
@@ -301,7 +301,9 @@
 				return this.codeViewKey ? "70%" : "32px";
 			}
 		},
-		mounted() {},
+		mounted() {
+			console.log(this.$refs.formboxwrap.offsetHeight)
+		},
 		methods: {
 			//start,end,add,update,sort,remove 得到的都差不多
 			change(evt) {
