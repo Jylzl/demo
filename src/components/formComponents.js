@@ -3,14 +3,14 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-11-08 12:53:26
  * @LastAuthor: lizlong
- * @lastTime: 2019-11-08 16:00:59
+ * @lastTime: 2019-11-15 14:18:12
  */
 let components = [{
   id: 1,
   name: "输入字段",
   children: [{
     id: 1,
-    name: "单行文本框",
+    name: "普通文本框",
     icon: "el-icon-edit",
     component: "lz-input",
     value: "",
@@ -24,27 +24,12 @@ let components = [{
     required: false
   }, {
     id: 2,
-    name: "多行文本框",
+    name: "富文本",
     icon: "el-icon-edit",
     component: "lz-input"
   }, {
     id: 3,
-    name: "密码输入框",
-    icon: "el-icon-edit",
-    component: "lz-input"
-  }, {
-    id: 4,
-    name: "邮箱输入框",
-    icon: "el-icon-edit",
-    component: "lz-input"
-  }, {
-    id: 5,
     name: "计数器",
-    icon: "el-icon-edit",
-    component: "lz-input"
-  }, {
-    id: 6,
-    name: "富文本",
     icon: "el-icon-edit",
     component: "lz-input"
   }]

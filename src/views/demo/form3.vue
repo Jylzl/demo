@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-10-29 17:59:02
  * @LastAuthor: lizlong
- * @lastTime: 2019-11-15 00:46:14
+ * @lastTime: 2019-11-15 09:06:34
  -->
 <template>
 	<el-container class="form un-select" oncontextmenu="self.event.returnValue=false">
@@ -33,21 +33,17 @@
 							<el-scrollbar class="h100">
 								<el-collapse accordion>
 									<template v-for="item in components">
-										<el-collapse-item :key="item.id" :title="item.name" :name="item.id"
-											v-if="item.children">
+										<el-collapse-item :key="item.id" :title="item.name" :name="item.id" v-if="item.children">
 											<div class="p-lf-10">
 												<el-row :gutter="10" class="field-box">
 													<draggable handle=".field-label" element="div"
-														:group="{ name: 'people', pull: 'clone', put: false }"
-														ghost-class="ghost1" :sort="false" :list="myArray"
-														@change="change" @start="start" @end="end" :move="move"
-														:clone="cloneDog" class="widget-form-list">
-														<el-col :span="12" v-for="(component,index) in item.children"
-															:key="component.id+index">
+														:group="{ name: 'people', pull: 'clone', put: false }" ghost-class="ghost1" :sort="false"
+														:list="myArray" @change="change" @start="start" @end="end" :move="move" :clone="cloneDog"
+														class="widget-form-list">
+														<el-col :span="12" v-for="(component,index) in item.children" :key="component.id+index">
 															<div class="field-label">
 																<i :class="component.icon"></i>
-																<span
-																	class="field-label-title">{{component.name}}</span>
+																<span class="field-label-title">{{component.name}}</span>
 															</div>
 														</el-col>
 													</draggable>
@@ -87,24 +83,21 @@
 						</el-button>
 					</div>
 				</el-header>
-				<el-main class="form-box-body"
-					:class="{'form-box-body30': codeViewKey,'form-box-body100': !codeViewKey }">
+				<el-main class="form-box-body" :class="{'form-box-body30': codeViewKey,'form-box-body100': !codeViewKey }">
 					<!-- 滚动条 -->
 					<div class="form-boxwrap" :class="{'form-bg-one':!myArray.length}" ref="formboxwrap">
 						<el-scrollbar class="h100">
-							<el-form :label-position="formAttribute.labelPosition"
-								:label-width="formAttribute.labelWidth+'px'" :model="formLabelAlign"
-								:label-suffix="formAttribute.labelSuffix" :size="formAttribute.formSize"
+							<el-form :label-position="formAttribute.labelPosition" :label-width="formAttribute.labelWidth+'px'"
+								:model="formLabelAlign" :label-suffix="formAttribute.labelSuffix" :size="formAttribute.formSize"
 								class="widget-form">
 								<el-row :gutter="0">
-									<draggable element="div" handle=".drag-btn" group="people" ghost-class="ghost"
-										:sort="true" :list="myArray" @change="change" @start="start" @end="end"
-										:move="move" class="widget-form-list">
-										<transition-group appear tag="div" class="h100 mh1080 clearfix">
-											<el-col :span="fieldAttribute.span" v-for="(item,index) in myArray"
-												:key="item.id" :data-id="item.id">
-												<el-form-item class="widget-form-item"
-													:class="{'active':item.id == activeId}"
+									<draggable element="div" handle=".drag-btn" group="people" ghost-class="ghost" :sort="true"
+										:list="myArray" @change="change" @start="start" @end="end" :move="move" class="widget-form-list">
+										<transition-group appear tag="div" class="h100 mh1080 clearfix"
+											:style="{'min-height':formboxwrapHight+'px'}">
+											<el-col :span="fieldAttribute.span" v-for="(item,index) in myArray" :key="item.id"
+												:data-id="item.id">
+												<el-form-item class="widget-form-item" :class="{'active':item.id == activeId}"
 													:label="'index_'+index+'=id_'+item.id+'aindex_'+activeIndex+'=aid_'+activeId"
 													v-on:click.native="itemClick(index)">
 													<el-input v-model="formLabelAlign.name"></el-input>
@@ -112,14 +105,10 @@
 														<i class="el-icon-rank" title="拖拽"></i>
 													</div>
 													<div class="widget-view-action" v-if="item.id == activeId">
-														<i class="el-icon-top" title="上移"
-															@click.capture.stop="moveUp(index)"></i>
-														<i class="el-icon-bottom" title="下移"
-															@click.capture.stop="moveDown(index)"></i>
-														<i class="el-icon-document-copy" title="复制"
-															@click.capture.stop="copy(index)"></i>
-														<i class="el-icon-delete" title="删除"
-															@click.capture.stop="remove(index)"></i>
+														<i class="el-icon-top" title="上移" @click.capture.stop="moveUp(index)"></i>
+														<i class="el-icon-bottom" title="下移" @click.capture.stop="moveDown(index)"></i>
+														<i class="el-icon-document-copy" title="复制" @click.capture.stop="copy(index)"></i>
+														<i class="el-icon-delete" title="删除" @click.capture.stop="remove(index)"></i>
 													</div>
 												</el-form-item>
 											</el-col>
@@ -138,7 +127,7 @@
 							<span class="text-code">Code</span>
 						</el-button>
 					</div>
-					<div class="form-box-footer-body" v-show="codeViewKey">
+					<div class="form-box-footer-body" v-if="codeViewKey">
 						<MyEditor :language="language" :codes="htmlCodes" @onMounted="htmlOnMounted"
 							@onCodeChange="htmlOnCodeChange" />
 					</div>
@@ -185,6 +174,7 @@
 		},
 		data() {
 			return {
+				formboxwrapHight: "",
 				tabsOneActiveName: "first",
 				tabsTwoActiveName: "first",
 				activeId: null,
@@ -302,9 +292,18 @@
 			}
 		},
 		mounted() {
-			console.log(this.$refs.formboxwrap.offsetHeight)
+			this.windowHeightChange();
 		},
 		methods: {
+			// 监听窗口大小改变
+			windowHeightChange() {
+				this.formboxwrapHight = this.$refs.formboxwrap.offsetHeight;
+				window.onresize = () => {
+					return (() => {
+						this.formboxwrapHight = this.$refs.formboxwrap.offsetHeight;
+					})();
+				};
+			},
 			//start,end,add,update,sort,remove 得到的都差不多
 			change(evt) {
 				let index = null;
