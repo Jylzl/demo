@@ -7,10 +7,10 @@
  */
 let components = [{
   id: 1,
-  name: "输入字段",
+  label: "输入字段",
   children: [{
-    id: 1,
-    name: "普通文本框",
+    id: 101,
+    label: "普通文本框",
     icon: "el-icon-edit",
     component: "lz-input",
     value: "",
@@ -23,100 +23,102 @@ let components = [{
     readonly: false,
     required: false
   }, {
-    id: 2,
-    name: "富文本",
+    id: 102,
+    label: "富文本",
     icon: "el-icon-edit",
-    component: "lz-input"
+    component: "lz-input",
+    span: 24,
   }, {
-    id: 3,
-    name: "计数器",
+    id: 103,
+    label: "计数器",
     icon: "el-icon-edit",
-    component: "lz-input"
+    component: "lz-input",
+    span: 12,
   }]
 }, {
-  id: 2,
-  name: "选择字段",
+  id: 20,
+  label: "选择字段",
   children: [{
-    id: 1,
-    name: "单选框",
+    id: 201,
+    label: "单选框",
     icon: "el-icon-edit",
     component: "lz-input"
   }, {
-    id: 2,
-    name: "多选框组",
+    id: 202,
+    label: "多选框组",
     icon: "el-icon-edit",
     component: "lz-input"
   }, {
-    id: 3,
-    name: "下拉选择器",
+    id: 203,
+    label: "下拉选择器",
     icon: "el-icon-edit",
     component: "lz-input"
   }, {
-    id: 4,
-    name: "级联选择器",
+    id: 204,
+    label: "级联选择器",
     icon: "el-icon-edit",
     component: "lz-input"
   }, {
-    id: 5,
-    name: "开关选择器",
+    id: 205,
+    label: "开关选择器",
     icon: "el-icon-edit",
     component: "lz-input"
   }, {
-    id: 6,
-    name: "颜色选择器",
+    id: 206,
+    label: "颜色选择器",
     icon: "el-icon-edit",
     component: "lz-input"
   }, {
-    id: 7,
-    name: "滑块选择器",
+    id: 207,
+    label: "滑块选择器",
     icon: "el-icon-edit",
     component: "lz-input"
   }, {
-    id: 8,
-    name: "评分选择器",
+    id: 208,
+    label: "评分选择器",
     icon: "el-icon-edit",
     component: "lz-input"
   }]
 }, {
   id: 3,
-  name: "上传字段",
+  label: "上传字段",
   children: [{
-    id: 1,
-    name: "附件上传",
+    id: 301,
+    label: "附件上传",
     icon: "el-icon-edit",
     component: "lz-input"
   }]
 }, {
   id: 4,
-  name: "时间日期字段",
+  label: "时间日期字段",
   children: [{
-    id: 1,
-    name: "时间选择器",
+    id: 401,
+    label: "时间选择器",
     icon: "el-icon-edit",
     component: "lz-input"
   }, {
-    id: 3,
-    name: "日期选择器",
+    id: 402,
+    label: "日期选择器",
     icon: "el-icon-edit",
     component: "lz-input"
   }, {
-    id: 4,
-    name: "日期时间选择器",
+    id: 403,
+    label: "日期时间选择器",
     icon: "el-icon-edit",
     component: "lz-input"
   }]
 }, {
   id: 5,
-  name: "扩展字段",
+  label: "扩展字段",
   children: [{
-    id: 1,
-    name: "坐标选择器",
+    id: 501,
+    label: "坐标选择器",
     icon: "el-icon-edit",
     component: "lz-input"
   }]
 }, {
   id: 6,
-  name: "自定义字段"
+  label: "自定义字段"
 }]
 
 export {
