@@ -66,7 +66,7 @@
 </template>
 <script>
 export default {
-	name: "lz-upload",
+	name: "d-upload",
 	props: {
 		action: {
 			type: String,

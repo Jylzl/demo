@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-11-15 14:40:36
  * @LastAuthor: lizlong
- * @lastTime: 2019-11-15 15:07:47
+ * @lastTime: 2019-11-18 12:39:05
  -->
 <template>
 	<el-input-number
@@ -23,7 +23,7 @@
 </template>
 <script>
 export default {
-	name: "lz-number",
+	name: "d-number",
 	props: {
 		prop: {
 			type: String,

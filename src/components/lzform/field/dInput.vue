@@ -3,39 +3,39 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-11-15 11:39:57
  * @LastAuthor: lizlong
- * @lastTime: 2019-11-15 15:09:48
+ * @lastTime: 2019-11-18 13:14:49
  -->
 <template>
 	<div>
 		<el-autocomplete
-			v-if="s_type == 'email'"
-			v-model="s_value"
-			:name="s_prop"
-			:type="s_type"
-			:placeholder="s_placeholder"
-			:disabled="b_disabled"
-			:clearable="b_clearable"
-			:minlength="i_minlength"
-			:maxlength="i_maxlength"
-			:show-word-limit="b_showWordLimit"
+			v-if="o_data.type == 'email'"
+			v-model="o_data.value"
+			:name="o_data.prop"
+			:type="o_data.type"
+			:placeholder="o_data.placeholder || defPlaceholder"
+			:disabled="o_data.disabled"
+			:clearable="o_data.clearable"
+			:minlength="o_data.minlength"
+			:maxlength="o_data.maxlength"
+			:show-word-limit="o_data.showWordLimit"
+			:readonly="o_data.readonly"
 			:fetch-suggestions="querySearch"
 			:trigger-on-focus="false"
-			:readonly="b_readonly"
 			class="w100"
 		></el-autocomplete>
 		<el-input
 			v-else
-			v-model="s_value"
-			:name="s_prop"
-			:type="s_type"
-			:placeholder="s_placeholder"
-			:disabled="b_disabled"
-			:clearable="b_clearable"
-			:minlength="i_minlength"
-			:maxlength="i_maxlength"
-			:show-word-limit="b_showWordLimit"
-			:show-password="s_type == 'password'"
-			:autosize="o_autosize"
+			v-model="o_data.value"
+			:name="o_data.prop"
+			:type="o_data.type"
+			:placeholder="o_data.placeholder || defPlaceholder"
+			:disabled="o_data.disabled"
+			:clearable="o_data.clearable"
+			:minlength="o_data.minlength"
+			:maxlength="o_data.maxlength"
+			:show-word-limit="o_data.showWordLimit"
+			:show-password="o_data.type == 'password'"
+			:autosize="o_data.autosize"
 			class="w100"
 		></el-input>
 	</div>
@@ -43,52 +43,12 @@
 
 <script>
 export default {
-	name: "lz-input",
+	name: "d-input",
 	props: {
-		type: {
-			type: String,
-			default: "text"
-		},
-		prop: {
-			type: String,
-			default: ""
-		},
-		value: {
-			type: String,
-			default: ""
-		},
-		placeholder: {
-			type: String,
-			default: ""
-		},
-		minlength: {
-			type: Number,
-			default: null
-		},
-		maxlength: {
-			type: Number,
-			default: null
-		},
-		disabled: {
-			type: Boolean,
-			default: false
-		},
-		readonly: {
-			type: Boolean,
-			default: false
-		},
-		clearable: {
-			type: Boolean,
-			default: true
-		},
-		showWordLimit: {
-			type: Boolean,
-			default: false
-		},
-		autosize: {
-			type: [Object, Array],
+		data: {
+			type: Object,
 			default() {
-				return { minRows: 2, maxRows: 6 };
+				return {};
 			}
 		},
 		//默认配置
@@ -126,18 +86,28 @@ export default {
 	},
 	data() {
 		return {
-			s_type: this.type,
-			s_prop: this.prop,
-			s_value: this.value,
-			s_placeholder: this.placeholder,
-			i_minlength: this.minlength,
-			i_maxlength: this.maxlength,
-			b_disabled: this.disabled,
-			b_readonly: this.readonly,
-			b_clearable: this.clearable,
-			b_showWordLimit: this.showWordLimit,
-			o_autosize: this.autosize
+			o_data: this.data
 		};
+	},
+	computed: {
+		defPlaceholder() {
+			let txt = "";
+			switch (this.data.type) {
+				case "email":
+					txt = "邮箱号码";
+					break;
+				case "password":
+					txt = "密码";
+					break;
+				case "textarea":
+					txt = "多行文本";
+					break;
+				default:
+					txt = "文本内容";
+					break;
+			}
+			return `请输入${txt}`;
+		}
 	},
 	methods: {
 		//邮箱自动补全功能

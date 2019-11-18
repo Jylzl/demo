@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-07-01 19:01:16
  * @LastAuthor: lizlong
- * @lastTime: 2019-09-05 15:50:32
+ * @lastTime: 2019-11-18 14:58:44
  -->
 <template>
 	<script :id="id" :name="name" type="text/plain"></script>
@@ -27,11 +27,11 @@ class LoadEvent {
 	}
 }
 export default {
-	name: "cms-neditor",
+	name: "cms-nueditor",
 	props: {
 		value: {
 			type: String,
-			default: "欢迎使用Neditor编辑器"
+			default: ""
 		},
 		config: {
 			type: Object,
@@ -65,7 +65,7 @@ export default {
 				// 编辑器自动被内容撑高
 				autoHeightEnabled: true,
 				// 初始容器高度
-				initialFrameHeight: 440,
+				initialFrameHeight: 140,
 				// 初始容器宽度
 				initialFrameWidth: "100%",
 				// 关闭自动保存

@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-08-27 10:03:01
  * @LastAuthor: lizlong
- * @lastTime: 2019-08-27 15:44:29
+ * @lastTime: 2019-11-18 21:52:48
  */
 /**
  * neditor完整配置项
@@ -165,7 +165,7 @@
         //现有如下皮肤:default
         theme: 'notadd',
         //themePath:URL +"themes/",
-        zIndex: 1100, //编辑器层级的基数,默认是900
+        zIndex: 900, //编辑器层级的基数,默认是900
 
         //针对getAllHtml方法，会在对应的head标签中增加该编码设置。
         //charset:"utf-8",

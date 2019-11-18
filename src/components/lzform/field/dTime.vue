@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-11-15 17:34:24
  * @LastAuthor: lizlong
- * @lastTime: 2019-11-15 21:31:46
+ * @lastTime: 2019-11-18 12:40:22
  -->
 <template>
   <div>
@@ -50,7 +50,7 @@
 
 <script>
 export default {
-  name: "lz-date",
+  name: "d-time",
   props: {
     prop: {
       type: String,
