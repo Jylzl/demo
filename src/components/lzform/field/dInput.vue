@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-11-15 11:39:57
  * @LastAuthor: lizlong
- * @lastTime: 2019-11-18 13:14:49
+ * @lastTime: 2019-11-19 10:08:29
  -->
 <template>
 	<div>
@@ -82,6 +82,14 @@ export default {
 					}
 				];
 			}
+		}
+	},
+	watch: {
+		data: {
+			handler(value) {
+				this.o_data = value;
+			},
+			immediate: true
 		}
 	},
 	data() {
