@@ -3,10 +3,14 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-10-29 17:59:02
  * @LastAuthor: lizlong
- * @lastTime: 2019-11-19 12:42:21
+ * @lastTime: 2019-11-21 10:36:20
  -->
 <template>
-	<el-container class="form un-select" oncontextmenu="self.event.returnValue=false">
+	<el-container
+		class="form un-select"
+		oncontextmenu="self.event.returnValue=false"
+		v-loading="loading"
+	>
 		<el-aside width="300px">
 			<div class="form-left-card">
 				<el-card class="form-card" shadow="never" :body-style="{ padding: '0px' }">
@@ -87,10 +91,7 @@
 						<el-button type="text" icon="el-icon-refresh-right" size="mini" circle></el-button>
 					</div>
 					<div>
-						<el-button type="text" icon="el-icon-upload" size="mini" circle></el-button>
-						<el-button type="text" icon="el-icon-coin" size="mini" circle></el-button>
-						<el-button type="text" icon="el-icon-view" size="mini" circle></el-button>
-						<el-button type="text" icon="el-icon-full-screen" size="mini" circle></el-button>
+						<el-button type="text" icon="el-icon-delete" size="mini" @click="clearMyArray" circle></el-button>
 					</div>
 				</el-header>
 				<el-main
@@ -171,13 +172,13 @@
 </template>
 
 <script>
-import { components } from "@/components/lzform/components.js";
-import { deepClone } from "@/components/lzform/util.js";
+import { components } from "@/components/dform/components.js";
+import { deepClone } from "@/components/dform/util.js";
 import MyEditor from "@/components/Monaco.vue";
 import draggable from "vuedraggable";
-import widgetForm from "@/components/lzform/WidgetForm.vue";
-import formAttribute from "@/components/lzform/FormAttribute.vue";
-import fieldAttribute from "@/components/lzform/FieldAttribute.vue";
+import widgetForm from "@/components/dform/WidgetForm.vue";
+import formAttribute from "@/components/dform/FormAttribute.vue";
+import fieldAttribute from "@/components/dform/FieldAttribute.vue";
 let idGlobal = 0;
 export default {
 	components: {
@@ -189,6 +190,7 @@ export default {
 	},
 	data() {
 		return {
+			loading: false,
 			formboxwrapHight: "",
 			tabsOneActiveName: "first",
 			tabsTwoActiveName: "first",
@@ -383,10 +385,10 @@ export default {
 	computed: {
 		codeViewHeight() {
 			return this.codeViewKey ? "70%" : "32px";
-    },
-    htmlCodes(){
-      return JSON.stringify(this.myArray)
-    }
+		},
+		htmlCodes() {
+			return JSON.stringify(this.myArray);
+		}
 	},
 	watch: {},
 	created() {},
@@ -426,6 +428,27 @@ export default {
 				.toString()
 				.slice(-10);
 			return obj;
+		},
+		// 清空
+		clearMyArray() {
+			this.$confirm("清空当前设计表单, 是否继续?", "警告", {
+				confirmButtonText: "确定",
+				cancelButtonText: "取消",
+				type: "warning"
+			})
+				.then(() => {
+					this.myArray = [];
+					this.$message({
+						type: "success",
+						message: "清空成功!"
+					});
+				})
+				.catch(() => {
+					this.$message({
+						type: "info",
+						message: "已取消"
+					});
+				});
 		},
 		// 编辑器
 		codeView() {

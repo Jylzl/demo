@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-11-08 12:53:26
  * @LastAuthor: lizlong
- * @lastTime: 2019-11-18 14:51:53
+ * @lastTime: 2019-11-21 09:59:55
  */
 let components = [{
   id: 1,
@@ -21,7 +21,7 @@ let components = [{
     icon: "el-icon-edit",
     component: "d-richText",
     span: 24,
-    type: "cms-nueditor",
+    type: "cms-tinymce",
     dataType: "string",
   }, {
     id: 103,

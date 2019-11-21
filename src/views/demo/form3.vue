@@ -9,7 +9,7 @@
 	<form-design></form-design>
 </template>
 <script>
-import formDesign from "../../components/lzform/FormDesign";
+import formDesign from "../../components/dform/FormDesign";
 export default {
 	components: {
 		"form-design": formDesign

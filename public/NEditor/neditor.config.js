@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-08-27 10:03:01
  * @LastAuthor: lizlong
- * @lastTime: 2019-11-18 21:52:48
+ * @lastTime: 2019-11-21 11:06:09
  */
 /**
  * neditor完整配置项
@@ -444,9 +444,9 @@
         //sourceEditor:"codemirror",
         //如果sourceEditor是codemirror，还用配置一下两个参数
         //codeMirrorJsUrl js加载的路径，默认是 URL + "third-party/codemirror/codemirror.js"
-        codeMirrorJsUrl: URL + "NEditor/third-party/codemirror/codemirror.min.js",
+        // codeMirrorJsUrl: URL + "/NEditor/third-party/codemirror/codemirror.min.js",
         //codeMirrorCssUrl css加载的路径，默认是 URL + "third-party/codemirror/codemirror.css"
-        codeMirrorCssUrl: URL + "NEditor/third-party/codemirror/codemirror.min.css",
+        // codeMirrorCssUrl: URL + "/NEditor/third-party/codemirror/codemirror.min.css",
         //编辑器初始化完成后是否进入源码模式，默认为否。
         //sourceEditorFirst:false,
 

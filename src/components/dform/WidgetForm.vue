@@ -54,25 +54,25 @@
 </template>
 
 <script>
-import va from "@/components/lzform/rules.js";
+import va from "@/components/dform/rules.js";
 import draggable from "vuedraggable";
-import { deepClone } from "@/components/lzform/util.js";
-import dCascader from "@/components/lzform/field/dCascader.vue";
-import dCheckbox from "@/components/lzform/field/dCheckbox.vue";
-import dColorPicker from "@/components/lzform/field/dColorPicker.vue";
-import dDate from "@/components/lzform/field/dDate.vue";
-import dDateTime from "@/components/lzform/field/dDateTime.vue";
-import dInput from "@/components/lzform/field/dInput.vue";
-import dMap from "@/components/lzform/field/dMap.vue";
-import dNumber from "@/components/lzform/field/dNumber.vue";
-import dRadio from "@/components/lzform/field/dRadio.vue";
-import dRate from "@/components/lzform/field/dRate.vue";
-import dRichText from "@/components/lzform/field/dRichText.vue";
-import dSelect from "@/components/lzform/field/dSelect.vue";
-import dSlider from "@/components/lzform/field/dSlider.vue";
-import dSwitch from "@/components/lzform/field/dSwitch.vue";
-import dTime from "@/components/lzform/field/dTime.vue";
-import dUpload from "@/components/lzform/field/dUpload.vue";
+import { deepClone } from "@/components/dform/util.js";
+import dCascader from "@/components/dform/field/dCascader.vue";
+import dCheckbox from "@/components/dform/field/dCheckbox.vue";
+import dColorPicker from "@/components/dform/field/dColorPicker.vue";
+import dDate from "@/components/dform/field/dDate.vue";
+import dDateTime from "@/components/dform/field/dDateTime.vue";
+import dInput from "@/components/dform/field/dInput.vue";
+import dMap from "@/components/dform/field/dMap.vue";
+import dNumber from "@/components/dform/field/dNumber.vue";
+import dRadio from "@/components/dform/field/dRadio.vue";
+import dRate from "@/components/dform/field/dRate.vue";
+import dRichText from "@/components/dform/field/dRichText.vue";
+import dSelect from "@/components/dform/field/dSelect.vue";
+import dSlider from "@/components/dform/field/dSlider.vue";
+import dSwitch from "@/components/dform/field/dSwitch.vue";
+import dTime from "@/components/dform/field/dTime.vue";
+import dUpload from "@/components/dform/field/dUpload.vue";
 export default {
 	components: {
 		draggable, // 拖拽

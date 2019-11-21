@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-11-12 22:47:54
  * @LastAuthor: lizlong
- * @lastTime: 2019-11-19 14:03:41
+ * @lastTime: 2019-11-21 14:13:58
  -->
 <template>
 	<div class="field-attribute">
@@ -20,6 +20,11 @@
 						:label="item.label"
 						:value="item.component"
 					></el-option>
+				</el-select>
+			</el-form-item>
+			<el-form-item label="可选组件" v-if="a_type.length">
+				<el-select v-model="o_config.type" placeholder="请选择可选类型" @change="$emit('change', o_config)">
+					<el-option v-for="(item,index) in a_type" :key="index" :label="item.label" :value="item.value"></el-option>
 				</el-select>
 			</el-form-item>
 			<el-form-item label="字段标题">
@@ -238,7 +243,7 @@
 </template>
 
 <script>
-import va from "@/components/lzform/rules.js";
+import va from "@/components/dform/rules.js";
 export default {
 	props: {
 		config: {
@@ -341,6 +346,50 @@ export default {
 				}
 			});
 			return components;
+		},
+		a_type() {
+			let typeOptions = [];
+			if (this.o_config.typeOptions) {
+				typeOptions = this.o_config.typeOptions;
+			} else {
+				switch (this.o_config.component) {
+					case "d-input":
+						typeOptions = [
+							{
+								label: "单行文本框",
+								value: "text"
+							},
+							{
+								label: "多行文本框",
+								value: "textarea"
+							},
+							{
+								label: "邮箱输入框",
+								value: "email"
+							},
+							{
+								label: "密码输入框",
+								value: "password"
+							}
+						];
+						break;
+					case "d-richText":
+						typeOptions = [
+							{
+								label: "Tinymce编辑器",
+								value: "cms-tinymce"
+							},
+							{
+								label: "Neditor编辑器",
+								value: "cms-neditor"
+							}
+						];
+						break;
+					default:
+						break;
+				}
+			}
+			return typeOptions;
 		}
 	},
 	watch: {
@@ -352,19 +401,11 @@ export default {
 			deep: true
 		}
 	},
-	filters: {
-		regexFilter: function(value) {
-			console.log("isURL");
-			// console.log(value)
-			// let fun = value];
-			// fun("请填写真实姓名");
-		}
-	},
+	filters: {},
 	methods: {
 		checkTypeChange() {
 			this.o_config.rules = [va[this.s_checkType](this.o_config.label)];
 			this.$emit("change", this.o_config);
-			console.log(this.s_checkType);
 		}
 	}
 };
