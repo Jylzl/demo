@@ -1,250 +1,59 @@
 <!--
  * @description: Description
  * @author: lizlong<94648929@qq.com>
- * @since: 2019-11-12 22:47:54
+ * @since: 2019-11-19 08:30:41
  * @LastAuthor: lizlong
- * @lastTime: 2019-11-21 14:13:58
+ * @lastTime: 2019-11-24 15:09:51
  -->
 <template>
-	<div class="field-attribute">
-		<el-form label-position="left" label-width="84px" :model="o_config" size="small" label-suffix="：">
-			<el-form-item label="组件类型">
-				<el-select
-					v-model="o_config.component"
-					placeholder="请选择字段类型"
-					@change="$emit('change', o_config)"
-				>
-					<el-option
-						v-for="item in componentType"
-						:key="item.id"
-						:label="item.label"
-						:value="item.component"
-					></el-option>
-				</el-select>
-			</el-form-item>
-			<el-form-item label="可选组件" v-if="a_type.length">
-				<el-select v-model="o_config.type" placeholder="请选择可选类型" @change="$emit('change', o_config)">
-					<el-option v-for="(item,index) in a_type" :key="index" :label="item.label" :value="item.value"></el-option>
-				</el-select>
-			</el-form-item>
-			<el-form-item label="字段标题">
-				<el-input
-					v-model="o_config.label"
-					placeholder="请输入字段标题"
-					maxlength="100"
-					@input="$emit('input', o_config)"
-					clearable
-				></el-input>
-			</el-form-item>
-			<el-form-item label="字段名称">
-				<el-input
-					v-model="o_config.prop"
-					placeholder="请输入字段名称"
-					maxlength="100"
-					@input="$emit('input', o_config)"
-					clearable
-				></el-input>
-			</el-form-item>
-			<el-form-item label="字段栅格">
-				<el-input-number
-					v-model="o_config.span"
-					controls-position="right"
-					:min="6"
-					:step="2"
-					:max="24"
-					class="w100"
-					@change="$emit('change', o_config)"
-				></el-input-number>
-			</el-form-item>
-			<el-form-item label="占位内容" v-if="o_config.dataType == 'string'">
-				<el-input
-					v-model="o_config.placeholder"
-					placeholder="请输入占位内容"
-					maxlength="100"
-					@input="$emit('input', o_config)"
-					clearable
-				></el-input>
-			</el-form-item>
-			<el-form-item label="默认内容">
-				<el-input
-					v-model="o_config.valueDefault"
-					placeholder="请输入默认内容"
-					maxlength="100"
-					@input="$emit('input', o_config)"
-					clearable
-				></el-input>
-			</el-form-item>
-			<el-form-item label="最大长度" v-if="o_config.dataType == 'string'">
-				<el-input-number
-					v-model="o_config.maxlength"
-					controls-position="right"
-					:min="0"
-					:step="10"
-					:max="3000"
-					class="w100"
-					@change="$emit('change', o_config)"
-				></el-input-number>
-			</el-form-item>
-			<el-form-item label="最小长度" v-if="o_config.dataType == 'string'">
-				<el-input-number
-					v-model="o_config.minlength"
-					controls-position="right"
-					:min="0"
-					:step="10"
-					:max="3000"
-					class="w100"
-					@change="$emit('change', o_config)"
-				></el-input-number>
-			</el-form-item>
-			<el-form-item label="数据来源" v-if="o_config.dataType == 'array'">
-				<el-select
-					v-model="o_config.dataSources"
-					placeholder="请选择数据来源"
-					@change="$emit('change', o_config)"
-				>
-					<el-option label="静态数据" value="local"></el-option>
-					<el-option label="远端数据" value="online"></el-option>
-				</el-select>
-			</el-form-item>
-			<el-form-item label="选项类型" v-if="o_config.dataType == 'array'">
-				<el-select
-					v-model="o_config.dataType"
-					placeholder="请选择数据类型"
-					@change="$emit('change', o_config)"
-				>
-					<el-option label="String" value="string"></el-option>
-					<el-option label="Number" value="bumber"></el-option>
-				</el-select>
-			</el-form-item>
-			<el-form-item label="请求方式" v-if="o_config.dataSources == 'online'">
-				<el-select
-					v-model="o_config.requestType"
-					placeholder="请选择请求方式"
-					@change="$emit('change', o_config)"
-				>
-					<el-option label="Post" value="post"></el-option>
-					<el-option label="Get" value="get"></el-option>
-				</el-select>
-			</el-form-item>
-			<el-form-item label="请求地址" v-if="o_config.dataSources == 'online'">
-				<el-input
-					v-model="o_config.requiredUrl"
-					placeholder="请输入请求地址"
-					maxlength="100"
-					@input="$emit('input', o_config)"
-					clearable
-				></el-input>
-			</el-form-item>
-			<el-form-item label="静态数据" v-if="o_config.dataSources == 'local'">
-				<el-input
-					v-model="o_config.localData"
-					placeholder="请配置静态数据"
-					maxlength="100"
-					@change="$emit('change', o_config)"
-					clearable
-				>
-					<el-button slot="append" icon="el-icon-edit"></el-button>
-				</el-input>
-			</el-form-item>
-			<!-- <el-form-item label="字典配置" style="margin-bottom:0"></el-form-item>
-			<el-form-item label-width="0" size="mini">
-				<el-tabs v-model="activeName" :stretch="true">
-					<el-tab-pane label="静态数据" name="first">
-						<el-row :gutter="8">
-							<el-col :span="9">
-								<el-input v-model="fieldAttribute.valueDefault" maxlength="100">
-								</el-input>
-							</el-col>
-							<el-col :span="9">
-								<el-input v-model="fieldAttribute.valueDefault" maxlength="100">
-								</el-input>
-							</el-col>
-							<el-col :span="3">
-								<el-button type="warning" icon="el-icon-rank" circle></el-button>
-							</el-col>
-							<el-col :span="3">
-								<el-button type="danger" icon="el-icon-delete" circle></el-button>
-							</el-col>
-						</el-row>
-						<el-row :gutter="8">
-							<el-col :span="9">
-								<el-input v-model="fieldAttribute.valueDefault" maxlength="100">
-								</el-input>
-							</el-col>
-							<el-col :span="9">
-								<el-input v-model="fieldAttribute.valueDefault" maxlength="100">
-								</el-input>
-							</el-col>
-							<el-col :span="3">
-								<el-button type="warning" icon="el-icon-rank" circle></el-button>
-							</el-col>
-							<el-col :span="3">
-								<el-button type="danger" icon="el-icon-delete" circle></el-button>
-							</el-col>
-						</el-row>
-					</el-tab-pane>
-					<el-tab-pane label="远端数据" name="second">
-						<el-form-item label="请求地址">
-							<el-input v-model="fieldAttribute.prop" placeholder="请输入字段名称" maxlength="100" clearable>
-							</el-input>
-						</el-form-item>
-						<el-form-item label="请求方法">
-							<el-input v-model="fieldAttribute.prop" placeholder="请输入字段名称" maxlength="100" clearable>
-							</el-input>
-						</el-form-item>
-					</el-tab-pane>
-				</el-tabs>
-			</el-form-item>-->
-			<el-row>
-				<el-col :span="12">
-					<el-form-item label="是否可见">
-						<el-switch v-model="o_config.display" @change="$emit('change', o_config)"></el-switch>
-					</el-form-item>
-				</el-col>
-				<el-col :span="12">
-					<el-form-item label="是否只读">
-						<el-switch v-model="o_config.readonly" @change="$emit('change', o_config)"></el-switch>
-					</el-form-item>
-				</el-col>
-			</el-row>
-			<el-row>
-				<el-col :span="12">
-					<el-form-item label="显示计数">
-						<el-switch v-model="o_config.showWordLimit" @change="$emit('change', o_config)"></el-switch>
-					</el-form-item>
-				</el-col>
-				<el-col :span="12">
-					<el-form-item label="字段校验">
-						<el-switch v-model="o_config.check" @change="$emit('change', o_config)"></el-switch>
-					</el-form-item>
-				</el-col>
-			</el-row>
-			<el-form-item label="校验类型" v-if="o_config.check">
-				<el-select v-model="s_checkType" placeholder="请选择校验类型" @change="checkTypeChange">
-					<el-option
-						v-for="(item,index) in regexOptions"
-						:label="item.label"
-						:value="item.value"
-						:key="index"
-					></el-option>
-				</el-select>
-			</el-form-item>
-			<el-form-item label="校验正则" v-if="o_config.check && o_config.rules == '0'">
-				<el-input
-					v-model="o_config.regex"
-					placeholder="请输入校验正则表达式"
-					maxlength="100"
-					@input="$emit('input', o_config)"
-					clearable
-				></el-input>
-			</el-form-item>
-		</el-form>
-	</div>
+	<component
+		:is="o_config.component? o_config.component +'-config':'d-config'"
+		:config="o_config"
+		:formConfig="o_formConfig"
+		:components="a_components"
+		@change="change"
+	></component>
 </template>
 
 <script>
-import va from "@/components/dform/rules.js";
+import dCascaderConfig from "@/components/dform/fieldconfig/dCascaderConfig.vue";
+import dCheckboxConfig from "@/components/dform/fieldconfig/dCheckboxConfig.vue";
+import dColorPickerConfig from "@/components/dform/fieldconfig/dColorPickerConfig.vue";
+import dDateConfig from "@/components/dform/fieldconfig/dDateConfig.vue";
+import dDateTimeConfig from "@/components/dform/fieldconfig/dDateTimeConfig.vue";
+import dInputConfig from "@/components/dform/fieldconfig/dInputConfig.vue";
+import dMapConfig from "@/components/dform/fieldconfig/dMapConfig.vue";
+import dNumberConfig from "@/components/dform/fieldconfig/dNumberConfig.vue";
+import dRadioConfig from "@/components/dform/fieldconfig/dRadioConfig.vue";
+import dRateConfig from "@/components/dform/fieldconfig/dRateConfig.vue";
+import dRichTextConfig from "@/components/dform/fieldconfig/dRichTextConfig.vue";
+import dSelectConfig from "@/components/dform/fieldconfig/dSelectConfig.vue";
+import dSliderConfig from "@/components/dform/fieldconfig/dSliderConfig.vue";
+import dSwitchConfig from "@/components/dform/fieldconfig/dSwitchConfig.vue";
+import dTimeConfig from "@/components/dform/fieldconfig/dTimeConfig.vue";
+import dUploadConfig from "@/components/dform/fieldconfig/dUploadConfig.vue";
+import dConfig from "@/components/dform/fieldconfig/dConfig.vue";
 export default {
+	name: "field-attribute",
+	components: {
+		"d-cascader-config": dCascaderConfig,
+		"d-checkbox-config": dCheckboxConfig,
+		"d-colorPicker-config": dColorPickerConfig,
+		"d-date-config": dDateConfig,
+		"d-dateTime-config": dDateTimeConfig,
+		"d-input-config": dInputConfig,
+		"d-map-config": dMapConfig,
+		"d-number-config": dNumberConfig,
+		"d-radio-config": dRadioConfig,
+		"d-rate-config": dRateConfig,
+		"d-richText-config": dRichTextConfig,
+		"d-select-config": dSelectConfig,
+		"d-slider-config": dSliderConfig,
+		"d-switch-config": dSwitchConfig,
+		"d-time-config": dTimeConfig,
+		"d-upload-config": dUploadConfig,
+		"d-config": dConfig
+	},
 	props: {
 		config: {
 			type: Object,
@@ -259,152 +68,33 @@ export default {
 			}
 		}
 	},
-	data() {
-		return {
-			f_va: va,
-			o_config: this.config,
-			activeName: "first",
-			s_checkType: "",
-			sizeOptions: [
-				{
-					value: "large",
-					label: "大"
-				},
-				{
-					value: "medium",
-					label: "中"
-				},
-				{
-					value: "small",
-					label: "小"
-				},
-				{
-					value: "mini",
-					label: "超小"
-				}
-			],
-			regexOptions: [
-				{
-					value: "notRequired",
-					label: "标识必填字段"
-				},
-				{
-					value: "required",
-					label: "普通文本"
-				},
-				{
-					value: "checkChinese",
-					label: "非中文字符串"
-				},
-				{
-					value: "englishStr",
-					label: "英文字符串"
-				},
-				{
-					value: "string",
-					label: "数字或英文"
-				},
-				{
-					value: "number",
-					label: "整数"
-				},
-				{
-					value: "double",
-					label: "浮点数"
-				},
-				{
-					value: "email",
-					label: "邮箱"
-				},
-				{
-					value: "mobile",
-					label: "手机号码"
-				},
-				{
-					value: "isURL",
-					label: "url地址"
-				},
-				{
-					value: "pswd",
-					label: "8-16位英文数字密码"
-				},
-				{
-					value: "0",
-					label: "其他"
-				}
-			]
-		};
-	},
-	computed: {
-		componentType() {
-			let components = [];
-			this.components.map(items => {
-				if (items.children) {
-					items.children.map(item => {
-						components.push(item);
-					});
-				}
-			});
-			return components;
-		},
-		a_type() {
-			let typeOptions = [];
-			if (this.o_config.typeOptions) {
-				typeOptions = this.o_config.typeOptions;
-			} else {
-				switch (this.o_config.component) {
-					case "d-input":
-						typeOptions = [
-							{
-								label: "单行文本框",
-								value: "text"
-							},
-							{
-								label: "多行文本框",
-								value: "textarea"
-							},
-							{
-								label: "邮箱输入框",
-								value: "email"
-							},
-							{
-								label: "密码输入框",
-								value: "password"
-							}
-						];
-						break;
-					case "d-richText":
-						typeOptions = [
-							{
-								label: "Tinymce编辑器",
-								value: "cms-tinymce"
-							},
-							{
-								label: "Neditor编辑器",
-								value: "cms-neditor"
-							}
-						];
-						break;
-					default:
-						break;
-				}
-			}
-			return typeOptions;
-		}
-	},
 	watch: {
 		config: {
-			handler(val, oldVal) {
+			handler(val) {
 				this.o_config = val;
+				console.log(val);
 			},
 			immediate: true,
 			deep: true
 		}
 	},
-	filters: {},
+	created() {
+		console.log(this.config);
+	},
+	data() {
+		return {
+			o_config: this.config,
+			a_components: this.components,
+			o_formConfig: {
+				labelPosition: "right",
+				labelWidth: "84px",
+				labelSuffix: "：",
+				size: "small"
+			}
+		};
+	},
 	methods: {
-		checkTypeChange() {
-			this.o_config.rules = [va[this.s_checkType](this.o_config.label)];
+		change() {
 			this.$emit("change", this.o_config);
 		}
 	}

@@ -3,33 +3,35 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-11-08 12:53:26
  * @LastAuthor: lizlong
- * @lastTime: 2019-11-21 09:59:55
+ * @lastTime: 2019-11-24 16:31:06
  */
 let components = [{
   id: 1,
   label: "输入字段",
   children: [{
     id: 101,
-    label: "普通文本框",
+    label: "文本框",
+    span: 24,
     icon: "icon-input",
     component: "d-input",
-    span: 24,
-    dataType: "string"
+    type: "text",
+    dataType: "string",
   }, {
     id: 102,
     label: "富文本",
+    span: 24,
     icon: "icon-richtext",
     component: "d-richText",
-    span: 24,
     type: "cms-tinymce",
     dataType: "string",
   }, {
     id: 103,
     label: "计数器",
+    span: 24,
     icon: "icon-number",
     component: "d-number",
-    span: 24,
     dataType: "number",
+    controls: true
   }]
 }, {
   id: 20,
@@ -37,58 +39,58 @@ let components = [{
   children: [{
     id: 201,
     label: "单选框",
+    span: 24,
     icon: "icon-radio",
     component: "d-radio",
-    span: 24,
     dataType: "array",
   }, {
     id: 202,
     label: "多选框组",
+    span: 24,
     icon: "icon-checkbox",
     component: "d-checkbox",
-    span: 24,
     dataType: "array",
   }, {
     id: 203,
     label: "下拉选择器",
+    span: 24,
     icon: "icon-select",
     component: "d-select",
-    span: 24,
     dataType: "array",
   }, {
     id: 204,
     label: "级联选择器",
+    span: 24,
     icon: "icon-link",
     component: "d-cascader",
-    span: 24,
     dataType: "array",
   }, {
     id: 205,
     label: "开关选择器",
+    span: 24,
     icon: "icon-switch",
     component: "d-switch",
-    span: 24,
     dataType: "boolean",
   }, {
     id: 206,
     label: "颜色选择器",
+    span: 24,
     icon: "icon-color",
     component: "d-colorPicker",
-    span: 24,
     dataType: "string",
   }, {
     id: 207,
     label: "滑块选择器",
+    span: 24,
     icon: "icon-slider",
     component: "d-slider",
-    span: 24,
     dataType: "array",
   }, {
     id: 208,
     label: "评分选择器",
+    span: 24,
     icon: "icon-star",
     component: "d-rate",
-    span: 24,
     dataType: "number",
   }]
 }, {
@@ -97,9 +99,9 @@ let components = [{
   children: [{
     id: 301,
     label: "附件上传",
+    span: 24,
     icon: "icon-upload",
     component: "d-upload",
-    span: 24,
     dataType: "array",
   }]
 }, {
@@ -108,23 +110,23 @@ let components = [{
   children: [{
     id: 401,
     label: "时间选择器",
+    span: 24,
     icon: "icon-time",
     component: "d-time",
-    span: 24,
     dataType: "array",
   }, {
     id: 402,
     label: "日期选择器",
+    span: 24,
     icon: "icon-date",
     component: "d-date",
-    span: 24,
     dataType: "array",
   }, {
     id: 403,
     label: "日期时间选择器",
+    span: 24,
     icon: "icon-datetime",
     component: "d-dateTime",
-    span: 24,
     dataType: "array",
   }]
 }, {
@@ -133,9 +135,9 @@ let components = [{
   children: [{
     id: 501,
     label: "坐标选择器",
+    span: 24,
     icon: "icon-map",
     component: "d-map",
-    span: 24,
     dataType: "string",
   }]
 }, {

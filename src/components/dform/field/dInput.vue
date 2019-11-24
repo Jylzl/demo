@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-11-15 11:39:57
  * @LastAuthor: lizlong
- * @lastTime: 2019-11-19 10:08:29
+ * @lastTime: 2019-11-24 17:06:33
  -->
 <template>
 	<div>
@@ -36,6 +36,7 @@
 			:show-word-limit="o_data.showWordLimit"
 			:show-password="o_data.type == 'password'"
 			:autosize="o_data.autosize"
+			:resize="o_data.resize?'vertical':'none'"
 			class="w100"
 		></el-input>
 	</div>
@@ -115,6 +116,18 @@ export default {
 					break;
 			}
 			return `请输入${txt}`;
+		}
+	},
+	filters: {
+		autosizeFilter(value) {
+			if (value) {
+				return value;
+			} else {
+				return {
+					minRows: this.o_data.minRows,
+					maxRows: this.o_data.maxRows
+				};
+			}
 		}
 	},
 	methods: {

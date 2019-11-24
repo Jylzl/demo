@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-11-16 17:22:58
  * @LastAuthor: lizlong
- * @lastTime: 2019-11-19 12:40:11
+ * @lastTime: 2019-11-24 14:14:27
  -->
 <template>
 	<draggable
@@ -74,6 +74,7 @@ import dSwitch from "@/components/dform/field/dSwitch.vue";
 import dTime from "@/components/dform/field/dTime.vue";
 import dUpload from "@/components/dform/field/dUpload.vue";
 export default {
+	name: "widget-form",
 	components: {
 		draggable, // 拖拽
 		"d-cascader": dCascader,
@@ -124,10 +125,7 @@ export default {
 		return {
 			va: va,
 			n_formboxwrapHight: this.formboxwrapHight + "px",
-			o_activeInf: this.activeInf,
-			formLabelAlign: {
-				name: ""
-			}
+			o_activeInf: this.activeInf
 		};
 	},
 	watch: {
@@ -170,15 +168,12 @@ export default {
 				return [];
 			}
 		}
-  },
-  computed:{
-    
-  },
+	},
+	computed: {},
 	mounted() {},
 	methods: {
 		//start,end,add,update,sort,remove 得到的都差不多
 		change(evt) {
-			console.log(evt);
 			let index = null;
 			if (evt.added != undefined && evt.added.newIndex != undefined) {
 				index = evt.added.newIndex;
@@ -186,7 +181,6 @@ export default {
 			if (evt.moved != undefined && evt.moved.newIndex != undefined) {
 				index = evt.moved.newIndex;
 			}
-			// this.o_activeInf.prop = index != null ? this.myArray[index].prop : null;
 			this.o_activeInf.index = index != null ? index : null;
 		},
 		start(evt) {
