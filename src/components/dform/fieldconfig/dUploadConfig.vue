@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-11-12 22:47:54
  * @LastAuthor: lizlong
- * @lastTime: 2019-11-24 14:55:36
+ * @lastTime: 2019-11-25 12:40:00
  -->
 <template>
 	<div class="field-attribute">
@@ -28,9 +28,18 @@
 					></el-option>
 				</el-select>
 			</el-form-item>
-			<el-form-item label="可选组件" v-if="a_type.length">
-				<el-select v-model="o_config.type" placeholder="请选择可选类型" @change="$emit('change', o_config)">
-					<el-option v-for="(item,index) in a_type" :key="index" :label="item.label" :value="item.value"></el-option>
+			<el-form-item label="可选组件" v-if="a_listType.length">
+				<el-select
+					v-model="o_config.listType"
+					placeholder="请选择可选类型"
+					@change="$emit('change', o_config)"
+				>
+					<el-option
+						v-for="(item,index) in a_listType"
+						:key="index"
+						:label="item.label"
+						:value="item.value"
+					></el-option>
 				</el-select>
 			</el-form-item>
 			<el-form-item label="字段标题">
@@ -62,36 +71,65 @@
 					@change="$emit('change', o_config)"
 				></el-input-number>
 			</el-form-item>
-			<el-form-item label="占位内容">
+			<el-form-item label="上传地址">
 				<el-input
-					v-model="o_config.placeholder"
-					placeholder="请输入占位内容"
+					v-model="o_config.action"
+					placeholder="请输入上传地址"
 					maxlength="100"
 					@input="$emit('input', o_config)"
 					clearable
 				></el-input>
 			</el-form-item>
-			<el-form-item label="默认内容">
+			<el-form-item label="文件字段">
 				<el-input
-					v-model="o_config.valueDefault"
-					placeholder="请输入默认内容"
+					v-model="o_config.name"
+					placeholder="上传的文件字段名"
 					maxlength="100"
 					@input="$emit('input', o_config)"
 					clearable
 				></el-input>
 			</el-form-item>
-			<el-form-item label="最大长度">
+			<el-form-item label="文件类型">
+				<el-input
+					v-model="o_config.accept"
+					placeholder="请输入允许的文件类型"
+					maxlength="200"
+					@input="$emit('input', o_config)"
+					clearable
+				></el-input>
+			</el-form-item>
+			<el-form-item label="允许个数">
 				<el-input-number
-					v-model="o_config.maxlength"
+					v-model="o_config.limit"
 					controls-position="right"
 					:min="0"
-					:step="10"
-					:max="3000"
+					:step="1"
+					:max="100"
 					class="w100"
 					@change="$emit('change', o_config)"
 				></el-input-number>
 			</el-form-item>
 			<el-row>
+				<el-col :span="12">
+					<el-form-item label="Cookies">
+						<el-switch v-model="o_config.withCredentials" @change="$emit('change', o_config)"></el-switch>
+					</el-form-item>
+				</el-col>
+				<el-col :span="12">
+					<el-form-item label="支持多选">
+						<el-switch v-model="o_config.multiple" @change="$emit('change', o_config)"></el-switch>
+					</el-form-item>
+				</el-col>
+				<el-col :span="12">
+					<el-form-item label="显示列表">
+						<el-switch v-model="o_config.showFileList" @change="$emit('change', o_config)"></el-switch>
+					</el-form-item>
+				</el-col>
+				<el-col :span="12">
+					<el-form-item label="拖拽上传">
+						<el-switch v-model="o_config.drag" @change="$emit('change', o_config)"></el-switch>
+					</el-form-item>
+				</el-col>
 				<el-col :span="12">
 					<el-form-item label="是否可见">
 						<el-switch v-model="o_config.display" @change="$emit('change', o_config)"></el-switch>
@@ -230,27 +268,23 @@ export default {
 			});
 			return components;
 		},
-		a_type() {
+		a_listType() {
 			let typeOptions = [];
 			if (this.o_config.typeOptions) {
 				typeOptions = this.o_config.typeOptions;
 			} else {
 				typeOptions = [
 					{
-						label: "单行文本框",
+						label: "普通附件",
 						value: "text"
 					},
 					{
-						label: "多行文本框",
-						value: "textarea"
+						label: "头像上传",
+						value: "picture"
 					},
 					{
-						label: "邮箱文本框",
-						value: "email"
-					},
-					{
-						label: "密码文本框",
-						value: "password"
+						label: "照片墙",
+						value: "picture-card"
 					}
 				];
 			}

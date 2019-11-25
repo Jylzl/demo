@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-11-12 22:47:54
  * @LastAuthor: lizlong
- * @lastTime: 2019-11-24 17:02:43
+ * @lastTime: 2019-11-25 11:03:49
  -->
 <template>
 	<div class="field-attribute">
@@ -74,7 +74,7 @@
 				<el-input-number
 					v-model="o_config.minRows"
 					controls-position="right"
-					:min="0"
+					:min="1"
 					:step="1"
 					:max="o_config.maxRows"
 					class="w100"

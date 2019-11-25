@@ -3,7 +3,7 @@
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-11-19 08:30:41
  * @LastAuthor: lizlong
- * @lastTime: 2019-11-24 15:09:51
+ * @lastTime: 2019-11-25 11:25:35
  -->
 <template>
 	<component
@@ -72,15 +72,12 @@ export default {
 		config: {
 			handler(val) {
 				this.o_config = val;
-				console.log(val);
 			},
 			immediate: true,
 			deep: true
 		}
 	},
-	created() {
-		console.log(this.config);
-	},
+	created() {},
 	data() {
 		return {
 			o_config: this.config,
