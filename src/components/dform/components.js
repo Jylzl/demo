@@ -1,5 +1,5 @@
 /**
- * @description: Description
+ * @description: 自定义表单组件
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-11-08 12:53:26
  * @LastAuthor: lizlong

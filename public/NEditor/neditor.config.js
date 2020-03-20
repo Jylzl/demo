@@ -41,7 +41,7 @@
         videoActionName: "uploadvideo",
         fileActionName: "uploadfile",
         imageFieldName: "file", // 提交的图片表单名称
-        imageMaxSize: 2048000, // 上传大小限制，单位B
+        imageMaxSize: 4194304, // 上传大小限制，单位B
         imageUrlPrefix: "",
         scrawlUrlPrefix: "",
         videoUrlPrefix: "",
@@ -56,6 +56,11 @@
                 "undo",
                 "redo",
                 "|",
+                "cleardoc",
+                "selectall",
+                "drafts",
+                "pasteplain",
+                "|",
                 "bold",
                 "italic",
                 "underline",
@@ -67,14 +72,11 @@
                 "formatmatch",
                 "autotypeset",
                 "blockquote",
-                "pasteplain",
                 "|",
                 "forecolor",
                 "backcolor",
                 "insertorderedlist",
                 "insertunorderedlist",
-                "selectall",
-                "cleardoc",
                 "|",
                 "rowspacingtop",
                 "rowspacingbottom",
@@ -106,7 +108,7 @@
                 "imageright",
                 "imagecenter",
                 "|",
-                // "simpleupload",
+                "simpleupload",
                 "insertimage",
                 "emotion",
                 "scrawl",
@@ -126,28 +128,27 @@
                 "date",
                 "time",
                 "spechars",
-                "snapscreen",
+                // "snapscreen",
                 "wordimage",
                 "|",
                 "inserttable",
-                "deletetable",
-                "insertparagraphbeforetable",
-                "insertrow",
-                "deleterow",
-                "insertcol",
-                "deletecol",
-                "mergecells",
-                "mergeright",
-                "mergedown",
-                "splittocells",
-                "splittorows",
-                "splittocols",
+                // "deletetable",
+                // "insertparagraphbeforetable",
+                // "insertrow",
+                // "deleterow",
+                // "insertcol",
+                // "deletecol",
+                // "mergecells",
+                // "mergeright",
+                // "mergedown",
+                // "splittocells",
+                // "splittorows",
+                // "splittocols",
                 "charts",
                 "|",
                 "print",
                 "preview",
                 "searchreplace",
-                "drafts",
                 "help"
             ]
         ],
@@ -460,7 +461,7 @@
         // allowLinkProtocols: ['http:', 'https:', '#', '/', 'ftp:', 'mailto:', 'tel:', 'git:', 'svn:'],
 
         //webAppKey 百度应用的APIkey，每个站长必须首先去百度官网注册一个key后方能正常使用app功能，注册介绍，http://app.baidu.com/static/cms/getapikey.html
-        // webAppKey: ""
+        webAppKey: "TSPV2EAYhMQYZyFgnnmTTkwPA07eL9cW",
 
         //默认过滤规则相关配置项目
         //disabledTableInTable:true,  //禁止表格嵌套
@@ -479,7 +480,7 @@
         // xss过滤白名单 名单来源: https://raw.githubusercontent.com/leizongmin/js-xss/master/lib/default.js
 
         whitList: {
-            a: ['target', 'href', 'title', 'class', 'style'],
+            a: ['target', 'href', 'title', 'class', 'style', 'id', 'name'],
             abbr: ['title', 'class', 'style'],
             address: ['class', 'style'],
             area: ['shape', 'coords', 'href', 'alt'],
@@ -516,7 +517,7 @@
             header: [],
             hr: [],
             i: ['class', 'style'],
-            img: ['style', 'src', 'alt', 'title', 'width', 'height', 'id', '_src', '_url', 'loadingclass', 'class', 'data-latex'],
+            img: ['style', 'src', 'alt', 'title', 'width', 'height', 'id', '_src', '_url', 'loadingclass', 'class', 'data-latex', 'anchorname'],
             ins: ['datetime'],
             li: ['class', 'style'],
             mark: [],

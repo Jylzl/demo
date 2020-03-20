@@ -1,5 +1,5 @@
 <!--
- * @description: Description
+ * @description: 表单设计
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-10-29 17:59:02
  * @LastAuthor: lizlong
@@ -13,18 +13,10 @@
   >
     <el-aside width="300px">
       <div class="form-left-card">
-        <el-card
-          class="form-card"
-          shadow="never"
-          :body-style="{ padding: '0px' }"
-        >
+        <el-card class="form-card" shadow="never" :body-style="{ padding: '0px' }">
           <div slot="header" class="form-card-header">
             <span>表单</span>
-            <el-button
-              style="float: right; padding: 3px 0"
-              type="text"
-              icon="el-icon-refresh"
-            ></el-button>
+            <el-button style="float: right; padding: 3px 0" type="text" icon="el-icon-refresh"></el-button>
           </div>
           <div class="h100">
             <!-- 滚动条 -->
@@ -42,11 +34,7 @@
         </el-card>
       </div>
       <div class="form-left-tabs">
-        <el-tabs
-          type="border-card"
-          v-model="tabsOneActiveName"
-          class="h100 form-tabs"
-        >
+        <el-tabs type="border-card" v-model="tabsOneActiveName" class="h100 form-tabs">
           <el-tab-pane name="first" class="h100">
             <span slot="label">
               <i class="el-icon-receiving"></i> 增量字段
@@ -84,13 +72,8 @@
                               :key="component.id"
                             >
                               <div class="field-label">
-                                <i
-                                  class="icon iconfont"
-                                  :class="component.icon"
-                                ></i>
-                                <span class="field-label-title">
-                                  {{ component.label }}
-                                </span>
+                                <i class="icon iconfont" :class="component.icon"></i>
+                                <span class="field-label-title">{{ component.label }}</span>
                               </div>
                             </el-col>
                           </draggable>
@@ -119,27 +102,11 @@
       <el-container>
         <el-header class="form-box-header" height="40px">
           <div>
-            <el-button
-              type="text"
-              icon="el-icon-refresh-left"
-              size="mini"
-              circle
-            ></el-button>
-            <el-button
-              type="text"
-              icon="el-icon-refresh-right"
-              size="mini"
-              circle
-            ></el-button>
+            <el-button type="text" icon="el-icon-refresh-left" size="mini" circle></el-button>
+            <el-button type="text" icon="el-icon-refresh-right" size="mini" circle></el-button>
           </div>
           <div>
-            <el-button
-              type="text"
-              icon="el-icon-delete"
-              size="mini"
-              @click="clearMyArray"
-              circle
-            ></el-button>
+            <el-button type="text" icon="el-icon-delete" size="mini" @click="clearMyArray" circle></el-button>
           </div>
         </el-header>
         <el-main
@@ -185,16 +152,13 @@
             </el-button>
           </div>
           <div class="form-box-footer-body" v-if="codeViewKey">
-            <d-form
-              :myArray="obj.column"
-              :formAttribute="obj.formAttribute"
-            ></d-form>
+            <d-form :myArray="obj.column" :formAttribute="obj.formAttribute"></d-form>
             <!-- <MyEditor
 							:language="language"
 							:codes="htmlCodes"
 							@onMounted="htmlOnMounted"
 							@onCodeChange="htmlOnCodeChange"
-						/>-->
+            />-->
           </div>
         </el-footer>
       </el-container>
