@@ -4,20 +4,49 @@
  * For LGPL see License.txt in the project root for license information.
  * For commercial licenses see https://www.tiny.cloud/
  */
+
+/* rest css */
+
+a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block
+}
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  line-height: 1.4;
-  margin: 1rem;
+  line-height: 1
+}
+
+ol, ul {
+  list-style: none
+}
+
+blockquote, q {
+  quotes: none
+}
+
+blockquote:after, blockquote:before, q:after, q:before {
+  content: "";
+  content: none
 }
 
 table {
   border-collapse: collapse;
+  border-spacing: 0
 }
 
-table th,
-table td {
-  border: 1px solid #ccc;
-  padding: 0.4rem;
+/* content css */
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.4;
+  margin: 1rem;
 }
 
 figure {
@@ -54,4 +83,232 @@ code {
   border-right: 2px solid #ccc;
   margin-right: 1.5rem;
   padding-right: 1rem;
+}
+
+/* htmledit_views */
+
+.htmledit_views {
+  font-family: Microsoft YaHei, -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif, SimHei, SimSun
+}
+
+.htmledit_views * {
+  box-sizing: border-box
+}
+
+.htmledit_views address, .htmledit_views cite, .htmledit_views dfn, .htmledit_views em, .htmledit_views i, .htmledit_views span[lang], .htmledit_views var {
+  font-style: italic
+}
+
+.htmledit_views table {
+  border-collapse: collapse;
+}
+
+.htmledit_views table th, .htmledit_views table td {
+  border: 1px solid #ccc;
+  padding: 0.4rem;
+}
+
+.htmledit_views table[border="0"] th, .htmledit_views table[border="0"] td {
+  border-width: 0;
+}
+
+.htmledit_views table[border="1"] th, .htmledit_views table[border="1"] td {
+  border-width: 1px;
+}
+
+.htmledit_views table[border="2"] th, .htmledit_views table[border="2"] td {
+  border-width: 2px;
+}
+
+.htmledit_views table[border="3"] th, .htmledit_views table[border="3"] td {
+  border-width: 3px;
+}
+
+.htmledit_views table[border="4"] th, .htmledit_views table[border="4"] td {
+  border-width: 4px;
+}
+
+.htmledit_views table[border="5"] th, .htmledit_views table[border="5"] td {
+  border-width: 5px;
+}
+
+.htmledit_views table[border="6"] th, .htmledit_views table[border="6"] td {
+  border-width: 6px;
+}
+
+.htmledit_views table[border="7"] th, .htmledit_views table[border="7"] td {
+  border-width: 7px;
+}
+
+.htmledit_views table[border="8"] th, .htmledit_views table[border="8"] td {
+  border-width: 8px;
+}
+
+.htmledit_views table[border="9"] th, .htmledit_views table[border="9"] td {
+  border-width: 9px;
+}
+
+.htmledit_views table[border="10"] th, .htmledit_views table[border="10"] td {
+  border-width: 10px;
+}
+
+.htmledit_views p {
+  line-height: 1.4;
+  color: #4d4d4d;
+  font-weight: 400;
+  margin: 0 0 8px;
+  overflow-x: auto
+}
+
+p[align=center] {
+  text-align: center
+}
+
+.htmledit_views a>img {
+  padding: 1px;
+  margin: 1px;
+  border: none;
+  outline: #0782c1 solid 1px
+}
+
+.htmledit_views img {
+  max-width: 100%;
+}
+
+.htmledit_views h1, .htmledit_views h2, .htmledit_views h3, .htmledit_views h4, .htmledit_views h5, .htmledit_views h6 {
+  color: #4f4f4f;
+  margin: 8px 0 16px;
+  font-weight: 700
+}
+
+.htmledit_views ol, .htmledit_views ul {
+  margin: 0 0 24px;
+  padding: 0;
+  font-size: 16px
+}
+
+.htmledit_views ul ol {
+  margin: 0 0 24px 32px
+}
+
+.htmledit_views ul li {
+  list-style-type: disc;
+  margin: 8px 0 0 32px
+}
+
+.htmledit_views ol li {
+  list-style-type: decimal;
+  margin-left: 40px;
+  margin-top: 8px
+}
+
+.htmledit_views h1 {
+  font-size: 28px;
+  line-height: 36px
+}
+
+.htmledit_views h2 {
+  font-size: 24px;
+  line-height: 32px
+}
+
+.htmledit_views h3 {
+  font-size: 22px;
+  line-height: 30px
+}
+
+.htmledit_views h4 {
+  font-size: 20px;
+  line-height: 28px
+}
+
+.htmledit_views h5 {
+  font-size: 18px;
+  line-height: 26px
+}
+
+.htmledit_views h6 {
+  font-size: 16px;
+  line-height: 24px
+}
+
+.htmledit_views blockquote {
+  display: block;
+  padding: 16px 16px 0;
+  margin: 0 0 24px;
+  border-left: 8px solid #dddfe4;
+  background: #eef0f4;
+  overflow: auto;
+  overflow-scrolling: touch;
+  word-wrap: normal;
+  word-break: normal
+}
+
+.htmledit_views blockquote ol, .htmledit_views blockquote ul {
+  margin-bottom: 16px;
+  padding: 0;
+  font-size: 16px;
+  line-height: 24px
+}
+
+.htmledit_views blockquote ol li, .htmledit_views blockquote ul li {
+  margin-bottom: 0
+}
+
+.htmledit_views blockquote p {
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: 400;
+  margin-bottom: 16px;
+  color: #4f4f4f
+}
+
+.htmledit_views hr {
+  margin: 24px 0;
+  border: none;
+  border-bottom: solid #ccc 1px
+}
+
+.htmledit_views dl {
+  margin: 24px
+}
+
+.htmledit_views dl dt {
+  margin: 8px;
+  font-weight: 700
+}
+
+.htmledit_views dl dt dd {
+  margin: 8px
+}
+
+.htmledit_views abbr[data-original-title], .htmledit_views abbr[title] {
+  cursor: help;
+  border-bottom: 1px dotted #999
+}
+
+.htmledit_views .initialism {
+  font-size: 90%;
+  text-transform: uppercase
+}
+
+.htmledit_views pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  margin: 0 0 24px;
+  overflow-x: auto;
+  padding: 8px
+}
+
+.htmledit_views a {
+  color: #4ea1db;
+  text-decoration: none
+}
+
+.htmledit_views a:focus, .htmledit_views a:hover {
+  color: #ca0c16
+}
+
+.htmledit_views a:visited {
+  color: #6795b5
 }

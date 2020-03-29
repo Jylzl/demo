@@ -1,4 +1,12 @@
 <!--
+ * @Author: your name
+ * @Date: 2020-02-04 20:21:41
+ * @LastEditTime: 2020-03-22 13:56:17
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: \demo\src\views\layout\Aside.vue
+ -->
+<!--
  * @description: Description
  * @author: lizlong<94648929@qq.com>
  * @since: 2019-08-27 18:01:13
@@ -31,6 +39,10 @@
 			<template slot="title">Demo3</template>
 			<el-menu-item index="/demo/split">split</el-menu-item>
 			<el-menu-item index="/demo/dragDemo">dragDemo</el-menu-item>
+		</el-submenu>
+		<el-submenu index="4">
+			<template slot="title">Page</template>
+			<el-menu-item index="/login">login</el-menu-item>
 		</el-submenu>
 	</el-menu>
 </template>

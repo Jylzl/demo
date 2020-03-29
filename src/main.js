@@ -19,6 +19,7 @@ import FormMaking from 'form-making'
 import 'form-making/dist/FormMaking.css'
 import splitPane from 'vue-splitpane'
 import VueAMap from 'vue-amap';
+import Icon from "vue2-svg-icon/Icon.vue" // svg
 
 Vue.config.productionTip = false
 Vue.use(ElementUI);
@@ -27,6 +28,7 @@ Vue.use(AvueFormDesign);
 Vue.use(AvueUeditor);
 Vue.use(AvueMap);
 Vue.use(VueAMap);
+Vue.component("icon", Icon);
 VueAMap.initAMapApiLoader({
   key: '4d73249f0948da6c9d5bfc507ff59cf0',
   plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor'],
