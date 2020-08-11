@@ -28,7 +28,7 @@
     "mobile-detect": "^1.4.4",
     "monaco-editor": "^0.20.0",
     "screenfull": "^5.0.2",
-    "tinymce": "^5.2.1",
+    "tinymce": "^5.4.0",
     "vue": "^2.6.11",
     "vue-amap": "^0.5.10",
     "vue-cropper": "^0.5.2",
